@@ -4,7 +4,12 @@ import styles from "./style.module.css";
 import DetailView from "./DetailView";
 import dummyImage from "../../src/Assets/DummyImage.png";
 import { Box, FormControl, InputLabel, MenuItem, OutlinedInput, Select, useTheme } from "@mui/material";
-
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import MenProfile from '../Assets/profile.png';
+import WomanProfile from '../Assets/woman.png'
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -5432,38 +5437,61 @@ const OrgChart = () => {
                             setOpen(true);
                         }}>
                         <Box className={styles.headerBox}>
-                            <div>
-                                <img
+                            <div className={styles.imgDiv}>
+                               {node.Gender=="Male" ? <img
                                     className={styles.img}
-                                    src={node.image ? node.image : dummyImage}
+                                    src={ MenProfile}
                                     alt=""
-                                />
+                                /> : <img
+                                    className={styles.img}
+                                    src={ WomanProfile}
+                                    alt=""
+                                />}
                             </div>
-                            <div>
+                            <div className={styles.details}>
                                 <div className={styles.name}>
-                                    {node.Full_Name || node["Full Name"]}
+                                    { node.Full_Name || node[ "Full Name" ] }
+                                    
                                 </div>
-                                <div className={styles.name}>{node.Designation}</div>
-                                <div className={styles.name}>
+                                <div className={styles.Designation}>{node.Designation}</div>
+                                
+                           {  node["Personal Mobile Number"] && <div className={styles.mobileDiv}>
+                                    <div className={styles.mobileIcon}>
+                                        <PhoneAndroidIcon sx={ { color: "#0c0c0c2c",fontSize:"20px" } } />
+                                    </div>
+                                    <div className={styles.mobileNumber}>
                                     {node.Personal_Mobile_Number ||
                                         node["Personal Mobile Number"]}
                                 </div>
-                                <div className={styles.name}>
+                                </div>}
+
+                                {node["Is Personal Email"] && <div className={styles.emailDiv}>
+                                    <div  className={styles.emailIcon}><MailOutlineIcon sx={ {color:"#0c0c0c2c",fontSize:"20px"} } /></div> 
+                                     <div className={styles.email}>
                                     {node.Is_Personal_Email || node["Is Personal Email"]}
                                 </div>
+                                </div>}
+                               
                             </div>
-                            {node?.subordinates?.length > 0 && (
+                         
+                        </Box>
+                           {node?.subordinates?.length > 0 && (
                                 <div
-                                    className={styles.toggleIcon}
+                                    className={ isExpanded ? styles.toggleMinus : styles.togglePlus }
+                                   
                                     onClick={(e) => {
                                         e.stopPropagation(); // Prevent event bubbling
                                         toggleExpand(node); // Toggle expand/collapse for this node
                                     }}
                                 >
-                                    {isExpanded ? "-" : "+"} {/* Show + or - */}
+                                    { isExpanded ? ( <>
+                                        <RemoveIcon />
+                                    </> ) : ( <>
+
+                                        <AddIcon />
+                                    </> ) } {/* Show + or - */ }
                                 </div>
                             )}
-                        </Box>
                     </div>
                 }
             >

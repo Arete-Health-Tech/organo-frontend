@@ -1,27 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 .box {
-  padding: 5px;
-  border-radius: 6px;
+  padding: 20px 10px 10px 10px;
+  border-radius: 4px;
   display: inline-block;
-  border: 1px solid #0566ff;
-  height: 12vh;
+  border: 1px solid #0c0c0c1b;
+  /* height: 12vh; */
   width: 18vw;
+
+  justify-content: center;
 }
-.headerBox{
+.headerBox {
   display: flex;
-  padding: 0.5rem;
+  /* gap: 20px; */
+
+  height: auto;
 }
 .treeDiv {
   width: 100%;
+  padding: 5vh 5vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+.imgDiv {
+  width: 30%;
 }
 .img {
   height: 5rem;
   width: 5rem;
 }
-.toggleIcon {
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 70%;
+}
+.name {
+  font-family: Outfit, sans-serif;
+  font-size: 16px;
+  color: #111212b8;
+  display: flex;
+}
+.Designation {
+  font-family: Outfit, sans-serif;
+  font-size: 15px;
+  color: #111212b8;
+  display: flex;
+  justify-content: flex-start;
+}
+.mobileDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: left;
+  align-items: center;
+}
+.mobileIcon {
+  display: flex;
+}
+.mobileNumber {
+  font-family: Outfit, sans-serif;
+  font-size: 15px;
+  color: #111212b8;
+  justify-content: center;
+  align-items: center;
+}
+.emailDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: left;
+  align-items: center;
+}
+.emailIcon {
+  font-size: 15px;
+  display: flex;
+}
+
+.email {
+  font-family: Outfit, sans-serif;
+  font-size: 14px;
+  color: #2382e7c9;
+  text-decoration: underline;
+  justify-content: center;
+  align-items: center;
+}
+
+.togglePlus {
   cursor: pointer;
   font-size: 1.2rem;
   margin-left: 8px;
-  color: #007bff;
+  color: #fff;
+  font-weight: 800;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #007bff;
+  position: relative;
+  left: 44%;
+  top: 20px;
+  z-index: 2;
+}
+.toggleMinus {
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: 8px;
+  color: #fff;
+  font-weight: 800;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #dd4b16;
+  position: relative;
+  left: 44%;
+  top: 20px;
+  z-index: 2;
+}
+
+/* Employee Details Drawer*/
+
+.employee_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4%;
+  background-color: #f8f9fa;
+  justify-content: center;
+}
+.employee_image {
+  padding: 5% 20%;
+}
+.employee_heading {
+  font-family: Outfit, sans-serif;
+  font-size: 24px;
+  color: #111212b8;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.employee_content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 0% 0 5%;
+  border: 1px solid black;
+}
+
+._layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.title_text {
+  font-family: Outfit, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #111212b8;
+  display: flex;
+  width: 45%;
+}
+.title_detail {
+  font-family: Outfit, sans-serif;
+  font-size: 20px;
+  width: 50%;
+  color: #111212b8;
+}
+.title_detail_email {
+  font-family: Outfit, sans-serif;
+  font-size: 17px;
+  color: #2179d1b8;
+  width: 50%;
 }
