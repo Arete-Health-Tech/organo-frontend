@@ -120,14 +120,15 @@
 
 .employee_container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   gap: 10px;
   padding: 4%;
   background-color: #f8f9fa;
-  justify-content: center;
+  /* justify-content: center; */
+  height: 100%;
 }
 .employee_image {
-  padding: 5% 20%;
+  padding: 5% 30%;
 }
 .employee_heading {
   font-family: Outfit, sans-serif;
@@ -139,15 +140,14 @@
 }
 .employee_content {
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   gap: 15px;
   padding: 0 0% 0 5%;
-  border: 1px solid black;
 }
 
 ._layout {
   display: flex;
-  flex-direction: row;
+  flex-direction: row !important;
   justify-content: space-between;
 }
 .title_text {
@@ -160,7 +160,7 @@
 }
 .title_detail {
   font-family: Outfit, sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   width: 50%;
   color: #111212b8;
 }

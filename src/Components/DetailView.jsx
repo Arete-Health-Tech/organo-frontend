@@ -47,10 +47,20 @@ const DetailView = ({ setDetails, details, setOpen, open }) => {
                          {details &&  <Stack className={ styles._layout }>
                                 <Stack className={styles.title_text}>Location</Stack>
                                  <Stack className={styles.title_detail}>{ details.Location}</Stack>
-                            </Stack>}
+                        </Stack> }
+                        {/* Date of Joining */ }
+                         <Stack className={ styles._layout }>
+                                <Stack className={styles.title_text}>Date of Joining</Stack>
+                                 <Stack className={styles.title_detail}>{details ? details.Date_of_Joining || details["Date of Joining"] : ""}</Stack>
+                        </Stack>
+
                           {details &&  <Stack className={ styles._layout }>
                                 <Stack className={styles.title_text}>Designation</Stack>
                                  <Stack  className={styles.title_detail}>{ details.Designation}</Stack>
+                        </Stack> }
+                        {details &&  <Stack className={ styles._layout }>
+                                <Stack className={styles.title_text}>Department</Stack>
+                                 <Stack  className={styles.title_detail}>{ details.Department}</Stack>
                             </Stack>}
                                <Stack className={ styles._layout }>
                                 <Stack className={styles.title_text}>Phone Number</Stack>
