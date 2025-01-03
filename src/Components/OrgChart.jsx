@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useCallback,useEffect } from "react";
 import { Tree, TreeNode } from "react-organizational-chart";
 import styles from "./style.module.css";
 import DetailView from "./DetailView";
@@ -40,6 +40,7 @@ function getStyles(name, personName, theme) {
         fontWeight: personName.includes(name)
             ? theme.typography.fontWeightMedium
             : theme.typography.fontWeightRegular,
+        fontFamily:"Outfit,sans-serif",
     };
 }
 
@@ -49,6 +50,67 @@ const OrgChart = () => {
     const [details, setDetails] = useState(null);
     const [open, setOpen] = React.useState(false);
     const [expandedNodeIds, setExpandedNodeIds] = useState([]); // State to track expanded nodes
+
+      const [scale, setScale] = useState(1); // Initial zoom level
+    const [offset, setOffset] = useState({ x: 0, y: 0 }); // To track mouse position for zooming
+    const [dragging, setDragging] = useState(false); // To check if the user is dragging
+    const [position, setPosition] = useState({ x: 0, y: 0 }); // To track the drag start position
+    const [draggedPosition, setDraggedPosition] = useState({ x: 0, y: 0 }); // To track the dragged offset
+
+    // Handle zooming based on mouse wheel
+    const handleWheel = useCallback(
+        (event) => {
+            event.preventDefault();
+
+            // Adjust the scale more slowly by changing the increment
+            let newScale = scale + (event.deltaY > 0 ? -0.05 : 0.05);
+
+            // Clamp the scale value to a smaller range (e.g., 0.5 to 2)
+            newScale = Math.min(Math.max(newScale, 0.5), 0.8);
+
+            // Update the scale
+            setScale(newScale);
+
+            // Get the mouse position to adjust transformOrigin
+            setOffset({ x: event.clientX, y: event.clientY });
+        },
+        [scale] 
+    );
+
+    // Handle dragging
+    const handleMouseDown = (e) => {
+        setDragging(true);
+        setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleMouseMove = (e) => {
+        if (dragging) {
+            const deltaX = e.clientX - position.x;
+            const deltaY = e.clientY - position.y;
+            setPosition({ x: e.clientX, y: e.clientY });
+            setDraggedPosition({
+                x: draggedPosition.x + deltaX,
+                y: draggedPosition.y + deltaY,
+            });
+        }
+    };
+
+    const handleMouseUp = () => {
+        setDragging(false);
+    };
+
+    useEffect(() => {
+        // Add event listeners for dragging
+        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("mouseup", handleMouseUp);
+
+        // Cleanup the event listeners
+        return () => {
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("mouseup", handleMouseUp);
+        };
+    }, [ dragging, position ] );
+    
 
     // Recursive function to get all descendant node IDs
     const getAllDescendantIds = (node) => {
@@ -5521,10 +5583,15 @@ const OrgChart = () => {
 
     // This return is for component 
     return (
-        <>
-            <div>
-                <FormControl sx={{ m: 1, width: 300 }}>
-                    <InputLabel id="demo-multiple-name-label">Facility</InputLabel>
+        <Box className={ styles.main_container }>
+              {/* <div style={{ marginBottom: "10px" }}>
+                <button onClick={handleZoomOut} disabled={scale <= 0.5}>Zoom Out</button>
+                <button onClick={handleZoomIn} disabled={scale >= 2}>Zoom In</button>
+                <span style={{ marginLeft: "10px" }}>Zoom Level: {Math.round(scale * 100)}%</span>
+            </div> */}
+            <div className={styles.filterDiv} style={{height: "10vh", position:"sticky",zIndex:"100",backgroundColor:"white",width:"100%"}}>
+                <FormControl sx={{ m: 1, width: 250,borderRadius:"5px" }}>
+                    <InputLabel id="demo-multiple-name-label" sx={{fontFamily:"Outfit,sans-serif"}}>Facility</InputLabel>
                     <Select
                         labelId="demo-multiple-name-label"
                         id="demo-multiple-name"
@@ -5545,8 +5612,8 @@ const OrgChart = () => {
                         ))}
                     </Select>
                 </FormControl>
-                <FormControl sx={{ m: 1, width: 300 }}>
-                    <InputLabel id="demo-multiple-name-label">Department</InputLabel>
+                <FormControl sx={{ m: 1, width: 250 }}>
+                    <InputLabel id="demo-multiple-name-label" sx={{fontFamily:"Outfit,sans-serif"}}>Department</InputLabel>
                     <Select
                         labelId="demo-multiple-name-label"
                         id="demo-multiple-name"
@@ -5568,9 +5635,32 @@ const OrgChart = () => {
                     </Select>
                 </FormControl>
             </div>
-            <div className={styles.treeDiv}>
-
-                {data.map((ordinate) => renderTreeNodes(ordinate))}
+            <div className={ styles.treeDiv }
+          style={{
+             
+              marginTop:"5vh",
+                width: "100%",
+                maxWidth: "2200px",
+              overflow: "auto",
+                height: "80vh",
+            }}
+            onWheel={handleWheel} 
+        >
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    transform: `scale(${scale}) translate(${draggedPosition.x}px, ${draggedPosition.y}px)`, // Zoom and drag
+                    transformOrigin: `${offset.x}px ${offset.y}px`, // Zoom around the mouse position
+                    transition: "transform 0.8s ease",
+                    width: "100%",
+                    cursor: dragging ? "grabbing" : "grab", // Change cursor when dragging
+                    position: "relative",
+                }}
+                onMouseDown={handleMouseDown} // Add mouse down event to start dragging
+            >
+                    { data.map( ( ordinate ) => renderTreeNodes( ordinate ) ) }</div>
+               
 
                 <DetailView
                     setDetails={setDetails}
@@ -5579,7 +5669,7 @@ const OrgChart = () => {
                     open={open}
                 />
             </div>
-        </>
+        </Box>
     );
 };
 

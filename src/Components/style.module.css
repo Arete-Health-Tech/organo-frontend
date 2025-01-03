@@ -9,6 +9,9 @@
   padding: 40px;
   height: 100vh;
 }
+.filterDiv {
+  margin-bottom: 20px;
+}
 
 .box {
   padding: 20px 10px 10px 10px;
