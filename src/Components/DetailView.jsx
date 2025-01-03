@@ -61,17 +61,23 @@ const DetailView = ({ setDetails, details, setOpen, open }) => {
                         {details &&  <Stack className={ styles._layout }>
                                 <Stack className={styles.title_text}>Department</Stack>
                                  <Stack  className={styles.title_detail}>{ details.Department}</Stack>
-                            </Stack>}
-                               <Stack className={ styles._layout }>
+                        </Stack> }
+                        
+                         {details &&  <Stack className={ styles._layout }>
+                                <Stack className={styles.title_text}>Gender</Stack>
+                                 <Stack  className={styles.title_detail}>{ details.Gender}</Stack>
+                        </Stack> }
+                        
+                              {details["Personal Mobile Number"] && <Stack className={ styles._layout }>
                                 <Stack className={styles.title_text}>Phone Number</Stack>
                                  <Stack  className={styles.title_detail}>{details ? details.Personal_Mobile_Number ||
                                 details["Personal Mobile Number"] : ""}</Stack>
-                            </Stack>
-                              <Stack className={ styles._layout }>
+                            </Stack>}
+                            {details["Is Personal Email"] && <Stack className={ styles._layout }>
                                 <Stack className={styles.title_text}>Email</Stack>
                                  <Stack  className={styles.title_detail_email}>{details ? details.Is_Personal_Email ||
                                 details["Is Personal Email"] : ""}</Stack>
-                            </Stack>
+                            </Stack>}
                             
                             
                         </Stack>

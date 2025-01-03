@@ -142,7 +142,10 @@
   display: flex;
   flex-direction: column !important;
   gap: 15px;
-  padding: 0 0% 0 5%;
+  padding: 5% 5%;
+  border: 1px solid rgba(0, 0, 0, 0.074);
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 ._layout {
@@ -152,7 +155,7 @@
 }
 .title_text {
   font-family: Outfit, sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
   color: #111212b8;
   display: flex;
@@ -160,13 +163,13 @@
 }
 .title_detail {
   font-family: Outfit, sans-serif;
-  font-size: 18px;
-  width: 50%;
+  font-size: 16px;
+  width: 55%;
   color: #111212b8;
 }
 .title_detail_email {
   font-family: Outfit, sans-serif;
-  font-size: 17px;
+  font-size: 14px;
   color: #2179d1b8;
-  width: 50%;
+  width: 55%;
 }
