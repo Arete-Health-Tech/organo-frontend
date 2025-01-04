@@ -5486,14 +5486,26 @@ const OrgChart = () => {
     },
   ];
 
+  let isExpanded
+
+  const nodeRef = useRef(null); // Reference to the DOM element
+
+  // Function to handle smooth scrolling
+  const handleScroll = () => {
+    if (nodeRef.current) {
+      nodeRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
+  useEffect(() => {
+    if (isExpanded) {
+      handleScroll(); // Scroll when the node is expanded
+    }
+  }, [isExpanded]); // Depend on the expanded state of the node
+
 
   const renderTreeNodes = (node, index) => {
-    const isExpanded = expandedNodeIds.includes(node._id); // Check if this node is expanded
-    const handleFocus = (element) => {
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    };
+     isExpanded = expandedNodeIds.includes(node._id); // Check if this node is expanded
 
     return (
       <Tree
@@ -5504,12 +5516,13 @@ const OrgChart = () => {
         label={
           <div
             className={styles.box}
+            ref={nodeRef} // Attach the ref
             onClick={() => {
               setDetails(node);
               setOpen(true);
             }}
             tabIndex={0} // Make element focusable
-            onFocus={(e) => handleFocus(e.currentTarget)}
+            onFocus={() => handleScroll()} // Scroll on focus
           >
             <div className={styles.headerBox}>
               <div className={styles.imgDiv}>
@@ -5520,7 +5533,9 @@ const OrgChart = () => {
                 )}
               </div>
               <div className={styles.details}>
-                <div className={styles.name}>{node.Full_Name || node["Full Name"]}</div>
+                <div className={styles.name}>
+                  {node.Full_Name || node["Full Name"]}
+                </div>
                 <div className={styles.Designation}>{node.Designation}</div>
                 {node["Personal Mobile Number"] && (
                   <div className={styles.mobileDiv}>
@@ -5555,7 +5570,7 @@ const OrgChart = () => {
                   isExpanded ? styles.toggleMinus : styles.togglePlus
                 }
                 onClick={(e) => {
-                  e.stopPropagation();
+                  e.stopPropagation(); // Prevent the event from propagating
                   toggleExpand(node);
                 }}
               >
@@ -5567,8 +5582,8 @@ const OrgChart = () => {
       >
         {isExpanded &&
           node?.subordinates?.length > 0 &&
-          node.subordinates.map((subordinate) =>
-            <TreeNode> {renderTreeNodes(subordinate, index)}</TreeNode>
+          node.subordinates.map((subordinate, subIndex) =>
+            <TreeNode>{renderTreeNodes(subordinate, subIndex)}</TreeNode>
           )}
       </Tree>
     );
@@ -5599,7 +5614,7 @@ const OrgChart = () => {
         className={styles.filterDiv}
         style={{
           height: "10vh",
-          position: "sticky",
+          position: "fixed",
           zIndex: "100",
           backgroundColor: "white",
           width: "100%",
