@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { Tree, TreeNode } from "react-organizational-chart";
 import styles from "./style.module.css";
 import DetailView from "./DetailView";
@@ -57,37 +57,37 @@ const OrgChart = () => {
   const [open, setOpen] = React.useState(false);
   const [expandedNodeIds, setExpandedNodeIds] = useState([]); // State to track expanded nodes
 
-  const [scale, setScale] = useState(1); // Initial zoom level
-  const [offset, setOffset] = useState({ x: 0, y: 0 }); // To track mouse position for zooming
+  // const [scale, setScale] = useState(1); // Initial zoom level
+  // const [offset, setOffset] = useState({ x: 0, y: 0 }); // To track mouse position for zooming
   const [dragging, setDragging] = useState(false); // To check if the user is dragging
   const [position, setPosition] = useState({ x: 0, y: 0 }); // To track the drag start position
   const [draggedPosition, setDraggedPosition] = useState({ x: 0, y: 0 }); // To track the dragged offset
 
   // Handle zooming based on mouse wheel
-  const handleWheel = useCallback(
-    (event) => {
-      event.preventDefault();
+  // const handleWheel = useCallback(
+  //   (event) => {
+  //     event.preventDefault();
 
-      // Adjust the scale more slowly by changing the increment
-      let newScale = scale + (event.deltaY > 0 ? -0.05 : 0.05);
+  //     // Adjust the scale more slowly by changing the increment
+  //     let newScale = scale + (event.deltaY > 0 ? -0.05 : 0.05);
 
-      // Clamp the scale value to a smaller range (e.g., 0.5 to 2)
-      newScale = Math.min(Math.max(newScale, 0.5), 1);
+  //     // Clamp the scale value to a smaller range (e.g., 0.5 to 2)
+  //     newScale = Math.min(Math.max(newScale, 0.5), 1);
 
-      // Update the scale
-      setScale(newScale);
+  //     // Update the scale
+  //     setScale(newScale);
 
-      // Get the mouse position to adjust transformOrigin
-      setOffset({ x: event.clientX, y: event.clientY });
-    },
-    [scale]
-  );
+  //     // Get the mouse position to adjust transformOrigin
+  //     setOffset({ x: event.clientX, y: event.clientY });
+  //   },
+  //   [scale]
+  // );
 
-  // Handle dragging
-  const handleMouseDown = (e) => {
-    setDragging(true);
-    setPosition({ x: e.clientX, y: e.clientY });
-  };
+  // // Handle dragging
+  // const handleMouseDown = (e) => {
+  //   setDragging(true);
+  //   setPosition({ x: e.clientX, y: e.clientY });
+  // };
 
   const handleMouseMove = (e) => {
     if (dragging) {
@@ -5485,8 +5485,15 @@ const OrgChart = () => {
       ],
     },
   ];
-  const renderTreeNodes = (node) => {
+
+
+  const renderTreeNodes = (node, index) => {
     const isExpanded = expandedNodeIds.includes(node._id); // Check if this node is expanded
+    const handleFocus = (element) => {
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    };
 
     return (
       <Tree
@@ -5501,26 +5508,25 @@ const OrgChart = () => {
               setDetails(node);
               setOpen(true);
             }}
+            tabIndex={0} // Make element focusable
+            onFocus={(e) => handleFocus(e.currentTarget)}
           >
-            <Box className={styles.headerBox}>
+            <div className={styles.headerBox}>
               <div className={styles.imgDiv}>
-                {node.Gender == "Male" ? (
-                  <img className={styles.img} src={MenProfile} alt="" />
+                {node.Gender === "Male" ? (
+                  <img className={styles.img} src={MenProfile} alt="Male" />
                 ) : (
-                  <img className={styles.img} src={WomanProfile} alt="" />
+                  <img className={styles.img} src={WomanProfile} alt="Female" />
                 )}
               </div>
               <div className={styles.details}>
-                <div className={styles.name}>
-                  {node.Full_Name || node["Full Name"]}
-                </div>
+                <div className={styles.name}>{node.Full_Name || node["Full Name"]}</div>
                 <div className={styles.Designation}>{node.Designation}</div>
-
                 {node["Personal Mobile Number"] && (
                   <div className={styles.mobileDiv}>
                     <div className={styles.mobileIcon}>
                       <PhoneAndroidIcon
-                        sx={{ color: "#0c0c0c2c", fontSize: "20px" }}
+                        style={{ color: "#0c0c0c2c", fontSize: "20px" }}
                       />
                     </div>
                     <div className={styles.mobileNumber}>
@@ -5529,12 +5535,11 @@ const OrgChart = () => {
                     </div>
                   </div>
                 )}
-
                 {node["Is Personal Email"] && (
                   <div className={styles.emailDiv}>
                     <div className={styles.emailIcon}>
                       <MailOutlineIcon
-                        sx={{ color: "#0c0c0c2c", fontSize: "20px" }}
+                        style={{ color: "#0c0c0c2c", fontSize: "20px" }}
                       />
                     </div>
                     <div className={styles.email}>
@@ -5543,25 +5548,18 @@ const OrgChart = () => {
                   </div>
                 )}
               </div>
-            </Box>
+            </div>
             {node?.subordinates?.length > 0 && (
               <div
-                className={isExpanded ? styles.toggleMinus : styles.togglePlus}
+                className={
+                  isExpanded ? styles.toggleMinus : styles.togglePlus
+                }
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleExpand(node);
                 }}
               >
-                {isExpanded ? (
-                  <>
-                    <RemoveIcon />
-                  </>
-                ) : (
-                  <>
-                    <AddIcon />
-                  </>
-                )}{" "}
-                {/* Show + or - */}
+                {isExpanded ? <RemoveIcon /> : <AddIcon />}
               </div>
             )}
           </div>
@@ -5569,10 +5567,9 @@ const OrgChart = () => {
       >
         {isExpanded &&
           node?.subordinates?.length > 0 &&
-          node.subordinates.map((subordinate) => (
-            <TreeNode>{renderTreeNodes(subordinate)}</TreeNode>
-          ))}
-        <br />
+          node.subordinates.map((subordinate) =>
+            <TreeNode> {renderTreeNodes(subordinate, index)}</TreeNode>
+          )}
       </Tree>
     );
   };
@@ -5665,16 +5662,16 @@ const OrgChart = () => {
       </div>
       <div
         className={styles.treeDiv}
-        style={{
-          marginTop: "5vh",
-          width: "100%",
-          maxWidth: "2200px",
-          overflow: "auto",
-          height: "80vh",
-        }}
-        onWheel={handleWheel}
+      // style={{
+      //   marginTop: "5vh",
+      //   width: "100%",
+      //   maxWidth: "2200px",
+      //   overflow: "auto",
+      //   height: "80vh",
+      // }}
+      // onWheel={handleWheel}
       >
-        <div
+        {/* <div
           style={{
             display: "flex",
             justifyContent: "space-around",
@@ -5686,8 +5683,20 @@ const OrgChart = () => {
             position: "relative",
           }}
           onMouseDown={handleMouseDown} // Add mouse down event to start dragging
+        > */}
+
+        <div
+          className={styles.treeDiv}
+          style={{
+            marginTop: "5vh",
+            width: "100%",
+            maxWidth: "2200px",
+            overflowY: "auto",
+            height: "80vh",
+          }}
         >
-          {data.map((ordinate) => renderTreeNodes(ordinate))}
+
+          {data.map((ordinate, index) => renderTreeNodes(ordinate, index))}
         </div>
 
         <DetailView
