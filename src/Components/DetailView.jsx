@@ -1,12 +1,8 @@
 import { Box, Drawer, Stack } from '@mui/material'
 import React from 'react'
 import styles from "./style.module.css";
-import dummyImage from "../../src/Assets/DummyImage.png";
 import MenProfile from '../Assets/profile.png';
 import WomanProfile from '../Assets/woman.png'
-
-
-const drawerWidth = 'auto';
 
 const DetailView = ({ setDetails, details, setOpen, open }) => {
 
@@ -19,7 +15,7 @@ const DetailView = ({ setDetails, details, setOpen, open }) => {
                         display: { xs: 'none', sm: 'block' },
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
-                            width: drawerWidth,
+                            width: '30%',
                             borderTopLeftRadius: '15px',
                             borderBottomLeftRadius: '15px'
                         }
