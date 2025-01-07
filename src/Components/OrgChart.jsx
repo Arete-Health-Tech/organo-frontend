@@ -416,12 +416,9 @@ const OrgChart = () => {
               setScale(newScale);
               const treeDiv = document.querySelector(`.${styles.treeDiv}`);
               if (treeDiv && open !== true) {
-                const middleX = (treeDiv.scrollWidth - treeDiv.clientWidth) / 2; // Middle of the div horizontally
-                const middleY =
-                  (treeDiv.scrollHeight - treeDiv.clientHeight) / 1.5; // Middle of the div vertically
                 treeDiv.scrollTo({
-                  left: middleX,
-                  top: middleY,
+                  left: 60,
+                  top: 40,
                   behavior: "smooth", // Smooth scrolling effect
                 });
               }
