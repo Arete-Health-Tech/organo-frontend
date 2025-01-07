@@ -13,7 +13,7 @@ import {
   OutlinedInput,
   Select,
   Stack,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
@@ -22,7 +22,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import MenProfile from "../Assets/profile.png";
 import WomanProfile from "../Assets/woman.png";
 import OrganoApi, { searchOrganoApi } from "../Api/api";
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerDotted } from "spinners-react";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -30,9 +30,9 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250
-    }
-  }
+      width: 250,
+    },
+  },
 };
 
 function getStylesDepartment(name, department, theme) {
@@ -40,7 +40,7 @@ function getStylesDepartment(name, department, theme) {
     fontWeight: department.includes(name)
       ? theme.typography.fontWeightMedium
       : theme.typography.fontWeightRegular,
-    fontFamily: "Outfit,sans-serif"
+    fontFamily: "Outfit,sans-serif",
   };
 }
 function getStylesSubDepartment(name, department, theme) {
@@ -48,7 +48,7 @@ function getStylesSubDepartment(name, department, theme) {
     fontWeight: department.includes(name)
       ? theme.typography.fontWeightMedium
       : theme.typography.fontWeightRegular,
-    fontFamily: "Outfit,sans-serif"
+    fontFamily: "Outfit,sans-serif",
   };
 }
 function getStylesLocation(name, department, theme) {
@@ -56,7 +56,7 @@ function getStylesLocation(name, department, theme) {
     fontWeight: department.includes(name)
       ? theme.typography.fontWeightMedium
       : theme.typography.fontWeightRegular,
-    fontFamily: "Outfit,sans-serif"
+    fontFamily: "Outfit,sans-serif",
   };
 }
 function getStylesDesignation(name, department, theme) {
@@ -64,7 +64,7 @@ function getStylesDesignation(name, department, theme) {
     fontWeight: department.includes(name)
       ? theme.typography.fontWeightMedium
       : theme.typography.fontWeightRegular,
-    fontFamily: "Outfit,sans-serif"
+    fontFamily: "Outfit,sans-serif",
   };
 }
 
@@ -229,20 +229,20 @@ const OrgChart = () => {
     "Urology",
     "Nephrology",
     "Rheumatology",
-    "Blood_Bank"
+    "Blood_Bank",
   ]);
   const [location, setLocation] = useState([
     "Gurgaon",
     "Patna",
     "Ranchi",
     "Srinagar",
-    "Gurgaon Hospital"
+    "Gurgaon Hospital",
   ]);
   const [designation, setDesignation] = useState([
     "Manager",
     "Deputy Manager",
     "Executive",
-    "Assistant General Manager"
+    "Assistant General Manager",
   ]);
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedSubDepartment, setSelectedSubDepartment] = useState("");
@@ -250,13 +250,12 @@ const OrgChart = () => {
   const [selectedDesignation, setSelectedDesignation] = useState("");
   const [loader, setLoader] = useState(false);
 
-
   const apply = () => {
     const payload = {
       location: selectedLocation,
       department: selectedDepartment,
       subDepartment: selectedSubDepartment,
-      designation: selectedDesignation
+      designation: selectedDesignation,
     };
     if (
       selectedLocation !== "" ||
@@ -268,18 +267,20 @@ const OrgChart = () => {
       OrganoApi(payload)
         .then((response) => {
           setTotalOrganoData(response);
-          setLoader(false)
+          setLoader(false);
         })
-        .catch((error) => { setLoader(false); console.log(error) });
+        .catch((error) => {
+          setLoader(false);
+          console.log(error);
+        });
     }
-  }
+  };
 
   useEffect(() => {
     setSelectedDepartment("");
     setSelectedSubDepartment("");
     setSelectedDesignation("");
-  }, [selectedLocation])
-
+  }, [selectedLocation]);
 
   const handleChangeDepartment = (event) => {
     setSelectedDepartment(event.target.value);
@@ -327,7 +328,7 @@ const OrgChart = () => {
       setPosition({ x: e.clientX, y: e.clientY });
       setDraggedPosition({
         x: draggedPosition.x + deltaX,
-        y: draggedPosition.y + deltaY
+        y: draggedPosition.y + deltaY,
       });
     }
   };
@@ -357,7 +358,7 @@ const OrgChart = () => {
       (acc, subordinate) => [
         ...acc,
         subordinate._id,
-        ...getAllDescendantIds(subordinate)
+        ...getAllDescendantIds(subordinate),
       ],
       []
     );
@@ -411,9 +412,22 @@ const OrgChart = () => {
             onClick={() => {
               setDetails(node);
               setOpen(true);
+              const newScale = Math.min(Math.max(0.6));
+              setScale(newScale);
+              const treeDiv = document.querySelector(`.${styles.treeDiv}`);
+              if (treeDiv && open !== true) {
+                const middleX = (treeDiv.scrollWidth - treeDiv.clientWidth) / 2; // Middle of the div horizontally
+                const middleY =
+                  (treeDiv.scrollHeight - treeDiv.clientHeight) / 1.5; // Middle of the div vertically
+                treeDiv.scrollTo({
+                  left: middleX,
+                  top: middleY,
+                  behavior: "smooth", // Smooth scrolling effect
+                });
+              }
             }}
             tabIndex={0} // Make element focusable
-          // onFocus={() => handleScroll()} // Scroll on focus
+            // onFocus={() => handleScroll()} // Scroll on focus
           >
             <div className={styles.headerBox}>
               <div className={styles.imgDiv}>
@@ -480,7 +494,6 @@ const OrgChart = () => {
 
   const theme = useTheme();
 
-
   const [searchEmployeeId, setSearchEmployeeId] = useState("");
   const handleSearchKeyPress = async (e) => {
     if (e.key === "Enter" && searchEmployeeId === "") {
@@ -500,9 +513,12 @@ const OrgChart = () => {
   // This return is for component
   return (
     <>
-
       <Box className={styles.main_container}>
-        <div className={styles.filterlayout}>
+        <div
+          className={styles.filterlayout}
+          display={"flex"}
+          flexDirection={"column"}
+        >
           <div
             className={styles.filterDiv}
             style={{
@@ -576,7 +592,10 @@ const OrgChart = () => {
                 ))}
               </Select>
             </FormControl>
-            <Button sx={{ alignItems: 'center', top: '1rem' }} onClick={() => apply()}>
+            <Button
+              sx={{ alignItems: "center", top: "1rem" }}
+              onClick={() => apply()}
+            >
               Apply
             </Button>
             {/* {selectedDepartment !== "" && <FormControl sx={{ m: 1, width: 250 }}>
@@ -640,7 +659,10 @@ const OrgChart = () => {
             </Box>
           </FormControl> */}
           </div>
-          <div className={styles.filterlayout_search}>
+          <div
+            className={styles.filterlayout_search}
+            style={{ width: open ? "70%" : "100%" }}
+          >
             <div width={"95%"} position={"relative"}>
               <span className={styles.search_icon}>
                 {" "}
@@ -657,99 +679,101 @@ const OrgChart = () => {
             </div>
           </div>
         </div>
-        {loader ? <>
-          <Box
-            position="fixed"
-            top={0}
-            left={0}
-            width="100%"
-            height="100%"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            bgcolor="rgba(255, 255, 255, 0.5)" // Semi-transparent background
-            zIndex={9999} // Ensure it's on top
-          >
+        {loader ? (
+          <>
             <Box
+              position="fixed"
+              top={0}
+              left={0}
+              width="100%"
+              height="100%"
               display="flex"
-              flexDirection="column" // Arrange spinner and text vertically
               justifyContent="center"
               alignItems="center"
+              bgcolor="rgba(255, 255, 255, 0.5)" // Semi-transparent background
+              zIndex={9999} // Ensure it's on top
             >
-              <SpinnerDotted
-                size={100}
-                thickness={100}
-                speed={50}
-                color="#007BFF"
-              // secondaryColor="#D9EBFF"
-              />
-              <Box mt={2} fontSize="16px" fontWeight="bold">
-                {' '}
-                {/* Add margin-top to space text below the spinner */}
-                Please Wait ...
+              <Box
+                display="flex"
+                flexDirection="column" // Arrange spinner and text vertically
+                justifyContent="center"
+                alignItems="center"
+              >
+                <SpinnerDotted
+                  size={100}
+                  thickness={100}
+                  speed={50}
+                  color="#007BFF"
+                  // secondaryColor="#D9EBFF"
+                />
+                <Box mt={2} fontSize="16px" fontWeight="bold">
+                  {" "}
+                  {/* Add margin-top to space text below the spinner */}
+                  Please Wait ...
+                </Box>
               </Box>
             </Box>
-          </Box>
-        </> : <> {totalOrganoData.length > 0 ? (
-          <div
-            className={styles.treeDiv}
-            style={{
-              marginTop: "5vh",
-              width: "100%",
-              maxWidth: "2200px",
-              overflow: "auto",
-              height: "80vh",
-            }}
-            onWheel={handleWheel}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-around",
-                transform: `scale(${scale}) translate(${draggedPosition.x}px, ${draggedPosition.y}px)`, // Zoom and drag
-                transformOrigin: `${offset.x}px ${offset.y}px`, // Zoom around the mouse position
-                transition: "transform 0.8s ease",
-                width: "100%",
-                cursor: dragging ? "grabbing" : "grab", // Change cursor when dragging
-                position: "relative",
-              }}
-              onMouseDown={handleMouseDown} // Add mouse down event to start dragging
-            >
-              {/* <div
-          className={styles.treeDiv}
-          style={{
-            marginTop: "5vh",
-            width: "100%",
-            maxWidth: "2200px",
-            overflowY: "auto",
-            height: "80vh",
-          }}
-        > */}
-
-              {totalOrganoData.length > 0 &&
-                totalOrganoData.map((ordinate, index) =>
-                  renderTreeNodes(ordinate, index)
-                )}
-            </div>
-          </div>
+          </>
         ) : (
           <>
-            <div className={styles.defaultscreen}>
-              <div className={styles.defaultscreen_img}>
-                {" "}
-                <img src={DefaultScreen} alt="DefaultScreen" />
+            {" "}
+            {totalOrganoData.length > 0 ? (
+              <div
+                className={styles.treeDiv}
+                style={{
+                  marginTop: "6vh",
+                  width: open ? "75%" : "100%",
+                  maxWidth: "2400px",
+                  overflowX: "scroll",
+                  height: open ? "50vh" : "80vh",
+                  scrollbarWidth: "thin",
+                  scrollbarColor: "darkgray lightgray",
+                }}
+                onWheel={handleWheel}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    transform: `scale(${scale}) translate(${draggedPosition.x}px, ${draggedPosition.y}px)`, // Zoom and drag
+                    transformOrigin: `${offset.x}px ${offset.y}px`, // Zoom around the mouse position
+                    transition: "transform 0.8s ease",
+                    width: "200%",
+                    height: "200%",
+                    cursor: dragging ? "grabbing" : "grab",
+                    position: "relative",
+                  }}
+                  onMouseDown={handleMouseDown}
+                  onMouseMove={handleMouseMove}
+                  onMouseUp={handleMouseUp}
+                  onMouseLeave={handleMouseUp}
+                >
+                  {totalOrganoData.length > 0 &&
+                    totalOrganoData.map((ordinate, index) =>
+                      renderTreeNodes(ordinate, index)
+                    )}
+                </div>
               </div>
-              <div className={styles.defaultscreen_text}>
-                No data available, kindly use filters
-              </div>
-            </div>
+            ) : (
+              <>
+                <div className={styles.defaultscreen}>
+                  <div className={styles.defaultscreen_img}>
+                    {" "}
+                    <img src={DefaultScreen} alt="DefaultScreen" />
+                  </div>
+                  <div className={styles.defaultscreen_text}>
+                    No data available, kindly use filters
+                  </div>
+                </div>
+              </>
+            )}
           </>
         )}
-        </>}
         <DetailView
           setDetails={setDetails}
           details={details}
           setOpen={setOpen}
+          setScale={setScale}
           open={open}
         />
       </Box>
