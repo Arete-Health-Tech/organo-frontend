@@ -13,6 +13,8 @@
 /* filters layout */
 .filterDiv {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
 }
 
 .filterlayout {
@@ -55,6 +57,52 @@
   transform: translateY(-50%);
   color: #1e3663;
   pointer-events: none;
+}
+.applyButtonStack {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 7vh;
+  margin-left: 10px;
+}
+.applyButton {
+  border: 2px solid #007bff;
+  color: #007bff;
+  background-color: transparent;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "Outfit", sans-serif;
+}
+.clearButton {
+  border: 2px solid #ed440be0;
+  color: #ed440be0;
+  background-color: transparent;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "Outfit", sans-serif;
+}
+.zoomButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: "Outfit", sans-serif;
+}
+.zoomtext {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-family: "Outfit", sans-serif;
 }
 /* --- */
 

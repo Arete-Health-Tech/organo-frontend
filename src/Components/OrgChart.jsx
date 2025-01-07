@@ -249,7 +249,15 @@ const OrgChart = () => {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedDesignation, setSelectedDesignation] = useState("");
   const [loader, setLoader] = useState(false);
-
+  const [isFilterApply, setIsFilterApply] = useState(false);
+  const clearFilter = () => {
+    setSelectedDepartment("");
+    setSelectedSubDepartment("");
+    setSelectedLocation("");
+    setSelectedDesignation("");
+    setTotalOrganoData([]);
+    setIsFilterApply(false);
+  };
   const apply = () => {
     const payload = {
       location: selectedLocation,
@@ -263,6 +271,7 @@ const OrgChart = () => {
       selectedSubDepartment !== "" ||
       selectedDesignation !== ""
     ) {
+      setIsFilterApply(true);
       setLoader(true);
       OrganoApi(payload)
         .then((response) => {
@@ -417,8 +426,8 @@ const OrgChart = () => {
               const treeDiv = document.querySelector(`.${styles.treeDiv}`);
               if (treeDiv && open !== true) {
                 treeDiv.scrollTo({
-                  left: 60,
-                  top: 40,
+                  left: "50%",
+                  top: "20%",
                   behavior: "smooth", // Smooth scrolling effect
                 });
               }
@@ -506,8 +515,11 @@ const OrgChart = () => {
       setLoader(false);
     }
   };
+  const handleZoomIn = () =>
+    setScale((prevScale) => Math.min(prevScale + 0.1, 2));
+  const handleZoomOut = () =>
+    setScale((prevScale) => Math.max(prevScale - 0.1, 0.5));
 
-  // This return is for component
   return (
     <>
       <Box className={styles.main_container}>
@@ -539,6 +551,11 @@ const OrgChart = () => {
                 onChange={handleChangeLocation}
                 input={<OutlinedInput label="Sub-Department" />}
                 MenuProps={MenuProps}
+                style={{
+                  textTransform: "capitalize",
+                  fontSize: "14px",
+                  fontFamily: "Outfit,sans-serif",
+                }}
               >
                 <MenuItem
                   value={""}
@@ -571,6 +588,11 @@ const OrgChart = () => {
                 onChange={handleChangeDepartment}
                 input={<OutlinedInput label="Department" />}
                 MenuProps={MenuProps}
+                style={{
+                  textTransform: "capitalize",
+                  fontSize: "14px",
+                  fontFamily: "Outfit,sans-serif",
+                }}
               >
                 <MenuItem
                   value={""}
@@ -589,12 +611,19 @@ const OrgChart = () => {
                 ))}
               </Select>
             </FormControl>
-            <Button
-              sx={{ alignItems: "center", top: "1rem" }}
-              onClick={() => apply()}
-            >
-              Apply
-            </Button>
+            <Stack className={styles.applyButtonStack}>
+              <button className={styles.applyButton} onClick={() => apply()}>
+                Apply
+              </button>
+              <button
+                style={{ display: isFilterApply ? "block" : "none" }}
+                className={styles.clearButton}
+                onClick={() => clearFilter()}
+              >
+                Clear
+              </button>
+            </Stack>
+
             {/* {selectedDepartment !== "" && <FormControl sx={{ m: 1, width: 250 }}>
             <InputLabel
               id="demo-multiple-name-label"
@@ -687,8 +716,8 @@ const OrgChart = () => {
               display="flex"
               justifyContent="center"
               alignItems="center"
-              bgcolor="rgba(255, 255, 255, 0.5)" // Semi-transparent background
-              zIndex={9999} // Ensure it's on top
+              bgcolor="rgba(255, 255, 255, 0.5)"
+              zIndex={9999}
             >
               <Box
                 display="flex"
@@ -749,6 +778,34 @@ const OrgChart = () => {
                     totalOrganoData.map((ordinate, index) =>
                       renderTreeNodes(ordinate, index)
                     )}
+                </div>
+                <div
+                  style={{
+                    marginBottom: "10px",
+                    position: "absolute",
+                    top: "14vh",
+                    left: "20px",
+                    display: "flex",
+                    gap: "10px",
+                  }}
+                >
+                  <button
+                    onClick={handleZoomOut}
+                    disabled={scale <= 0.5}
+                    className={styles.zoomButton}
+                  >
+                    Zoom Out
+                  </button>
+                  <button
+                    onClick={handleZoomIn}
+                    disabled={scale >= 2}
+                    className={styles.zoomButton}
+                  >
+                    Zoom In
+                  </button>
+                  <div className={styles.zoomtext}>
+                    Zoom Level: {Math.round(scale * 100)}%
+                  </div>
                 </div>
               </div>
             ) : (
