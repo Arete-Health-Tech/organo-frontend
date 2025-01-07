@@ -1,20 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { Tree, TreeNode } from "react-organizational-chart";
 import styles from "./style.module.css";
 import DetailView from "./DetailView";
 import DefaultScreen from "../Assets/Time management-rafiki.svg";
 import SearchIcon from "@mui/icons-material/Search";
-import {
-  Box,
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  OutlinedInput,
-  Select,
-  Stack,
-  useTheme,
-} from "@mui/material";
+import { Autocomplete, Box, Stack, TextField } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import AddIcon from "@mui/icons-material/Add";
@@ -23,50 +14,6 @@ import MenProfile from "../Assets/profile.png";
 import WomanProfile from "../Assets/woman.png";
 import OrganoApi, { searchOrganoApi } from "../Api/api";
 import { SpinnerDotted } from "spinners-react";
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-function getStylesDepartment(name, department, theme) {
-  return {
-    fontWeight: department.includes(name)
-      ? theme.typography.fontWeightMedium
-      : theme.typography.fontWeightRegular,
-    fontFamily: "Outfit,sans-serif",
-  };
-}
-function getStylesSubDepartment(name, department, theme) {
-  return {
-    fontWeight: department.includes(name)
-      ? theme.typography.fontWeightMedium
-      : theme.typography.fontWeightRegular,
-    fontFamily: "Outfit,sans-serif",
-  };
-}
-function getStylesLocation(name, department, theme) {
-  return {
-    fontWeight: department.includes(name)
-      ? theme.typography.fontWeightMedium
-      : theme.typography.fontWeightRegular,
-    fontFamily: "Outfit,sans-serif",
-  };
-}
-function getStylesDesignation(name, department, theme) {
-  return {
-    fontWeight: department.includes(name)
-      ? theme.typography.fontWeightMedium
-      : theme.typography.fontWeightRegular,
-    fontFamily: "Outfit,sans-serif",
-  };
-}
 
 const OrgChart = () => {
   const [details, setDetails] = useState(null);
@@ -79,7 +26,7 @@ const OrgChart = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 }); // To track the drag start position
   const [draggedPosition, setDraggedPosition] = useState({ x: 0, y: 0 }); // To track the dragged offset
   const [totalOrganoData, setTotalOrganoData] = useState([]); // To track the dragged offset
-  const [department, setDepartment] = useState([
+  const [superSpeciality, setSuperSpeciality] = useState([
     "Information_Technology",
     "Human_Resources",
     "Oncology",
@@ -117,7 +64,7 @@ const OrgChart = () => {
     "Urology",
     "Nephrology",
     "Rheumatology",
-    "Transfusion_Medicine",
+    "Transfusion_Medicine"
   ]);
   const [subDepartment, setSubDepartment] = useState([
     "Sub Department",
@@ -229,47 +176,40 @@ const OrgChart = () => {
     "Urology",
     "Nephrology",
     "Rheumatology",
-    "Blood_Bank",
+    "Blood_Bank"
   ]);
   const [location, setLocation] = useState([
     "Gurgaon",
     "Patna",
     "Ranchi",
     "Srinagar",
-    "Gurgaon Hospital",
+    "Gurgaon Hospital"
   ]);
   const [designation, setDesignation] = useState([
     "Manager",
     "Deputy Manager",
     "Executive",
-    "Assistant General Manager",
+    "Assistant General Manager"
   ]);
-  const [selectedDepartment, setSelectedDepartment] = useState("");
-  const [selectedSubDepartment, setSelectedSubDepartment] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [selectedDesignation, setSelectedDesignation] = useState("");
+  const [selectedSuperSpeciality, setSelectedSuperSpecialtiy] = useState(null);
+  const [selectedSubDepartment, setSelectedSubDepartment] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedDesignation, setSelectedDesignation] = useState(null);
   const [loader, setLoader] = useState(false);
   const [isFilterApply, setIsFilterApply] = useState(false);
-  const clearFilter = () => {
-    setSelectedDepartment("");
-    setSelectedSubDepartment("");
-    setSelectedLocation("");
-    setSelectedDesignation("");
-    setTotalOrganoData([]);
-    setIsFilterApply(false);
-  };
+
   const apply = () => {
     const payload = {
       location: selectedLocation,
-      department: selectedDepartment,
+      department: selectedSuperSpeciality,
       subDepartment: selectedSubDepartment,
-      designation: selectedDesignation,
+      designation: selectedDesignation
     };
     if (
-      selectedLocation !== "" ||
-      selectedDepartment !== "" ||
-      selectedSubDepartment !== "" ||
-      selectedDesignation !== ""
+      selectedLocation !== null ||
+      selectedSuperSpeciality !== null ||
+      selectedSubDepartment !== null ||
+      selectedDesignation !== null
     ) {
       setIsFilterApply(true);
       setLoader(true);
@@ -285,25 +225,28 @@ const OrgChart = () => {
     }
   };
 
+  const clearFilter = () => {
+    setSelectedSuperSpecialtiy(null);
+    setSelectedSubDepartment(null);
+    setSelectedLocation(null);
+    setSelectedDesignation(null);
+    setTotalOrganoData([]);
+    setIsFilterApply(false);
+  };
+
   useEffect(() => {
-    setSelectedDepartment("");
-    setSelectedSubDepartment("");
-    setSelectedDesignation("");
+    setSelectedSuperSpecialtiy(null);
+    setSelectedSubDepartment(null);
+    setSelectedDesignation(null);
   }, [selectedLocation]);
 
-  const handleChangeDepartment = (event) => {
-    setSelectedDepartment(event.target.value);
+  const handleChangeSuperSpeciality = (event, newValue) => {
+    setSelectedSuperSpecialtiy(newValue);
   };
-  const handleChangeSubDepartment = (event) => {
-    setSelectedSubDepartment(event.target.value);
+  const handleChangeLocation = (event, newValue) => {
+    console.log(newValue);
+    setSelectedLocation(newValue);
   };
-  const handleChangeLocation = (event) => {
-    setSelectedLocation(event.target.value);
-  };
-  const handleChangeDesignation = (event) => {
-    setSelectedDesignation(event.target.value);
-  };
-
   // Handle zooming based on mouse wheel
   const handleWheel = useCallback(
     (event) => {
@@ -337,7 +280,7 @@ const OrgChart = () => {
       setPosition({ x: e.clientX, y: e.clientY });
       setDraggedPosition({
         x: draggedPosition.x + deltaX,
-        y: draggedPosition.y + deltaY,
+        y: draggedPosition.y + deltaY
       });
     }
   };
@@ -367,7 +310,7 @@ const OrgChart = () => {
       (acc, subordinate) => [
         ...acc,
         subordinate._id,
-        ...getAllDescendantIds(subordinate),
+        ...getAllDescendantIds(subordinate)
       ],
       []
     );
@@ -392,19 +335,6 @@ const OrgChart = () => {
 
   const nodeRef = useRef(null); // Reference to the DOM element
 
-  // // Function to handle smooth scrolling
-  // const handleScroll = () => {
-  //   if (nodeRef.current) {
-  //     nodeRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (isExpanded) {
-  //     handleScroll(); // Scroll when the node is expanded
-  //   }
-  // }, [isExpanded]); // Depend on the expanded state of the node
-
   const renderTreeNodes = (node, index) => {
     isExpanded = expandedNodeIds.includes(node._id); // Check if this node is expanded
 
@@ -428,12 +358,12 @@ const OrgChart = () => {
                 treeDiv.scrollTo({
                   left: "50%",
                   top: "20%",
-                  behavior: "smooth", // Smooth scrolling effect
+                  behavior: "smooth" // Smooth scrolling effect
                 });
               }
             }}
             tabIndex={0} // Make element focusable
-            // onFocus={() => handleScroll()} // Scroll on focus
+          // onFocus={() => handleScroll()} // Scroll on focus
           >
             <div className={styles.headerBox}>
               <div className={styles.imgDiv}>
@@ -498,8 +428,6 @@ const OrgChart = () => {
     );
   };
 
-  const theme = useTheme();
-
   const [searchEmployeeId, setSearchEmployeeId] = useState("");
   const handleSearchKeyPress = async (e) => {
     if (e.key === "Enter" && searchEmployeeId === "") {
@@ -534,83 +462,146 @@ const OrgChart = () => {
               height: "10vh",
               position: "fixed",
               zIndex: "100",
-              backgroundColor: "white",
+              backgroundColor: "white"
             }}
           >
-            <FormControl sx={{ m: 1, width: 250 }}>
-              <InputLabel
-                id="demo-multiple-name-label"
-                sx={{ fontFamily: "Outfit,sans-serif" }}
-              >
-                Location
-              </InputLabel>
-              <Select
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                value={selectedLocation}
-                onChange={handleChangeLocation}
-                input={<OutlinedInput label="Sub-Department" />}
-                MenuProps={MenuProps}
-                style={{
+            <Autocomplete
+              disablePortal
+              options={location}
+              value={selectedLocation}
+              onChange={handleChangeLocation}
+              sx={{
+                width: 200,
+                marginLeft: 2,
+                "& .MuiOutlinedInput-root": {
+                  padding: "2px 8px" // Reduce padding inside the input
+                },
+                "& .MuiInputBase-root": {
+                  height: "5vh", // Set a fixed height
+                  fontSize: "14px", // Adjust font size
+                  fontFamily: "Outfit, sans-serif"
+                },
+                "& .MuiAutocomplete-input": {
+                  padding: "0 4px", // Reduce input padding
+                  textTransform: "capitalize"
+                },
+                "& .MuiInputLabel-root": {
+                  fontSize: "16px", // Adjust label size
+                  fontFamily: "Outfit, sans-serif"
+                }
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Facility"
+                  InputLabelProps={{
+                    style: { fontFamily: "Outfit, sans-serif" }
+                  }}
+                />
+              )}
+            />
+            <Autocomplete
+              disablePortal
+              options={superSpeciality}
+              value={selectedSuperSpeciality}
+              onChange={handleChangeSuperSpeciality}
+              sx={{
+                width: 200,
+                marginLeft: 2,
+                "& .MuiOutlinedInput-root": {
+                  padding: "2px 8px" // Reduce padding inside the input
+                },
+                "& .MuiInputBase-root": {
+                  height: "5vh", // Set a fixed height
+                  fontSize: "14px", // Adjust font size
+                  fontFamily: "Outfit, sans-serif"
+                },
+                "& .MuiAutocomplete-input": {
+                  padding: "0 4px", // Reduce input padding
+                  textTransform: "capitalize"
+                },
+                "& .MuiInputLabel-root": {
+                  fontSize: "16px", // Adjust label size
+                  fontFamily: "Outfit, sans-serif"
+                }
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Super Speciality"
+                  InputLabelProps={{
+                    style: { fontFamily: "Outfit, sans-serif" }
+                  }}
+                />
+              )}
+            />
+            {/* <Autocomplete
+              disablePortal
+              options={department}
+              value={selectedSuperSpeciality}
+              onChange={handleChangeSuperSpeciality}
+              sx={{
+                width: 250,
+                marginLeft: 2,
+                "& .MuiOutlinedInput-root": {
+                  padding: "2px 8px", // Reduce padding inside the input
+                },
+                "& .MuiInputBase-root": {
+                  height: "5vh", // Set a fixed height
+                  fontSize: "14px", // Adjust font size
+                  fontFamily: "Outfit, sans-serif",
+                },
+                "& .MuiAutocomplete-input": {
+                  padding: "0 4px", // Reduce input padding
                   textTransform: "capitalize",
-                  fontSize: "14px",
-                  fontFamily: "Outfit,sans-serif",
-                }}
-              >
-                <MenuItem
-                  value={""}
-                  style={getStylesLocation("", location, theme)}
-                >
-                  Select
-                </MenuItem>
-                {location.map((value) => (
-                  <MenuItem
-                    key={value}
-                    value={value}
-                    style={getStylesLocation(value, location, theme)}
-                  >
-                    {value}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl sx={{ m: 1, width: 250 }}>
-              <InputLabel
-                id="demo-multiple-name-label"
-                sx={{ fontFamily: "Outfit,sans-serif" }}
-              >
-                Department
-              </InputLabel>
-              <Select
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                value={selectedDepartment}
-                onChange={handleChangeDepartment}
-                input={<OutlinedInput label="Department" />}
-                MenuProps={MenuProps}
-                style={{
+                },
+                "& .MuiInputLabel-root": {
+                  fontSize: "16px", // Adjust label size
+                  fontFamily: "Outfit, sans-serif",
+                },
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Super Speciality"
+                  InputLabelProps={{ style: { fontFamily: "Outfit, sans-serif" } }}
+                />
+              )}
+            />
+            <Autocomplete
+              disablePortal
+              options={department}
+              value={selectedSuperSpeciality}
+              onChange={handleChangeSuperSpeciality}
+              sx={{
+                width: 250,
+                marginLeft: 2,
+                "& .MuiOutlinedInput-root": {
+                  padding: "2px 8px", // Reduce padding inside the input
+                },
+                "& .MuiInputBase-root": {
+                  height: "5vh", // Set a fixed height
+                  fontSize: "14px", // Adjust font size
+                  fontFamily: "Outfit, sans-serif",
+                },
+                "& .MuiAutocomplete-input": {
+                  padding: "0 4px", // Reduce input padding
                   textTransform: "capitalize",
-                  fontSize: "14px",
-                  fontFamily: "Outfit,sans-serif",
-                }}
-              >
-                <MenuItem
-                  value={""}
-                  style={getStylesDepartment("", department, theme)}
-                >
-                  Select
-                </MenuItem>
-                {department.map((value) => (
-                  <MenuItem
-                    key={value}
-                    value={value}
-                    style={getStylesDepartment(value, department, theme)}
-                  >
-                    {value}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+                },
+                "& .MuiInputLabel-root": {
+                  fontSize: "16px", // Adjust label size
+                  fontFamily: "Outfit, sans-serif",
+                },
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Super Speciality"
+                  InputLabelProps={{ style: { fontFamily: "Outfit, sans-serif" } }}
+                />
+              )}
+            /> */}
+
             <Stack className={styles.applyButtonStack}>
               <button className={styles.applyButton} onClick={() => apply()}>
                 Apply
@@ -618,72 +609,11 @@ const OrgChart = () => {
               <button
                 style={{ display: isFilterApply ? "block" : "none" }}
                 className={styles.clearButton}
-                onClick={() => clearFilter()}
+                onClick={clearFilter}
               >
                 Clear
               </button>
             </Stack>
-
-            {/* {selectedDepartment !== "" && <FormControl sx={{ m: 1, width: 250 }}>
-            <InputLabel
-              id="demo-multiple-name-label"
-              sx={{ fontFamily: "Outfit,sans-serif" }}
-            >
-              Sub-Department
-            </InputLabel>
-            <Select
-              labelId="demo-multiple-name-label"
-              id="demo-multiple-name"
-              value={selectedSubDepartment}
-              onChange={handleChangeSubDepartment}
-              input={<OutlinedInput label="Sub-Department" />}
-              MenuProps={MenuProps}
-            >
-              {subDepartment.map((value) => (
-                <MenuItem
-                  key={value}
-                  value={value}
-                  style={getStylesSubDepartment(value, subDepartment, theme)}
-                >
-                  {value}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>} */}
-            {/* {selectedDepartment !== "" && <FormControl sx={{ m: 1, width: 250 }}>
-            <InputLabel
-              id="demo-multiple-name-label"
-              sx={{ fontFamily: "Outfit,sans-serif" }}
-            >
-              Designation
-            </InputLabel>
-            <Select
-              labelId="demo-multiple-name-label"
-              id="demo-multiple-name"
-              value={selectedDesignation}
-              onChange={handleChangeDesignation}
-              input={<OutlinedInput label="Sub-Department" />}
-              MenuProps={MenuProps}
-            >
-              {designation.map((value) => (
-                <MenuItem
-                  key={value}
-                  value={value}
-                  style={getStylesDesignation(value, designation, theme)}
-                >
-                  {value}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>} */}
-            {/* <FormControl sx={{ m: 1, width: 250 }}>
-            <Box sx={{ fontWeight: 500, fontSize: 16, fontStyle: 'outfit,san-serif' }}>
-              Clear All
-            </Box>
-            <Box sx={{ fontWeight: 300, fontSize: 12, fontStyle: 'outfit,san-serif' }}>
-              Except Location
-            </Box>
-          </FormControl> */}
           </div>
           <div
             className={styles.filterlayout_search}
@@ -730,7 +660,7 @@ const OrgChart = () => {
                   thickness={100}
                   speed={50}
                   color="#007BFF"
-                  // secondaryColor="#D9EBFF"
+                // secondaryColor="#D9EBFF"
                 />
                 <Box mt={2} fontSize="16px" fontWeight="bold">
                   {" "}
@@ -742,51 +672,47 @@ const OrgChart = () => {
           </>
         ) : (
           <>
-            {" "}
             {totalOrganoData.length > 0 ? (
-              <div
-                className={styles.treeDiv}
-                style={{
-                  marginTop: "6vh",
-                  width: open ? "75%" : "100%",
-                  maxWidth: "2400px",
-                  overflowX: "scroll",
-                  height: open ? "50vh" : "80vh",
-                  scrollbarWidth: "thin",
-                  scrollbarColor: "darkgray lightgray",
-                }}
-                onWheel={handleWheel}
-              >
+              <>
                 <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                    transform: `scale(${scale}) translate(${draggedPosition.x}px, ${draggedPosition.y}px)`, // Zoom and drag
-                    transformOrigin: `${offset.x}px ${offset.y}px`, // Zoom around the mouse position
-                    transition: "transform 0.8s ease",
-                    width: "200%",
-                    height: "200%",
-                    cursor: dragging ? "grabbing" : "grab",
-                    position: "relative",
-                  }}
-                  onMouseDown={handleMouseDown}
-                  onMouseMove={handleMouseMove}
-                  onMouseUp={handleMouseUp}
-                  onMouseLeave={handleMouseUp}
+                    className={styles.scrollable_container}
+                    style={{
+                      marginTop: "6vh",
+                      width: open ? "75%" : "100%",
+                      maxWidth: "2400px",
+                      overflowX: "scroll", // Always show scrollbar
+                      height: open ? "50vh" : "80vh",
+                    }}
+                  onWheel={handleWheel}
                 >
-                  {totalOrganoData.length > 0 &&
-                    totalOrganoData.map((ordinate, index) =>
-                      renderTreeNodes(ordinate, index)
-                    )}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      transform: `scale(${scale}) translate(${draggedPosition.x}px, ${draggedPosition.y}px)`, // Zoom and drag
+                      transformOrigin: `${offset.x}px ${offset.y}px`, // Zoom around the mouse position
+                      transition: "transform 0.8s ease",
+                      width: "200%",
+                      height: "200%",
+                      cursor: dragging ? "grabbing" : "grab",
+                      position: "relative"
+                    }}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseUp}
+                  >
+                    {totalOrganoData.length > 0 &&
+                      totalOrganoData.map((ordinate, index) =>
+                        renderTreeNodes(ordinate, index)
+                      )}
+                  </div>
                 </div>
                 <div
                   style={{
-                    marginBottom: "10px",
-                    position: "absolute",
-                    top: "14vh",
-                    left: "20px",
                     display: "flex",
-                    gap: "10px",
+                    justifyContent: "center",
+                    gap: "10px"
                   }}
                 >
                   <button
@@ -807,7 +733,7 @@ const OrgChart = () => {
                     Zoom Level: {Math.round(scale * 100)}%
                   </div>
                 </div>
-              </div>
+              </>
             ) : (
               <>
                 <div className={styles.defaultscreen}>

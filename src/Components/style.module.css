@@ -59,16 +59,16 @@
   pointer-events: none;
 }
 .applyButtonStack {
-  display: flex;
-  flex-direction: row;
+  display: flex ;
+  flex-direction: row !important;
   gap: 10px;
   justify-content: center;
   align-items: center;
-  height: 7vh;
+  height: 5vh;
   margin-left: 10px;
 }
 .applyButton {
-  border: 2px solid #007bff;
+  border: 1px solid #007bff;
   color: #007bff;
   background-color: transparent;
   border-radius: 6px;
@@ -78,7 +78,7 @@
   font-family: "Outfit", sans-serif;
 }
 .clearButton {
-  border: 2px solid #ed440be0;
+  border: 1px solid #ed440be0;
   color: #ed440be0;
   background-color: transparent;
   border-radius: 6px;
@@ -127,13 +127,6 @@
   cursor: pointer;
   height: auto;
 }
-.treeDiv {
-  width: 100%;
-  padding: 5vh 5vh;
-  display: flex;
-  justify-content: space-around;
-}
-
 .imgDiv {
   width: 30%;
 }
@@ -408,4 +401,24 @@
   color: #111212b8;
   display: flex;
   justify-content: center;
+}
+.scrollable-container {
+  overflow-x: scroll; /* Always show horizontal scrollbar */
+  overflow-y: auto; /* Ensure vertical scrollbar when needed */
+  scrollbar-width: thin; /* Thin scrollbar for Firefox */
+  scrollbar-color: darkgray lightgray; /* Thumb and track colors for Firefox */
+}
+
+.scrollable-container::-webkit-scrollbar {
+  height: 8px; /* Persistent scrollbar height */
+  background-color: lightgray; /* Track background color */
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background-color: darkgray; /* Scrollbar thumb color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+  background-color: lightgray; /* Track background color */
 }

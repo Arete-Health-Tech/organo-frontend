@@ -361,7 +361,7 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
           borderTop: "1px solid rgba(0, 0, 0, 0.1) ",
           bottom: "0",
           left: "0",
-          height: "35vh",
+          height: "33vh",
           width: "72.9%",
         }}
       >
