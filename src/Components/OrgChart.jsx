@@ -692,8 +692,8 @@ const OrgChart = () => {
                       transform: `scale(${scale}) translate(${draggedPosition.x}px, ${draggedPosition.y}px)`, // Zoom and drag
                       transformOrigin: `${offset.x}px ${offset.y}px`, // Zoom around the mouse position
                       transition: "transform 0.8s ease",
-                      width: "200%",
-                      height: "200%",
+                      width: "100%",
+                      height: "100%",
                       cursor: dragging ? "grabbing" : "grab",
                       position: "relative"
                     }}
