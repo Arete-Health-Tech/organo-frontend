@@ -59,7 +59,7 @@
   pointer-events: none;
 }
 .applyButtonStack {
-  display: flex ;
+  display: flex;
   flex-direction: row !important;
   gap: 10px;
   justify-content: center;
@@ -274,18 +274,118 @@
 
 /* Carrer History */
 
+/* Container styles */
+
+/* Inner timeline container */
+.timelineInner {
+  position: relative;
+  min-height: 250px;
+
+  padding: 0rem 3rem 0rem 3rem; /* Equivalent to px-4 */
+}
+
+/* Vertical line with gradient */
+.timelineLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 90%; /* Adjusted to span the full height */
+  background: #e5e7eb;
+  transform: translateX(-50%);
+}
+
+/* Timeline event container */
+.timelineEvent {
+  position: relative;
+  margin-bottom: 4rem; /* Reduce the gap between events */
+}
+
+/* Last event without bottom margin */
+.timelineEvent:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Adjust margin for the first event */
+.timelineEvent:first-of-type {
+  margin-top: 0;
+}
+
+/* Red dot */
+.redDot {
+  position: absolute;
+  left: 50%;
+  width: 0.625rem; /* Equivalent to w-2.5 */
+  height: 0.625rem; /* Equivalent to h-2.5 */
+  background-color: #ef4444; /* Equivalent to bg-red-500 */
+  border-radius: 50%;
+  transform: translate(-50%, 50%);
+}
+
+/* Text content */
+.textContent {
+  width: 50%;
+  margin-left: 58%;
+  color: #6b7280; /* Equivalent to text-gray-500 */
+}
+
+.textTitle {
+  font-size: 1.125rem; /* Equivalent to text-lg */
+  font-weight: 300; /* Equivalent to font-light */
+}
+
+/* Year on the left */
+.yearText {
+  position: absolute;
+  top: 0;
+  left: 30%; /* Equivalent to left-[15%] */
+  color: #9ca3af; /* Equivalent to text-gray-400 */
+}
+
+/* Bottom gradient overlay */
+.bottomGradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8rem; /* Equivalent to h-32 */
+  /* background: #ffffff; Equivalent to bg-gradient-to-t */
+  pointer-events: none;
+}
+/*  */
+.carrer_container_layout {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: #f8f9fa;
+}
+
 .carrer_container {
   display: flex;
   flex-direction: column !important;
   gap: 10px;
-  padding: 1% 2%;
-  background-color: #f8f9fa;
-  /* justify-content: center; */
-  height: 100%;
-  width: 100%;
+  padding: 0% 1%;
+  border-radius: 8px;
+  background-color: #fff;
+  height: 90%;
+  width: 80%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 /* Employee Details Drawer*/
-
+.carrer_heading {
+  font-family: Outfit, sans-serif;
+  font-size: 20px;
+  color: #111212b8;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
 .employee_container {
   display: flex;
   flex-direction: column !important;
@@ -305,13 +405,15 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  align-items: center;
 }
 .employee_content {
   width: 100%;
   border: 1px solid black;
   display: flex;
   flex-direction: column !important;
-  gap: 10px;
+  gap: 20px;
+  background-color: #fff;
   padding: 5% 5%;
   border: 1px solid rgba(0, 0, 0, 0.074);
   border-radius: 8px;
@@ -325,7 +427,7 @@
 }
 .title_text {
   font-family: Outfit, sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   color: #111212b8;
   display: flex;
@@ -333,13 +435,13 @@
 }
 .title_detail {
   font-family: Outfit, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   width: 55%;
   color: #111212b8;
 }
 .title_detail_email {
   font-family: Outfit, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   color: #2179d1b8;
   width: 55%;
   word-wrap: break-word;
