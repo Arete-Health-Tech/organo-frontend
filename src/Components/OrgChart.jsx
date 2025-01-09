@@ -675,14 +675,14 @@ const OrgChart = () => {
             {totalOrganoData.length > 0 ? (
               <>
                 <div
-                    className={styles.scrollable_container}
-                    style={{
-                      marginTop: "6vh",
-                      width: open ? "75%" : "100%",
-                      maxWidth: "2400px",
-                      overflowX: "scroll", // Always show scrollbar
-                      height: open ? "50vh" : "80vh",
-                    }}
+                  className={styles.scrollable_container}
+                  style={{
+                    marginTop: "6vh",
+                    width: open ? "75%" : "100%",
+                    maxWidth: "2400px",
+                    overflowX: "scroll", // Always show scrollbar
+                    height: open ? "50vh" : "80vh",
+                  }}
                   onWheel={handleWheel}
                 >
                   <div
@@ -749,13 +749,13 @@ const OrgChart = () => {
             )}
           </>
         )}
-        <DetailView
+        {open && <DetailView
           setDetails={setDetails}
           details={details}
           setOpen={setOpen}
           setScale={setScale}
           open={open}
-        />
+        />}
       </Box>
     </>
   );
