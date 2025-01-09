@@ -4,9 +4,16 @@ import styles from "./style.module.css";
 import MenProfile from "../Assets/profile.png";
 import WomanProfile from "../Assets/woman.png";
 import CloseIcon from "@mui/icons-material/Close";
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+
+const TabCss = {
+  fontFamily: "Outfit, sans-serif",
+  fontSize: "0.9rem",
+  textTransform: "capitalize",
+  fontWeight: "500",
+};
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -33,10 +40,9 @@ CustomTabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-
 
 const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
   const [value, setValue] = React.useState(0);
@@ -46,10 +52,6 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
   };
 
   const timelineData = [
-    // {
-    //   year: 2012,
-    //   title: "Fellowship ",
-    // },
     {
       year: 2008,
       title: "Super Specialisation - DM Cardiology",
@@ -61,6 +63,26 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
     {
       year: 2000,
       title: "MBBS",
+    },
+  ];
+  const carrerHistory = [
+    {
+      year: 2017,
+      title: "Senior Consulant - Artemis Hospital,Gurugram",
+    },
+    {
+      year: 2011,
+      title: "Consulant - Prime Hospital,Hyderabad",
+    },
+  ];
+  const carrerHistoryParas = [
+    {
+      year: 2022,
+      title: "Director",
+    },
+    {
+      year: 2017,
+      title: "Associate Director",
     },
   ];
   return (
@@ -78,10 +100,14 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
           width: "27%",
         }}
       >
-        <Box sx={{ display: 'flex', borderBottom: 1, borderColor: 'divider' }}>
+        <Box sx={{ display: "flex", borderBottom: 1, borderColor: "divider" }}>
           <Stack
             className={styles.employee_heading}
-            sx={{ cursor: "pointer" }}
+            sx={{
+              cursor: "pointer",
+              fontSize: "0.8rem",
+              marginLeft: "10px",
+            }}
             onClick={() => {
               setOpen(false);
               const newScale = Math.min(Math.max(1));
@@ -90,16 +116,27 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
           >
             <CloseIcon />
           </Stack>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="scrollable" scrollButtons="auto">
-            <Tab label="Personal Info" {...a11yProps(0)} />
-            <Tab label="Expertise" {...a11yProps(1)} />
-            <Tab label="Procedure Performed" {...a11yProps(2)} />
-            <Tab label="Payment Mode" {...a11yProps(3)} />
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+            variant="scrollable"
+            scrollButtons="auto"
+          >
+            <Tab label="Personal Info" {...a11yProps(0)} sx={TabCss} />
+            <Tab label="Expertise" {...a11yProps(1)} sx={TabCss} />
+            <Tab label="Procedure Performed" {...a11yProps(2)} sx={TabCss} />
+            <Tab label="Payment Mode" {...a11yProps(3)} sx={TabCss} />
           </Tabs>
         </Box>
-        <CustomTabPanel value={value} index={0} style={{
-          backgroundColor: '#f8f9fa', height: '95%'
-        }}>
+        <CustomTabPanel
+          value={value}
+          index={0}
+          style={{
+            backgroundColor: "#f8f9fa",
+            height: "95%",
+          }}
+        >
           <Box className={styles.employee_container}>
             <Stack
               display={"flex"}
@@ -181,7 +218,9 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               {details !== null && (
                 <Stack className={styles._layout}>
                   <Stack className={styles.title_text}>Gender</Stack>
-                  <Stack className={styles.title_detail}>{details.Gender}</Stack>
+                  <Stack className={styles.title_detail}>
+                    {details.Gender}
+                  </Stack>
                 </Stack>
               )}
 
@@ -206,7 +245,8 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_text}>Email</Stack>
                   <Stack className={styles.title_detail_email}>
                     {details
-                      ? details.Is_Personal_Email || details["Is Personal Email"]
+                      ? details.Is_Personal_Email ||
+                        details["Is Personal Email"]
                       : ""}
                   </Stack>
                 </Stack>
@@ -217,16 +257,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Current Address Line 1"],
-                        details["Current Address Line 2"],
-                        details["Current Address Line 3"],
-                        details["Current Address City"],
-                        details["Current Address State"],
-                        details["Current Address Country"],
-                        details["Current AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Current Address Line 1"],
+                          details["Current Address Line 2"],
+                          details["Current Address Line 3"],
+                          details["Current Address City"],
+                          details["Current Address State"],
+                          details["Current Address Country"],
+                          details["Current AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -237,16 +277,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Permanent Address Line 1"],
-                        details["Permanent Address Line 2"],
-                        details["Permanent Address Line 3"],
-                        details["Permanent Address City"],
-                        details["Permanent Address State"],
-                        details["Permanent Address Country"],
-                        details["Permanent AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Permanent Address Line 1"],
+                          details["Permanent Address Line 2"],
+                          details["Permanent Address Line 3"],
+                          details["Permanent Address City"],
+                          details["Permanent Address State"],
+                          details["Permanent Address Country"],
+                          details["Permanent AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -254,9 +294,14 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
             </Stack>
           </Box>
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={1} style={{
-          backgroundColor: '#f8f9fa', height: '95%'
-        }}>
+        <CustomTabPanel
+          value={value}
+          index={1}
+          style={{
+            backgroundColor: "#f8f9fa",
+            height: "95%",
+          }}
+        >
           <Box className={styles.employee_container}>
             <Stack
               display={"flex"}
@@ -266,7 +311,6 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               <Stack className={styles.employee_heading}>
                 Area Of Expertise
               </Stack>
-
             </Stack>
             <Stack className={styles.employee_content}>
               <Stack className={styles._layout}>
@@ -328,7 +372,9 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               {details !== null && (
                 <Stack className={styles._layout}>
                   <Stack className={styles.title_text}>Gender</Stack>
-                  <Stack className={styles.title_detail}>{details.Gender}</Stack>
+                  <Stack className={styles.title_detail}>
+                    {details.Gender}
+                  </Stack>
                 </Stack>
               )}
 
@@ -353,7 +399,8 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_text}>Email</Stack>
                   <Stack className={styles.title_detail_email}>
                     {details
-                      ? details.Is_Personal_Email || details["Is Personal Email"]
+                      ? details.Is_Personal_Email ||
+                        details["Is Personal Email"]
                       : ""}
                   </Stack>
                 </Stack>
@@ -364,16 +411,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Current Address Line 1"],
-                        details["Current Address Line 2"],
-                        details["Current Address Line 3"],
-                        details["Current Address City"],
-                        details["Current Address State"],
-                        details["Current Address Country"],
-                        details["Current AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Current Address Line 1"],
+                          details["Current Address Line 2"],
+                          details["Current Address Line 3"],
+                          details["Current Address City"],
+                          details["Current Address State"],
+                          details["Current Address Country"],
+                          details["Current AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -384,16 +431,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Permanent Address Line 1"],
-                        details["Permanent Address Line 2"],
-                        details["Permanent Address Line 3"],
-                        details["Permanent Address City"],
-                        details["Permanent Address State"],
-                        details["Permanent Address Country"],
-                        details["Permanent AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Permanent Address Line 1"],
+                          details["Permanent Address Line 2"],
+                          details["Permanent Address Line 3"],
+                          details["Permanent Address City"],
+                          details["Permanent Address State"],
+                          details["Permanent Address Country"],
+                          details["Permanent AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -401,9 +448,14 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
             </Stack>
           </Box>
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={2} style={{
-          backgroundColor: '#f8f9fa', height: '95%'
-        }}>
+        <CustomTabPanel
+          value={value}
+          index={2}
+          style={{
+            backgroundColor: "#f8f9fa",
+            height: "95%",
+          }}
+        >
           <Box className={styles.employee_container}>
             <Stack
               display={"flex"}
@@ -413,7 +465,6 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               <Stack className={styles.employee_heading}>
                 Procedure Performed
               </Stack>
-
             </Stack>
             <Stack className={styles.employee_content}>
               <Stack className={styles._layout}>
@@ -475,7 +526,9 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               {details !== null && (
                 <Stack className={styles._layout}>
                   <Stack className={styles.title_text}>Gender</Stack>
-                  <Stack className={styles.title_detail}>{details.Gender}</Stack>
+                  <Stack className={styles.title_detail}>
+                    {details.Gender}
+                  </Stack>
                 </Stack>
               )}
 
@@ -500,7 +553,8 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_text}>Email</Stack>
                   <Stack className={styles.title_detail_email}>
                     {details
-                      ? details.Is_Personal_Email || details["Is Personal Email"]
+                      ? details.Is_Personal_Email ||
+                        details["Is Personal Email"]
                       : ""}
                   </Stack>
                 </Stack>
@@ -511,16 +565,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Current Address Line 1"],
-                        details["Current Address Line 2"],
-                        details["Current Address Line 3"],
-                        details["Current Address City"],
-                        details["Current Address State"],
-                        details["Current Address Country"],
-                        details["Current AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Current Address Line 1"],
+                          details["Current Address Line 2"],
+                          details["Current Address Line 3"],
+                          details["Current Address City"],
+                          details["Current Address State"],
+                          details["Current Address Country"],
+                          details["Current AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -531,16 +585,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Permanent Address Line 1"],
-                        details["Permanent Address Line 2"],
-                        details["Permanent Address Line 3"],
-                        details["Permanent Address City"],
-                        details["Permanent Address State"],
-                        details["Permanent Address Country"],
-                        details["Permanent AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Permanent Address Line 1"],
+                          details["Permanent Address Line 2"],
+                          details["Permanent Address Line 3"],
+                          details["Permanent Address City"],
+                          details["Permanent Address State"],
+                          details["Permanent Address Country"],
+                          details["Permanent AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -548,19 +602,21 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
             </Stack>
           </Box>
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={3} style={{
-          backgroundColor: '#f8f9fa', height: '95%'
-        }}>
+        <CustomTabPanel
+          value={value}
+          index={3}
+          style={{
+            backgroundColor: "#f8f9fa",
+            height: "95%",
+          }}
+        >
           <Box className={styles.employee_container}>
             <Stack
               display={"flex"}
               flexDirection={"row"}
               justifyContent={"space-between"}
             >
-              <Stack className={styles.employee_heading}>
-                Payment Mode
-              </Stack>
-
+              <Stack className={styles.employee_heading}>Payment Mode</Stack>
             </Stack>
             <Stack className={styles.employee_content}>
               <Stack className={styles._layout}>
@@ -622,7 +678,9 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               {details !== null && (
                 <Stack className={styles._layout}>
                   <Stack className={styles.title_text}>Gender</Stack>
-                  <Stack className={styles.title_detail}>{details.Gender}</Stack>
+                  <Stack className={styles.title_detail}>
+                    {details.Gender}
+                  </Stack>
                 </Stack>
               )}
 
@@ -647,7 +705,8 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_text}>Email</Stack>
                   <Stack className={styles.title_detail_email}>
                     {details
-                      ? details.Is_Personal_Email || details["Is Personal Email"]
+                      ? details.Is_Personal_Email ||
+                        details["Is Personal Email"]
                       : ""}
                   </Stack>
                 </Stack>
@@ -658,16 +717,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Current Address Line 1"],
-                        details["Current Address Line 2"],
-                        details["Current Address Line 3"],
-                        details["Current Address City"],
-                        details["Current Address State"],
-                        details["Current Address Country"],
-                        details["Current AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Current Address Line 1"],
+                          details["Current Address Line 2"],
+                          details["Current Address Line 3"],
+                          details["Current Address City"],
+                          details["Current Address State"],
+                          details["Current Address Country"],
+                          details["Current AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -678,16 +737,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Permanent Address Line 1"],
-                        details["Permanent Address Line 2"],
-                        details["Permanent Address Line 3"],
-                        details["Permanent Address City"],
-                        details["Permanent Address State"],
-                        details["Permanent Address Country"],
-                        details["Permanent AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Permanent Address Line 1"],
+                          details["Permanent Address Line 2"],
+                          details["Permanent Address Line 3"],
+                          details["Permanent Address City"],
+                          details["Permanent Address State"],
+                          details["Permanent Address Country"],
+                          details["Permanent AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -740,7 +799,6 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   </div>
                 </div>
               </Stack>
-              ;
             </Stack>
           </Box>
           <Box className={styles.carrer_container}>
@@ -751,7 +809,7 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                 <div className={styles.timelineContainer}>
                   <div className={styles.timelineInner}>
                     <div className={styles.timelineLine} />
-                    {timelineData.map((item, index) => (
+                    {carrerHistory.map((item, index) => (
                       <div
                         key={item.year}
                         className={styles.timelineEvent}
@@ -776,13 +834,15 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
           </Box>
           <Box className={styles.carrer_container}>
             {" "}
-            <Stack className={styles.carrer_heading}>Carrer history</Stack>
+            <Stack className={styles.carrer_heading}>
+              Carrer history(Paras)
+            </Stack>
             <Stack className={styles.carrer_layout}>
               <Stack className={styles.carrer_layout_data}>
                 <div className={styles.timelineContainer}>
                   <div className={styles.timelineInner}>
                     <div className={styles.timelineLine} />
-                    {timelineData.map((item, index) => (
+                    {carrerHistoryParas.map((item, index) => (
                       <div
                         key={item.year}
                         className={styles.timelineEvent}

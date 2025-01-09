@@ -330,16 +330,19 @@
 }
 
 .textTitle {
-  font-size: 1.125rem; /* Equivalent to text-lg */
+  font-size: 0.9rem; /* Equivalent to text-lg */
   font-weight: 300; /* Equivalent to font-light */
+  font-family: Outfit, sans-serif;
 }
 
 /* Year on the left */
 .yearText {
   position: absolute;
-  top: 0;
+  top: 3%;
   left: 30%; /* Equivalent to left-[15%] */
   color: #9ca3af; /* Equivalent to text-gray-400 */
+  font-size: 0.8rem;
+  font-family: Outfit, sans-serif;
 }
 
 /* Bottom gradient overlay */
