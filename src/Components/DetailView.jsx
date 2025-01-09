@@ -264,20 +264,9 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               justifyContent={"space-between"}
             >
               <Stack className={styles.employee_heading}>
-                Employee Information
+                Area Of Expertise
               </Stack>
-              
-            </Stack>
-            <Stack>
-              {details !== null && (
-                <Stack className={styles.employee_image}>
-                  {details.Gender == "Male" ? (
-                    <img src={MenProfile} alt="MenProfile/>" />
-                  ) : (
-                    <img src={WomanProfile} alt="WomanProfile" />
-                  )}
-                </Stack>
-              )}
+
             </Stack>
             <Stack className={styles.employee_content}>
               <Stack className={styles._layout}>
@@ -422,20 +411,9 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               justifyContent={"space-between"}
             >
               <Stack className={styles.employee_heading}>
-                Employee Information
+                Procedure Performed
               </Stack>
-              
-            </Stack>
-            <Stack>
-              {details !== null && (
-                <Stack className={styles.employee_image}>
-                  {details.Gender == "Male" ? (
-                    <img src={MenProfile} alt="MenProfile/>" />
-                  ) : (
-                    <img src={WomanProfile} alt="WomanProfile" />
-                  )}
-                </Stack>
-              )}
+
             </Stack>
             <Stack className={styles.employee_content}>
               <Stack className={styles._layout}>
@@ -580,20 +558,9 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               justifyContent={"space-between"}
             >
               <Stack className={styles.employee_heading}>
-                Employee Information
+                Payment Mode
               </Stack>
-              
-            </Stack>
-            <Stack>
-              {details !== null && (
-                <Stack className={styles.employee_image}>
-                  {details.Gender == "Male" ? (
-                    <img src={MenProfile} alt="MenProfile/>" />
-                  ) : (
-                    <img src={WomanProfile} alt="WomanProfile" />
-                  )}
-                </Stack>
-              )}
+
             </Stack>
             <Stack className={styles.employee_content}>
               <Stack className={styles._layout}>
