@@ -254,7 +254,7 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? details.Is_Personal_Email ||
-                        details["Is Personal Email"]
+                      details["Is Personal Email"]
                       : ""}
                   </Stack>
                 </Stack>
@@ -265,16 +265,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                          details["Current Address Line 1"],
-                          details["Current Address Line 2"],
-                          details["Current Address Line 3"],
-                          details["Current Address City"],
-                          details["Current Address State"],
-                          details["Current Address Country"],
-                          details["Current AddressPincode"],
-                        ]
-                          .filter(Boolean) // Filters out undefined, null, or empty values
-                          .join(", ") // Joins the remaining fields with a comma and space
+                        details["Current Address Line 1"],
+                        details["Current Address Line 2"],
+                        details["Current Address Line 3"],
+                        details["Current Address City"],
+                        details["Current Address State"],
+                        details["Current Address Country"],
+                        details["Current AddressPincode"],
+                      ]
+                        .filter(Boolean) // Filters out undefined, null, or empty values
+                        .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -285,16 +285,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                          details["Permanent Address Line 1"],
-                          details["Permanent Address Line 2"],
-                          details["Permanent Address Line 3"],
-                          details["Permanent Address City"],
-                          details["Permanent Address State"],
-                          details["Permanent Address Country"],
-                          details["Permanent AddressPincode"],
-                        ]
-                          .filter(Boolean) // Filters out undefined, null, or empty values
-                          .join(", ") // Joins the remaining fields with a comma and space
+                        details["Permanent Address Line 1"],
+                        details["Permanent Address Line 2"],
+                        details["Permanent Address Line 3"],
+                        details["Permanent Address City"],
+                        details["Permanent Address State"],
+                        details["Permanent Address Country"],
+                        details["Permanent AddressPincode"],
+                      ]
+                        .filter(Boolean) // Filters out undefined, null, or empty values
+                        .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -321,138 +321,12 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               </Stack>
             </Stack>
             <Stack className={styles.employee_content}>
-              <Stack className={styles._layout}>
-                <Stack className={styles.title_text}>Name</Stack>
-                <Stack className={styles.title_detail}>
-                  {details ? details.Full_Name || details["Full Name"] : ""}
+              {/* <Stack className={styles._layout}> */}
+                <Stack className={styles.title_text}>Expertise</Stack>
+                <Stack >
+                  His areas of expertise include: Coronary Artery Diseases (Elective and Primary PCI), devices in management of Advanced Heart Failure – Biventricular Pacemakers (CRT-P), Combo Devices (CRT- D) and ICDs. He also has extensive experience of performing Carotid Artery Stenting, Subclavian Artery Angioplasty/Stenting, Aortic Stenting, Angioplasty/Stenting of other Peripheral Arteries and Below Knee Interventions (BKI). He also introduced Trans Cutaneous Aortic Valve Replacement (TAVI) in this region. He is also proficient in performing Endovascular Stent Grafts in treatment of Arterial Aneurysms, be it Thoracic Aortic Aneurysms or Infra Renal Aortic Aneurysms (AAA).
                 </Stack>
-              </Stack>
-              <Stack className={styles._layout}>
-                <Stack className={styles.title_text}>Employee Id</Stack>
-                <Stack className={styles.title_detail}>
-                  {details ? details.Employee_ID || details["Employee ID"] : ""}
-                </Stack>
-              </Stack>
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Location</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details.Location}
-                  </Stack>
-                </Stack>
-              )}
-              {/* Date of Joining */}
-              <Stack className={styles._layout}>
-                <Stack className={styles.title_text}>Date of Joining</Stack>
-                <Stack className={styles.title_detail}>
-                  {details
-                    ? details.Date_of_Joining || details["Date of Joining"]
-                    : ""}
-                </Stack>
-              </Stack>
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Designation</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details.Designation}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Department</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details.Department}
-                  </Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>DOB</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details["Date of Birth"]}
-                  </Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Gender</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details.Gender}
-                  </Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Age</Stack>
-                  <Stack className={styles.title_detail}>{details.Age}</Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Phone Number</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details?.Personal_Mobile_Number ||
-                      details["Personal Mobile Number"]}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Email</Stack>
-                  <Stack className={styles.title_detail_email}>
-                    {details
-                      ? details.Is_Personal_Email ||
-                        details["Is Personal Email"]
-                      : ""}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Current Address</Stack>
-                  <Stack className={styles.title_detail_email}>
-                    {details
-                      ? [
-                          details["Current Address Line 1"],
-                          details["Current Address Line 2"],
-                          details["Current Address Line 3"],
-                          details["Current Address City"],
-                          details["Current Address State"],
-                          details["Current Address Country"],
-                          details["Current AddressPincode"],
-                        ]
-                          .filter(Boolean) // Filters out undefined, null, or empty values
-                          .join(", ") // Joins the remaining fields with a comma and space
-                      : ""}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Permanent Address</Stack>
-                  <Stack className={styles.title_detail_email}>
-                    {details
-                      ? [
-                          details["Permanent Address Line 1"],
-                          details["Permanent Address Line 2"],
-                          details["Permanent Address Line 3"],
-                          details["Permanent Address City"],
-                          details["Permanent Address State"],
-                          details["Permanent Address Country"],
-                          details["Permanent AddressPincode"],
-                        ]
-                          .filter(Boolean) // Filters out undefined, null, or empty values
-                          .join(", ") // Joins the remaining fields with a comma and space
-                      : ""}
-                  </Stack>
-                </Stack>
-              )}
+              {/* </Stack> */}
             </Stack>
           </Box>
         </CustomTabPanel>
@@ -471,142 +345,17 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               justifyContent={"space-between"}
             >
               <Stack className={styles.employee_heading}>
-                Procedure Performed
+                Area Of Expertise
               </Stack>
             </Stack>
             <Stack className={styles.employee_content}>
-              <Stack className={styles._layout}>
-                <Stack className={styles.title_text}>Name</Stack>
-                <Stack className={styles.title_detail}>
-                  {details ? details.Full_Name || details["Full Name"] : ""}
+              {/* <Stack className={styles._layout}> */}
+                <Stack className={styles.title_text}>Procedure Performed</Stack>
+                <Stack>
+                  He regularly performs non surgical treatment of aortic dissections with stent grafts. He has many first’s to his name. He was the first in the world to show the efficacy of stenting for the management of patients with Takayasu’s Arteritis (Pulseless disease)
+                  He has been awarded Kataria Memorial Gold Medal in 1985, the highest academic awrd of PGI, Chandigarh
                 </Stack>
-              </Stack>
-              <Stack className={styles._layout}>
-                <Stack className={styles.title_text}>Employee Id</Stack>
-                <Stack className={styles.title_detail}>
-                  {details ? details.Employee_ID || details["Employee ID"] : ""}
-                </Stack>
-              </Stack>
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Location</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details.Location}
-                  </Stack>
-                </Stack>
-              )}
-              {/* Date of Joining */}
-              <Stack className={styles._layout}>
-                <Stack className={styles.title_text}>Date of Joining</Stack>
-                <Stack className={styles.title_detail}>
-                  {details
-                    ? details.Date_of_Joining || details["Date of Joining"]
-                    : ""}
-                </Stack>
-              </Stack>
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Designation</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details.Designation}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Department</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details.Department}
-                  </Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>DOB</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details["Date of Birth"]}
-                  </Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Gender</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details.Gender}
-                  </Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Age</Stack>
-                  <Stack className={styles.title_detail}>{details.Age}</Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Phone Number</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details?.Personal_Mobile_Number ||
-                      details["Personal Mobile Number"]}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Email</Stack>
-                  <Stack className={styles.title_detail_email}>
-                    {details
-                      ? details.Is_Personal_Email ||
-                        details["Is Personal Email"]
-                      : ""}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Current Address</Stack>
-                  <Stack className={styles.title_detail_email}>
-                    {details
-                      ? [
-                          details["Current Address Line 1"],
-                          details["Current Address Line 2"],
-                          details["Current Address Line 3"],
-                          details["Current Address City"],
-                          details["Current Address State"],
-                          details["Current Address Country"],
-                          details["Current AddressPincode"],
-                        ]
-                          .filter(Boolean) // Filters out undefined, null, or empty values
-                          .join(", ") // Joins the remaining fields with a comma and space
-                      : ""}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Permanent Address</Stack>
-                  <Stack className={styles.title_detail_email}>
-                    {details
-                      ? [
-                          details["Permanent Address Line 1"],
-                          details["Permanent Address Line 2"],
-                          details["Permanent Address Line 3"],
-                          details["Permanent Address City"],
-                          details["Permanent Address State"],
-                          details["Permanent Address Country"],
-                          details["Permanent AddressPincode"],
-                        ]
-                          .filter(Boolean) // Filters out undefined, null, or empty values
-                          .join(", ") // Joins the remaining fields with a comma and space
-                      : ""}
-                  </Stack>
-                </Stack>
-              )}
+              {/* </Stack> */}
             </Stack>
           </Box>
         </CustomTabPanel>
@@ -628,134 +377,55 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
             </Stack>
             <Stack className={styles.employee_content}>
               <Stack className={styles._layout}>
-                <Stack className={styles.title_text}>Name</Stack>
+                <Stack className={styles.title_text}>MG Amount</Stack>
                 <Stack className={styles.title_detail}>
-                  {details ? details.Full_Name || details["Full Name"] : ""}
+                  ---
                 </Stack>
               </Stack>
               <Stack className={styles._layout}>
-                <Stack className={styles.title_text}>Employee Id</Stack>
+                <Stack className={styles.title_text}>Any Other Condition </Stack>
                 <Stack className={styles.title_detail}>
-                  {details ? details.Employee_ID || details["Employee ID"] : ""}
+                  ---
                 </Stack>
               </Stack>
               {details !== null && (
                 <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Location</Stack>
+                  <Stack className={styles.title_text}>Diagontics %</Stack>
                   <Stack className={styles.title_detail}>
-                    {details.Location}
+                    ---
                   </Stack>
                 </Stack>
               )}
               {/* Date of Joining */}
               <Stack className={styles._layout}>
-                <Stack className={styles.title_text}>Date of Joining</Stack>
+                <Stack className={styles.title_text}>Pharmacy %</Stack>
                 <Stack className={styles.title_detail}>
-                  {details
-                    ? details.Date_of_Joining || details["Date of Joining"]
-                    : ""}
+                  ---
                 </Stack>
               </Stack>
 
               {details !== null && (
                 <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Designation</Stack>
+                  <Stack className={styles.title_text}>If Separate from Total Revenue</Stack>
                   <Stack className={styles.title_detail}>
-                    {details.Designation}
+                    ---
                   </Stack>
                 </Stack>
               )}
               {details !== null && (
                 <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Department</Stack>
+                  <Stack className={styles.title_text}>Revenue %</Stack>
                   <Stack className={styles.title_detail}>
-                    {details.Department}
+                    ---
                   </Stack>
                 </Stack>
               )}
 
               {details !== null && (
                 <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>DOB</Stack>
+                  <Stack className={styles.title_text}>Mode of Payment </Stack>
                   <Stack className={styles.title_detail}>
-                    {details["Date of Birth"]}
-                  </Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Gender</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details.Gender}
-                  </Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Age</Stack>
-                  <Stack className={styles.title_detail}>{details.Age}</Stack>
-                </Stack>
-              )}
-
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Phone Number</Stack>
-                  <Stack className={styles.title_detail}>
-                    {details?.Personal_Mobile_Number ||
-                      details["Personal Mobile Number"]}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Email</Stack>
-                  <Stack className={styles.title_detail_email}>
-                    {details
-                      ? details.Is_Personal_Email ||
-                        details["Is Personal Email"]
-                      : ""}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Current Address</Stack>
-                  <Stack className={styles.title_detail_email}>
-                    {details
-                      ? [
-                          details["Current Address Line 1"],
-                          details["Current Address Line 2"],
-                          details["Current Address Line 3"],
-                          details["Current Address City"],
-                          details["Current Address State"],
-                          details["Current Address Country"],
-                          details["Current AddressPincode"],
-                        ]
-                          .filter(Boolean) // Filters out undefined, null, or empty values
-                          .join(", ") // Joins the remaining fields with a comma and space
-                      : ""}
-                  </Stack>
-                </Stack>
-              )}
-              {details !== null && (
-                <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>Permanent Address</Stack>
-                  <Stack className={styles.title_detail_email}>
-                    {details
-                      ? [
-                          details["Permanent Address Line 1"],
-                          details["Permanent Address Line 2"],
-                          details["Permanent Address Line 3"],
-                          details["Permanent Address City"],
-                          details["Permanent Address State"],
-                          details["Permanent Address Country"],
-                          details["Permanent AddressPincode"],
-                        ]
-                          .filter(Boolean) // Filters out undefined, null, or empty values
-                          .join(", ") // Joins the remaining fields with a comma and space
-                      : ""}
+                    ---
                   </Stack>
                 </Stack>
               )}

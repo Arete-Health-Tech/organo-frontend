@@ -218,6 +218,7 @@ const OrgChart = () => {
         .then((response) => {
           setTotalOrganoData(response);
           setLoader(false);
+          setSearchEmployeeId("");
         })
         .catch((error) => {
           setLoader(false);
@@ -234,6 +235,7 @@ const OrgChart = () => {
     setTotalOrganoData([]);
     setIsFilterApply(false);
     setOpen(false)
+    setSearchEmployeeId("");
     setScale(Math.min(Math.max(1)));
   };
 
@@ -381,31 +383,34 @@ const OrgChart = () => {
                   {node.Full_Name || node["Full Name"]}
                 </div>
                 <div className={styles.Designation}>{node.Designation}</div>
-                {node["Personal Mobile Number"] && (
-                  <div className={styles.mobileDiv}>
-                    <div className={styles.mobileIcon}>
-                      <PhoneAndroidIcon
-                        style={{ color: "#0c0c0c2c", fontSize: "20px" }}
-                      />
-                    </div>
-                    <div className={styles.mobileNumber}>
-                      {node.Personal_Mobile_Number ||
-                        node["Personal Mobile Number"]}
-                    </div>
+                <div className={styles.Designation}>Role : </div>
+                <div className={styles.Designation}>Reportees : </div>
+                <div className={styles.Designation}>Salary : XXXX (%)</div>
+                <div className={styles.name}>
+                  {node["OU Name"]}
+                </div>
+                {/* <div className={styles.mobileDiv}>
+                  <div className={styles.mobileIcon}>
+                    <PhoneAndroidIcon
+                      style={{ color: "#0c0c0c2c", fontSize: "20px" }}
+                    />
                   </div>
-                )}
-                {node["Is Personal Email"] && (
-                  <div className={styles.emailDiv}>
-                    <div className={styles.emailIcon}>
-                      <MailOutlineIcon
-                        style={{ color: "#0c0c0c2c", fontSize: "20px" }}
-                      />
-                    </div>
-                    <div className={styles.email}>
-                      {node.Is_Personal_Email || node["Is Personal Email"]}
-                    </div>
+                  <div className={styles.mobileNumber}>
+                    {node.Personal_Mobile_Number ||
+                      node["Personal Mobile Number"]}
                   </div>
-                )}
+                </div>
+                <div className={styles.emailDiv}>
+                  <div className={styles.emailIcon}>
+                    <MailOutlineIcon
+                      style={{ color: "#0c0c0c2c", fontSize: "20px" }}
+                    />
+                  </div>
+                  <div className={styles.email}>
+                    {node.Is_Personal_Email || node["Is Personal Email"]}
+                  </div>
+                </div> */}
+
               </div>
             </div>
             {node?.subordinates?.length > 0 && (
@@ -606,7 +611,7 @@ const OrgChart = () => {
             /> */}
 
             <Stack className={styles.applyButtonStack}>
-              <button className={styles.applyButton} onClick={() => apply()}>
+              <button className={styles.applyButton} onClick={apply}>
                 Apply
               </button>
               <button
