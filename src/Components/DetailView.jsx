@@ -254,7 +254,7 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? details.Is_Personal_Email ||
-                      details["Is Personal Email"]
+                        details["Is Personal Email"]
                       : ""}
                   </Stack>
                 </Stack>
@@ -265,16 +265,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Current Address Line 1"],
-                        details["Current Address Line 2"],
-                        details["Current Address Line 3"],
-                        details["Current Address City"],
-                        details["Current Address State"],
-                        details["Current Address Country"],
-                        details["Current AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Current Address Line 1"],
+                          details["Current Address Line 2"],
+                          details["Current Address Line 3"],
+                          details["Current Address City"],
+                          details["Current Address State"],
+                          details["Current Address Country"],
+                          details["Current AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -285,16 +285,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Permanent Address Line 1"],
-                        details["Permanent Address Line 2"],
-                        details["Permanent Address Line 3"],
-                        details["Permanent Address City"],
-                        details["Permanent Address State"],
-                        details["Permanent Address Country"],
-                        details["Permanent AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Permanent Address Line 1"],
+                          details["Permanent Address Line 2"],
+                          details["Permanent Address Line 3"],
+                          details["Permanent Address City"],
+                          details["Permanent Address State"],
+                          details["Permanent Address Country"],
+                          details["Permanent AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -322,10 +322,27 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
             </Stack>
             <Stack className={styles.employee_content}>
               {/* <Stack className={styles._layout}> */}
-                <Stack className={styles.title_text}>Expertise</Stack>
-                <Stack >
-                  His areas of expertise include: Coronary Artery Diseases (Elective and Primary PCI), devices in management of Advanced Heart Failure – Biventricular Pacemakers (CRT-P), Combo Devices (CRT- D) and ICDs. He also has extensive experience of performing Carotid Artery Stenting, Subclavian Artery Angioplasty/Stenting, Aortic Stenting, Angioplasty/Stenting of other Peripheral Arteries and Below Knee Interventions (BKI). He also introduced Trans Cutaneous Aortic Valve Replacement (TAVI) in this region. He is also proficient in performing Endovascular Stent Grafts in treatment of Arterial Aneurysms, be it Thoracic Aortic Aneurysms or Infra Renal Aortic Aneurysms (AAA).
-                </Stack>
+              <Stack className={styles.title_text}>Expertise</Stack>
+              <Stack
+                sx={{
+                  fontFamily: "Outfit, sans-serif",
+                  letterSpacing: "0.8px",
+                  fontSize: "0.9rem",
+                  fontWeight: "400",
+                }}
+              >
+                His areas of expertise include: Coronary Artery Diseases
+                (Elective and Primary PCI), devices in management of Advanced
+                Heart Failure – Biventricular Pacemakers (CRT-P), Combo Devices
+                (CRT- D) and ICDs. He also has extensive experience of
+                performing Carotid Artery Stenting, Subclavian Artery
+                Angioplasty/Stenting, Aortic Stenting, Angioplasty/Stenting of
+                other Peripheral Arteries and Below Knee Interventions (BKI). He
+                also introduced Trans Cutaneous Aortic Valve Replacement (TAVI)
+                in this region. He is also proficient in performing Endovascular
+                Stent Grafts in treatment of Arterial Aneurysms, be it Thoracic
+                Aortic Aneurysms or Infra Renal Aortic Aneurysms (AAA).
+              </Stack>
               {/* </Stack> */}
             </Stack>
           </Box>
@@ -350,11 +367,22 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
             </Stack>
             <Stack className={styles.employee_content}>
               {/* <Stack className={styles._layout}> */}
-                <Stack className={styles.title_text}>Procedure Performed</Stack>
-                <Stack>
-                  He regularly performs non surgical treatment of aortic dissections with stent grafts. He has many first’s to his name. He was the first in the world to show the efficacy of stenting for the management of patients with Takayasu’s Arteritis (Pulseless disease)
-                  He has been awarded Kataria Memorial Gold Medal in 1985, the highest academic awrd of PGI, Chandigarh
-                </Stack>
+              <Stack className={styles.title_text}>Procedure Performed</Stack>
+              <Stack
+                sx={{
+                  fontFamily: "Outfit, sans-serif",
+                  letterSpacing: "0.8px",
+                  fontSize: "0.9rem",
+                  fontWeight: "400",
+                }}
+              >
+                He regularly performs non surgical treatment of aortic
+                dissections with stent grafts. He has many first’s to his name.
+                He was the first in the world to show the efficacy of stenting
+                for the management of patients with Takayasu’s Arteritis
+                (Pulseless disease) He has been awarded Kataria Memorial Gold
+                Medal in 1985, the highest academic awrd of PGI, Chandigarh
+              </Stack>
               {/* </Stack> */}
             </Stack>
           </Box>
@@ -378,55 +406,45 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
             <Stack className={styles.employee_content}>
               <Stack className={styles._layout}>
                 <Stack className={styles.title_text}>MG Amount</Stack>
-                <Stack className={styles.title_detail}>
-                  ---
-                </Stack>
+                <Stack className={styles.title_detail}>---</Stack>
               </Stack>
               <Stack className={styles._layout}>
-                <Stack className={styles.title_text}>Any Other Condition </Stack>
-                <Stack className={styles.title_detail}>
-                  ---
+                <Stack className={styles.title_text}>
+                  Any Other Condition{" "}
                 </Stack>
+                <Stack className={styles.title_detail}>---</Stack>
               </Stack>
               {details !== null && (
                 <Stack className={styles._layout}>
                   <Stack className={styles.title_text}>Diagontics %</Stack>
-                  <Stack className={styles.title_detail}>
-                    ---
-                  </Stack>
+                  <Stack className={styles.title_detail}>---</Stack>
                 </Stack>
               )}
               {/* Date of Joining */}
               <Stack className={styles._layout}>
                 <Stack className={styles.title_text}>Pharmacy %</Stack>
-                <Stack className={styles.title_detail}>
-                  ---
-                </Stack>
+                <Stack className={styles.title_detail}>---</Stack>
               </Stack>
 
               {details !== null && (
                 <Stack className={styles._layout}>
-                  <Stack className={styles.title_text}>If Separate from Total Revenue</Stack>
-                  <Stack className={styles.title_detail}>
-                    ---
+                  <Stack className={styles.title_text}>
+                    If Separate from Total Revenue
                   </Stack>
+                  <Stack className={styles.title_detail}>---</Stack>
                 </Stack>
               )}
               {details !== null && (
                 <Stack className={styles._layout}>
                   <Stack className={styles.title_text}>Revenue %</Stack>
-                  <Stack className={styles.title_detail}>
-                    ---
-                  </Stack>
+                  <Stack className={styles.title_detail}>---</Stack>
                 </Stack>
               )}
 
               {details !== null && (
                 <Stack className={styles._layout}>
                   <Stack className={styles.title_text}>Mode of Payment </Stack>
-                  <Stack className={styles.title_detail}>
-                    ---
-                  </Stack>
+                  <Stack className={styles.title_detail}>---</Stack>
                 </Stack>
               )}
             </Stack>

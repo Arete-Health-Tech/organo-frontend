@@ -64,7 +64,7 @@ const OrgChart = () => {
     "Urology",
     "Nephrology",
     "Rheumatology",
-    "Transfusion_Medicine"
+    "Transfusion_Medicine",
   ]);
   const [subDepartment, setSubDepartment] = useState([
     "Sub Department",
@@ -176,20 +176,20 @@ const OrgChart = () => {
     "Urology",
     "Nephrology",
     "Rheumatology",
-    "Blood_Bank"
+    "Blood_Bank",
   ]);
   const [location, setLocation] = useState([
     "Corporate",
     "Patna",
     "Ranchi",
     "Srinagar",
-    "Gurgaon Hospital"
+    "Gurgaon Hospital",
   ]);
   const [designation, setDesignation] = useState([
     "Manager",
     "Deputy Manager",
     "Executive",
-    "Assistant General Manager"
+    "Assistant General Manager",
   ]);
   const [selectedSuperSpeciality, setSelectedSuperSpecialtiy] = useState(null);
   const [selectedSubDepartment, setSelectedSubDepartment] = useState(null);
@@ -204,7 +204,7 @@ const OrgChart = () => {
       location: selectedLocation,
       department: selectedSuperSpeciality,
       subDepartment: selectedSubDepartment,
-      designation: selectedDesignation
+      designation: selectedDesignation,
     };
     if (
       selectedLocation !== null ||
@@ -234,7 +234,7 @@ const OrgChart = () => {
     setSelectedDesignation(null);
     setTotalOrganoData([]);
     setIsFilterApply(false);
-    setOpen(false)
+    setOpen(false);
     setSearchEmployeeId("");
     setScale(Math.min(Math.max(1)));
   };
@@ -285,7 +285,7 @@ const OrgChart = () => {
       setPosition({ x: e.clientX, y: e.clientY });
       setDraggedPosition({
         x: draggedPosition.x + deltaX,
-        y: draggedPosition.y + deltaY
+        y: draggedPosition.y + deltaY,
       });
     }
   };
@@ -315,7 +315,7 @@ const OrgChart = () => {
       (acc, subordinate) => [
         ...acc,
         subordinate._id,
-        ...getAllDescendantIds(subordinate)
+        ...getAllDescendantIds(subordinate),
       ],
       []
     );
@@ -363,12 +363,12 @@ const OrgChart = () => {
                 treeDiv.scrollTo({
                   left: "50%",
                   top: "20%",
-                  behavior: "smooth" // Smooth scrolling effect
+                  behavior: "smooth", // Smooth scrolling effect
                 });
               }
             }}
             tabIndex={0} // Make element focusable
-          // onFocus={() => handleScroll()} // Scroll on focus
+            // onFocus={() => handleScroll()} // Scroll on focus
           >
             <div className={styles.headerBox}>
               <div className={styles.imgDiv}>
@@ -386,9 +386,7 @@ const OrgChart = () => {
                 <div className={styles.Designation}>Role : </div>
                 <div className={styles.Designation}>Reportees : </div>
                 <div className={styles.Designation}>Salary : XXXX (%)</div>
-                <div className={styles.name}>
-                  {node["OU Name"]}
-                </div>
+                <div className={styles.name}>{node["OU Name"]}</div>
                 {/* <div className={styles.mobileDiv}>
                   <div className={styles.mobileIcon}>
                     <PhoneAndroidIcon
@@ -410,7 +408,6 @@ const OrgChart = () => {
                     {node.Is_Personal_Email || node["Is Personal Email"]}
                   </div>
                 </div> */}
-
               </div>
             </div>
             {node?.subordinates?.length > 0 && (
@@ -470,7 +467,7 @@ const OrgChart = () => {
               height: "10vh",
               position: "fixed",
               zIndex: "100",
-              backgroundColor: "white"
+              backgroundColor: "white",
             }}
           >
             <Autocomplete
@@ -482,28 +479,28 @@ const OrgChart = () => {
                 width: 200,
                 marginLeft: 2,
                 "& .MuiOutlinedInput-root": {
-                  padding: "2px 8px" // Reduce padding inside the input
+                  // padding: "2px 8px", //
                 },
                 "& .MuiInputBase-root": {
-                  height: "5vh", // Set a fixed height
+                  // height: "5vh", // Set a fixed height
                   fontSize: "14px", // Adjust font size
-                  fontFamily: "Outfit, sans-serif"
+                  fontFamily: "Outfit, sans-serif",
                 },
                 "& .MuiAutocomplete-input": {
-                  padding: "0 4px", // Reduce input padding
-                  textTransform: "capitalize"
+                  textTransform: "capitalize",
                 },
                 "& .MuiInputLabel-root": {
                   fontSize: "16px", // Adjust label size
-                  fontFamily: "Outfit, sans-serif"
-                }
+
+                  fontFamily: "Outfit, sans-serif",
+                },
               }}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Facility"
                   InputLabelProps={{
-                    style: { fontFamily: "Outfit, sans-serif" }
+                    style: { fontFamily: "Outfit, sans-serif" },
                   }}
                 />
               )}
@@ -517,28 +514,26 @@ const OrgChart = () => {
                 width: 200,
                 marginLeft: 2,
                 "& .MuiOutlinedInput-root": {
-                  padding: "2px 8px" // Reduce padding inside the input
+                  // padding: "2px 8px", // Reduce padding inside the input
                 },
                 "& .MuiInputBase-root": {
-                  height: "5vh", // Set a fixed height
                   fontSize: "14px", // Adjust font size
-                  fontFamily: "Outfit, sans-serif"
+                  fontFamily: "Outfit, sans-serif",
                 },
                 "& .MuiAutocomplete-input": {
-                  padding: "0 4px", // Reduce input padding
-                  textTransform: "capitalize"
+                  textTransform: "capitalize",
                 },
                 "& .MuiInputLabel-root": {
                   fontSize: "16px", // Adjust label size
-                  fontFamily: "Outfit, sans-serif"
-                }
+                  fontFamily: "Outfit, sans-serif",
+                },
               }}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Super Speciality"
                   InputLabelProps={{
-                    style: { fontFamily: "Outfit, sans-serif" }
+                    style: { fontFamily: "Outfit, sans-serif" },
                   }}
                 />
               )}
@@ -668,7 +663,7 @@ const OrgChart = () => {
                   thickness={100}
                   speed={50}
                   color="#007BFF"
-                // secondaryColor="#D9EBFF"
+                  // secondaryColor="#D9EBFF"
                 />
                 <Box mt={2} fontSize="16px" fontWeight="bold">
                   {" "}
@@ -689,7 +684,7 @@ const OrgChart = () => {
                     width: open ? "75%" : "100%",
                     maxWidth: "2400px",
                     overflowX: "scroll", // Always show scrollbar
-                    height: open ? "50vh" : "80vh",
+                    height: open ? "45vh" : "80vh",
                   }}
                   onWheel={handleWheel}
                 >
@@ -703,7 +698,7 @@ const OrgChart = () => {
                       width: "100%",
                       height: "100%",
                       cursor: dragging ? "grabbing" : "grab",
-                      position: "relative"
+                      position: "relative",
                     }}
                     onMouseDown={handleMouseDown}
                     onMouseMove={handleMouseMove}
@@ -720,7 +715,7 @@ const OrgChart = () => {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    gap: "10px"
+                    gap: "10px",
                   }}
                 >
                   <button
@@ -757,13 +752,15 @@ const OrgChart = () => {
             )}
           </>
         )}
-        {open && <DetailView
-          setDetails={setDetails}
-          details={details}
-          setOpen={setOpen}
-          setScale={setScale}
-          open={open}
-        />}
+        {open && (
+          <DetailView
+            setDetails={setDetails}
+            details={details}
+            setOpen={setOpen}
+            setScale={setScale}
+            open={open}
+          />
+        )}
       </Box>
     </>
   );
