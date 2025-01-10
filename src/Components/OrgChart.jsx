@@ -199,6 +199,7 @@ const OrgChart = () => {
   const [isFilterApply, setIsFilterApply] = useState(false);
 
   const apply = () => {
+    setExpandedNodeIds([]);
     const payload = {
       location: selectedLocation,
       department: selectedSuperSpeciality,
@@ -232,6 +233,8 @@ const OrgChart = () => {
     setSelectedDesignation(null);
     setTotalOrganoData([]);
     setIsFilterApply(false);
+    setOpen(false)
+    setScale(Math.min(Math.max(1)));
   };
 
   useEffect(() => {
