@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseUrl = 'http://localhost:3009/api/backend/endpoint/'
-// const baseUrl = 'https://organo.aretehealth.tech/'
+// const baseUrl = 'http://localhost:3009/api/backend/endpoint/'
+const baseUrl = 'https://organo.aretehealth.tech/'
 
 
 // Define the async function that fetches the data
