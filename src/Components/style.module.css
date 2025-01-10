@@ -401,7 +401,7 @@
 }
 .employee_heading {
   font-family: Outfit, sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   color: #111212b8;
   display: flex;
   justify-content: center;
@@ -429,14 +429,15 @@
 .title_text {
   font-family: Outfit, sans-serif;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 450;
   color: #111212b8;
   display: flex;
   width: 45%;
 }
 .title_detail {
   font-family: Outfit, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 400;
   width: 55%;
   color: #111212b8;
 }

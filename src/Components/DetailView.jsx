@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, colors, Stack } from "@mui/material";
 import React from "react";
 import styles from "./style.module.css";
 import MenProfile from "../Assets/profile.png";
@@ -12,7 +12,8 @@ const TabCss = {
   fontFamily: "Outfit, sans-serif",
   fontSize: "0.9rem",
   textTransform: "capitalize",
-  fontWeight: "500",
+  fontWeight: "400",
+  color: "grey",
 };
 
 function CustomTabPanel(props) {
@@ -100,7 +101,14 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
           width: "27%",
         }}
       >
-        <Box sx={{ display: "flex", borderBottom: 1, borderColor: "divider" }}>
+        <Box
+          sx={{
+            display: "flex",
+            borderBottom: 1,
+            borderColor: "divider",
+            bgcolor: "#f8f9fa",
+          }}
+        >
           <Stack
             className={styles.employee_heading}
             sx={{
