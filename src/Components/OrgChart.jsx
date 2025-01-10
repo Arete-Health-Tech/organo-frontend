@@ -179,7 +179,7 @@ const OrgChart = () => {
     "Blood_Bank"
   ]);
   const [location, setLocation] = useState([
-    "Gurgaon",
+    "Corporate",
     "Patna",
     "Ranchi",
     "Srinagar",
