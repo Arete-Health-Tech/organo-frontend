@@ -27,8 +27,8 @@ const OrgChart = () => {
   const [draggedPosition, setDraggedPosition] = useState({ x: 0, y: 0 }); // To track the dragged offset
   const [totalOrganoData, setTotalOrganoData] = useState([]); // To track the dragged offset
   const [superSpeciality, setSuperSpeciality] = useState([
-    "Information_Technology",
-    "Human_Resources",
+    "Information Technology",
+    "Human Resources",
     "Oncology",
     "Anaesthesia",
     "Cardiology",
