@@ -278,6 +278,16 @@
 /* Container styles */
 
 /* Inner timeline container */
+
+.noDataFound {
+  font-family: Outfit, sans-serif;
+  font-size: 0.8;
+  color: #111212b8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .timelineInner {
   position: relative;
   min-height: 250px;
@@ -291,7 +301,7 @@
   left: 50%;
   top: 0;
   width: 1px;
-  height: 90%; /* Adjusted to span the full height */
+  height: 95%; /* Adjusted to span the full height */
   background: #e5e7eb;
   transform: translateX(-50%);
 }
@@ -331,7 +341,7 @@
 }
 
 .textTitle {
-  font-size: 0.9rem; /* Equivalent to text-lg */
+  font-size: 0.8rem; /* Equivalent to text-lg */
   font-weight: 300; /* Equivalent to font-light */
   font-family: Outfit, sans-serif;
 }
@@ -340,7 +350,7 @@
 .yearText {
   position: absolute;
   top: 3%;
-  left: 30%; /* Equivalent to left-[15%] */
+  left: 10%; /* Equivalent to left-[15%] */
   color: #9ca3af; /* Equivalent to text-gray-400 */
   font-size: 0.8rem;
   font-family: Outfit, sans-serif;

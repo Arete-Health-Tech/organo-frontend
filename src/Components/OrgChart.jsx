@@ -199,6 +199,7 @@ const OrgChart = () => {
   const [isFilterApply, setIsFilterApply] = useState(false);
 
   const apply = () => {
+    setOpen(false);
     setExpandedNodeIds([]);
     const payload = {
       location: selectedLocation,
@@ -383,8 +384,10 @@ const OrgChart = () => {
                   {node.Full_Name || node["Full Name"]}
                 </div>
                 <div className={styles.Designation}>{node.Designation}</div>
-                <div className={styles.Designation}>Role : </div>
-                <div className={styles.Designation}>Reportees : </div>
+                <div className={styles.Designation}>Role : {node.Role}</div>
+                <div className={styles.Designation}>
+                  Reportees : {node?.subordinates?.length}{" "}
+                </div>
                 <div className={styles.Designation}>Salary : XXXX (%)</div>
                 <div className={styles.name}>{node["OU Name"]}</div>
                 {/* <div className={styles.mobileDiv}>
@@ -439,9 +442,16 @@ const OrgChart = () => {
       setLoader(true);
       setTotalOrganoData([]);
       setLoader(false);
+      setOpen(false);
+      const newScale = Math.min(Math.max(1));
+      setScale(newScale);
       return;
     } else if (e.key === "Enter") {
       setLoader(true);
+      setOpen(false);
+      clearFilter();
+      const newScale = Math.min(Math.max(1));
+      setScale(newScale);
       setSearchEmployeeId(searchEmployeeId);
       const searchEmployeeData = await searchOrganoApi(searchEmployeeId);
       setTotalOrganoData(searchEmployeeData);
@@ -686,7 +696,7 @@ const OrgChart = () => {
                     overflowX: "scroll", // Always show scrollbar
                     height: open ? "45vh" : "80vh",
                   }}
-                  onWheel={handleWheel}
+                  // onWheel={handleWheel}
                 >
                   <div
                     style={{

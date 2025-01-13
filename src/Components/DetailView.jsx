@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import NoDataFound from "./../Assets/Error.svg";
 
 const TabCss = {
   fontFamily: "Outfit, sans-serif",
@@ -54,26 +55,46 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
 
   const timelineData = [
     {
-      year: 2008,
-      title: "Super Specialisation - DM Cardiology",
+      year: `${details["Doctorate- Passing Year "] || "Not mentioned"}`,
+      title: `${details["Doctorate- Field of Education"]}, ${details["Doctorate- Name of Establishment "]}`,
     },
     {
-      year: 2003,
-      title: "PG - MD (General Medicine)",
+      year: `${details["Post Graduation- Passing Year "]}`,
+      title: `${details["Post Graduation- Field of Education"]}, ${details["Post Graduation- Name of Establishment "]}`,
     },
     {
-      year: 2000,
-      title: "MBBS",
+      year: `${details["Graduation- Passing Year "]}`,
+      title: `${details["Graduation- Field of Education"]}, ${details["Graduation- Name of Establishment"]}`,
+    },
+    {
+      year: `${details["Diploma- Passing Year "]}`,
+      title: `${details["Diploma- Field of Education"]}, ${details["Diploma- Name of Establishment "]}`,
     },
   ];
-  const carrerHistory = [
+  const careerHistory = [
     {
-      year: 2017,
-      title: "Senior Consulant - Artemis Hospital,Gurugram",
+      year: `${details["Employer - (Last)- Dates of Relieving:"]}`,
+      title: `${details["Employer - (Last)- Last Position Held:"]}, ${details["Employer - (Last)- Organization Name:"]}`,
     },
     {
-      year: 2011,
-      title: "Consulant - Prime Hospital,Hyderabad",
+      year: `${details["Previous Employers: (Previous-1)- Dates of Relieving:"]}`,
+      title: `${details["Previous Employers: (Previous-1)- Last Position Held:"]}, ${details["Previous Employers: (Previous-1)- Organization Name:"]}`,
+    },
+    {
+      year: `${details["Previous Employers: (Previous-2)- Dates of Relieving:"]}`,
+      title: `${details["Previous Employers: (Previous-2)- Last Position Held:"]}, ${details["Previous Employers: (Previous-2)- Organization Name:"]}`,
+    },
+    {
+      year: `${details["Previous Employers: (Previous-3)- Dates of Relieving:"]}`,
+      title: `${details["Previous Employers: (Previous-3)- Last Position Held:"]}, ${details["Previous Employers: (Previous-3)- Organization Name:"]}`,
+    },
+    {
+      year: `${details["Previous Employers: (Previous-4)- Dates of Relieving:"]}`,
+      title: `${details["Previous Employers: (Previous-4)- Last Position Held:"]}, ${details["Previous Employers: (Previous-4)- Organization Name:"]}`,
+    },
+    {
+      year: `${details["Previous Employers: (Previous-5)- Dates of Relieving:"]}`,
+      title: `${details["Previous Employers: (Previous-5)- Last Position Held:"]}, ${details["Previous Employers: (Previous-5)- Organization Name:"]}`,
     },
   ];
   const carrerHistoryParas = [
@@ -88,6 +109,7 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
   ];
   return (
     <>
+      {/* Exployee Detail */}
       <Box
         // display={open ? "flex" : "none"}
         sx={{
@@ -323,15 +345,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
             <Stack className={styles.employee_content}>
               {/* <Stack className={styles._layout}> */}
               <Stack className={styles.title_text}>Expertise</Stack>
-              <Stack
-                sx={{
-                  fontFamily: "Outfit, sans-serif",
-                  letterSpacing: "0.8px",
-                  fontSize: "0.9rem",
-                  fontWeight: "400",
-                }}
-              >
-                His areas of expertise include: Coronary Artery Diseases
+              {details["Areas of Expertise:"] !== null ? (
+                <Stack
+                  sx={{
+                    fontFamily: "Outfit, sans-serif",
+                    letterSpacing: "0.8px",
+                    fontSize: "0.9rem",
+                    fontWeight: "400",
+                  }}
+                >
+                  {/* His areas of expertise include: Coronary Artery Diseases
                 (Elective and Primary PCI), devices in management of Advanced
                 Heart Failure – Biventricular Pacemakers (CRT-P), Combo Devices
                 (CRT- D) and ICDs. He also has extensive experience of
@@ -341,8 +364,24 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                 also introduced Trans Cutaneous Aortic Valve Replacement (TAVI)
                 in this region. He is also proficient in performing Endovascular
                 Stent Grafts in treatment of Arterial Aneurysms, be it Thoracic
-                Aortic Aneurysms or Infra Renal Aortic Aneurysms (AAA).
-              </Stack>
+                Aortic Aneurysms or Infra Renal Aortic Aneurysms (AAA). */}
+                  {(details !== null && details.Areas_of_Expertise) ||
+                    details["Areas of Expertise:"]}
+                </Stack>
+              ) : (
+                <>
+                  <Stack
+                    sx={{
+                      fontFamily: "Outfit, sans-serif",
+                      letterSpacing: "0.8px",
+                      fontSize: "0.9rem",
+                      fontWeight: "400",
+                    }}
+                  >
+                    Not Mentioned
+                  </Stack>
+                </>
+              )}
               {/* </Stack> */}
             </Stack>
           </Box>
@@ -451,6 +490,7 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
           </Box>
         </CustomTabPanel>
       </Box>
+      {/* History */}
       <Box
         display={open ? "flex" : "none"}
         sx={{
@@ -473,24 +513,58 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               <Stack className={styles.carrer_layout_data}>
                 <div className={styles.timelineContainer}>
                   <div className={styles.timelineInner}>
-                    <div className={styles.timelineLine} />
-                    {timelineData.map((item, index) => (
-                      <div
-                        key={item.year}
-                        className={styles.timelineEvent}
-                        style={{ marginTop: index === 0 ? "0" : "40px" }}
-                      >
-                        <div className="flex items-center w-full group">
-                          <div className={styles.redDot} />
-                          <div className={styles.textContent}>
-                            <span className={styles.textTitle}>
-                              {item.title}
-                            </span>
+                    {careerHistory.every(
+                      (item) => item.title === "null, null"
+                    ) ? (
+                      <></>
+                    ) : (
+                      <div className={styles.timelineLine} />
+                    )}
+                    {timelineData.every(
+                      (item) => item.title === "null, null"
+                    ) ? (
+                      <>
+                        <Stack className={styles.noDataFound}>
+                          <img
+                            src={NoDataFound}
+                            alt="No Data Found"
+                            style={{ width: "100px" }}
+                          />
+                          <div className={styles.noDataFound}>
+                            No Data Available
                           </div>
-                          <div className={styles.yearText}>{item.year}</div>
+                        </Stack>
+                      </>
+                    ) : (
+                      timelineData.map((item, index) => (
+                        <div
+                          key={item.year}
+                          className={styles.timelineEvent}
+                          style={{ marginTop: index === 0 ? "0" : "40px" }}
+                        >
+                          {item.title !== "null, null" && (
+                            <div className="flex items-center w-full group">
+                              <div className={styles.redDot} />
+                              <div className={styles.textContent}>
+                                <span className={styles.textTitle}>
+                                  {item.title}
+                                </span>
+                              </div>
+                              {item.year !== "undefined" ||
+                              item.year !== null ? (
+                                <div className={styles.yearText}>
+                                  {item.year}
+                                </div>
+                              ) : (
+                                <div className={styles.yearText}>
+                                  Not Mentioned
+                                </div>
+                              )}
+                            </div>
+                          )}
                         </div>
-                      </div>
-                    ))}
+                      ))
+                    )}
                     <div className={styles.bottomGradient} />
                   </div>
                 </div>
@@ -499,29 +573,61 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
           </Box>
           <Box className={styles.carrer_container}>
             {" "}
-            <Stack className={styles.carrer_heading}>Carrer history</Stack>
+            <Stack className={styles.carrer_heading}>Career history</Stack>
             <Stack className={styles.carrer_layout}>
               <Stack className={styles.carrer_layout_data}>
                 <div className={styles.timelineContainer}>
                   <div className={styles.timelineInner}>
-                    <div className={styles.timelineLine} />
-                    {carrerHistory.map((item, index) => (
-                      <div
-                        key={item.year}
-                        className={styles.timelineEvent}
-                        style={{ marginTop: index === 0 ? "0" : "40px" }}
-                      >
-                        <div className="flex items-center w-full group">
-                          <div className={styles.redDot} />
-                          <div className={styles.textContent}>
-                            <span className={styles.textTitle}>
-                              {item.title}
-                            </span>
-                          </div>
-                          <div className={styles.yearText}>{item.year}</div>
+                    {careerHistory.every(
+                      (item) => item.title === "null, null"
+                    ) ? (
+                      <></>
+                    ) : (
+                      <div className={styles.timelineLine} />
+                    )}
+
+                    {careerHistory.every(
+                      (item) => item.title === "null, null"
+                    ) ? (
+                      <>
+                        <Stack className={styles.noDataFound}>
+                          <img
+                            src={NoDataFound}
+                            alt="No Data Found"
+                            style={{ width: "100px" }}
+                          />
+                          <div>No Data Available</div>
+                        </Stack>
+                      </>
+                    ) : (
+                      careerHistory.map((item, index) => (
+                        <div
+                          key={item.year}
+                          className={styles.timelineEvent}
+                          style={{ marginTop: index === 0 ? "0" : "40px" }}
+                        >
+                          {item.title !== "null, null" && (
+                            <div className="flex items-center w-full group">
+                              <div className={styles.redDot} />
+                              <div className={styles.textContent}>
+                                <span className={styles.textTitle}>
+                                  {item.title}
+                                </span>
+                              </div>
+                              {item.year !== "undefined" ? (
+                                <div className={styles.yearText}>
+                                  {item.year}
+                                </div>
+                              ) : (
+                                <div className={styles.yearText}>
+                                  Not Mentioned
+                                </div>
+                              )}
+                            </div>
+                          )}
                         </div>
-                      </div>
-                    ))}
+                      ))
+                    )}
                     <div className={styles.bottomGradient} />
                   </div>
                 </div>
@@ -531,11 +637,18 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
           <Box className={styles.carrer_container}>
             {" "}
             <Stack className={styles.carrer_heading}>
-              Carrer history(Paras)
+              Career history(Paras)
+              <br />
+              {details !== null && (
+                <span style={{ fontSize: "0.8rem", color: "grey" }}>
+                  Work Exp. - {details["Current Company Experience"]} yrs
+                </span>
+              )}
             </Stack>
             <Stack className={styles.carrer_layout}>
               <Stack className={styles.carrer_layout_data}>
-                <div className={styles.timelineContainer}>
+                {/* Data Not present */}
+                {/* <div className={styles.timelineContainer}>
                   <div className={styles.timelineInner}>
                     <div className={styles.timelineLine} />
                     {carrerHistoryParas.map((item, index) => (
@@ -557,7 +670,17 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                     ))}
                     <div className={styles.bottomGradient} />
                   </div>
-                </div>
+                </div> */}
+
+                {/* Default screen */}
+                <Stack className={styles.noDataFound}>
+                  <img
+                    src={NoDataFound}
+                    alt="No Data Found"
+                    style={{ width: "100px" }}
+                  />
+                  <div className={styles.noDataFound}>No Data Available</div>
+                </Stack>
               </Stack>
             </Stack>
           </Box>
