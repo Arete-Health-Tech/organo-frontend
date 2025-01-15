@@ -341,9 +341,11 @@ const OrgChart = () => {
     let totalCTC = 0;
 
     employeeList.forEach((employee) => {
-      totalCTC += parseFloat(employee["Annual CTC"]);
-      if (employee.subordinates && employee.subordinates.length > 0) {
-        totalCTC += calculateTotalCTC(employee.subordinates);
+      if (employee["Annual CTC"]) {
+        totalCTC += parseFloat(employee["Annual CTC"]);
+        if (employee.subordinates && employee.subordinates.length > 0) {
+          totalCTC += calculateTotalCTC(employee.subordinates);
+        }
       }
     });
 
