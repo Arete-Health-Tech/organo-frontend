@@ -276,7 +276,7 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? details.Is_Personal_Email ||
-                      details["Is Personal Email"]
+                        details["Is Personal Email"]
                       : ""}
                   </Stack>
                 </Stack>
@@ -287,16 +287,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Current Address Line 1"],
-                        details["Current Address Line 2"],
-                        details["Current Address Line 3"],
-                        details["Current Address City"],
-                        details["Current Address State"],
-                        details["Current Address Country"],
-                        details["Current AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Current Address Line 1"],
+                          details["Current Address Line 2"],
+                          details["Current Address Line 3"],
+                          details["Current Address City"],
+                          details["Current Address State"],
+                          details["Current Address Country"],
+                          details["Current AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -307,16 +307,16 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                   <Stack className={styles.title_detail_email}>
                     {details
                       ? [
-                        details["Permanent Address Line 1"],
-                        details["Permanent Address Line 2"],
-                        details["Permanent Address Line 3"],
-                        details["Permanent Address City"],
-                        details["Permanent Address State"],
-                        details["Permanent Address Country"],
-                        details["Permanent AddressPincode"],
-                      ]
-                        .filter(Boolean) // Filters out undefined, null, or empty values
-                        .join(", ") // Joins the remaining fields with a comma and space
+                          details["Permanent Address Line 1"],
+                          details["Permanent Address Line 2"],
+                          details["Permanent Address Line 3"],
+                          details["Permanent Address City"],
+                          details["Permanent Address State"],
+                          details["Permanent Address Country"],
+                          details["Permanent AddressPincode"],
+                        ]
+                          .filter(Boolean) // Filters out undefined, null, or empty values
+                          .join(", ") // Joins the remaining fields with a comma and space
                       : ""}
                   </Stack>
                 </Stack>
@@ -513,15 +513,19 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               <Stack className={styles.carrer_layout_data}>
                 <div className={styles.timelineContainer}>
                   <div className={styles.timelineInner}>
-                    {careerHistory.every(
-                      (item) => item.title === "null, null" || item.title === "undefined, undefined"
+                    {timelineData.every(
+                      (item) =>
+                        item.title === "null, null" ||
+                        item.title === "undefined, undefined"
                     ) ? (
                       <></>
                     ) : (
                       <div className={styles.timelineLine} />
                     )}
                     {timelineData.every(
-                      (item) => item.title === "null, null" || item.title === "undefined, undefined"
+                      (item) =>
+                        item.title === "null, null" ||
+                        item.title === "undefined, undefined"
                     ) ? (
                       <>
                         <Stack className={styles.noDataFound}>
@@ -542,22 +546,25 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                           className={styles.timelineEvent}
                           style={{ marginTop: index === 0 ? "0" : "40px" }}
                         >
-                          {(item.title !== "null, null" || item.title !== "undefined, undefined") && (
+                          {item.title === "null, null" ||
+                          item.title === "undefined, undefined" ? (
+                            <></>
+                          ) : (
                             <div className="flex items-center w-full group">
                               <div className={styles.redDot} />
                               <div className={styles.textContent}>
                                 <span className={styles.textTitle}>
-                                  {item.title}
+                                  {item.title ? item.title.trim() : ""}
                                 </span>
                               </div>
-                              {item.year !== "undefined" ||
-                                item.year !== null ? (
+                              {item.year === "undefined" ||
+                              item.year === "null" ? (
                                 <div className={styles.yearText}>
-                                  {item.year}
+                                  Not Mentioned
                                 </div>
                               ) : (
                                 <div className={styles.yearText}>
-                                  Not Mentioned
+                                  {item.year}
                                 </div>
                               )}
                             </div>
@@ -579,7 +586,9 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                 <div className={styles.timelineContainer}>
                   <div className={styles.timelineInner}>
                     {careerHistory.every(
-                      (item) => item.title === "null, null" || item.title === "undefined, undefined"
+                      (item) =>
+                        item.title === "null, null" ||
+                        item.title === "undefined, undefined"
                     ) ? (
                       <></>
                     ) : (
@@ -587,7 +596,9 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                     )}
 
                     {careerHistory.every(
-                      (item) => item.title === "null, null" || item.title === "undefined, undefined"
+                      (item) =>
+                        item.title === "null, null" ||
+                        item.title === "undefined, undefined"
                     ) ? (
                       <>
                         <Stack className={styles.noDataFound}>
@@ -606,7 +617,10 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                           className={styles.timelineEvent}
                           style={{ marginTop: index === 0 ? "0" : "40px" }}
                         >
-                          {(item.title !== "null, null" || item.title !== "undefined, undefined") && (
+                          {item.title === "null, null" ||
+                          item.title === "undefined, undefined" ? (
+                            <></>
+                          ) : (
                             <div className="flex items-center w-full group">
                               <div className={styles.redDot} />
                               <div className={styles.textContent}>
