@@ -27,174 +27,419 @@ const OrgChart = () => {
   const [draggedPosition, setDraggedPosition] = useState({ x: 0, y: 0 }); // To track the dragged offset
   const [totalOrganoData, setTotalOrganoData] = useState([]); // To track the dragged offset
   const [superSpeciality, setSuperSpeciality] = useState([
-    "Information Technology",
+    "Front Office",
+    "Finance and Account",
+    "Emergency Medicine",
+    "IP Billing",
+    "General and Minimal Access Surgey",
+    "Cardiac Science",
+    "OPD",
+    "Clinical Laboratory",
+    "Cancer Centre",
+    "Transfusion Medicine",
+    "Bio Medical Engineering",
+    "Obstetrics and Gynaecology",
     "Human Resources",
-    "Oncology",
+    "Medical Surgical Ward",
+    "Critical Care",
+    "Radiology",
+    "Digestive and Liver Diesease",
+    "Sales and Marketing",
+    "Orthopedics",
+    "Supply Chain Management",
+    "Ambulatory Care",
+    "Security and Safety",
+    "Neuroscience",
+    "Engineering and Maintenance",
+    "Renal Science",
+    "Patient Care Services",
+    "Child Health",
+    "Psychology",
+    "Medical Operations",
+    "CSSD",
+    "Academic and Research",
     "Anaesthesia",
-    "Cardiology",
-    "CTVS",
-    "Finance_and_Account",
-    "Pulmonology",
-    "Pediatrics",
-    "Neonatology",
-    "Clinical_Laboratory",
-    "Critical_Care",
-    "Dental",
-    "Plastic_Surgery",
-    "Dermatology",
-    "Gastroenterology",
-    "GI_Surgery",
-    "Emergency",
-    "Ambulatory_Care",
+    "Central Buying Unit",
+    "Chest and Respiratory",
+    "CRM and Customer Service",
+    "Digital Marketing",
     "Endocrinology",
     "ENT",
-    "General_Surgery",
-    "Internal_Medicine",
-    "Wards",
-    "Neurology",
-    "Neuro_Surgery",
-    "Neuro_Intervention_Radiology",
-    "Obstetrics_and_Gynaecology",
+    "Food and Beverages",
+    "General Administration",
+    "Hospital Infection Control",
+    "Information Technology",
+    "Internal Medicine",
+    "Legal",
+    "MD-Office",
+    "Medical Administration",
+    "MRD",
+    "Non Clinical Services",
+    "Nursing Administration",
+    "Nursing Education",
+    "Nutrition and Dietetics",
+    "Office Administration",
+    "Operation Theater",
     "Ophthalmology",
-    "Orthopedics",
-    "Physiotherapy",
+    "Pharmacy",
+    "Projects and Engineering",
     "Psychiatry",
-    "Nuclear_Medicine",
-    "Radiology_and_Imaging",
-    "Urology",
-    "Nephrology",
+    "Quality",
     "Rheumatology",
-    "Transfusion_Medicine",
+    "Strategy and Business Intelligence"
   ]);
-  const [subDepartment, setSubDepartment] = useState([
-    "Sub Department",
-    "Cardiac_Anaesthesia",
-    "General_Anaesthesia",
-    "Neuro_Anaesthesia",
-    "Pain_and_Palliative_Care",
-    "Ayush",
-    "Brachy_Therapy",
-    "Gamma_Camera",
-    "LINAC",
-    "Radiation_Oncology",
-    "Medical_Oncology",
-    "Medical_Oncology - BMT",
-    "Medical_Oncology - Haemato_Oncology",
-    "Surgical_Oncology",
-    "Surgical_Oncology - GI_Oncosurgery",
-    "Surgical_Oncology - Gynae_oncosurgery",
-    "Surgical_Oncology - Head_and_Neck",
-    "Orthopedics_Oncology",
-    "Paras_Cancer_Centre",
-    "Interventional_Cardiology",
-    "Non_Invasive_Cardiology_",
-    "Paediatric_Cardiology",
-    "Cardiac_Surgery - Adult",
-    "Cardiac_Surgery - Adult_and_Paediatric",
-    "Cardiac_Surgery - Paediatric",
-    "Peripheral_Interventions",
-    "Vascular_Surgery",
-    "CTVS_Core",
-    "Pulmonology",
-    "Pediatrics",
-    "Pediatric_Gastroenterology",
-    "Pediatric_Neurology",
-    "Neonatology",
-    "Bio_Chemistry",
-    "Clinical_Patholgy",
-    "Histopathology",
-    "Immunoassay",
-    "Microbiology",
-    "Phlebotomy",
-    "Clinical_Laboratory_Operations",
-    "Hematology",
-    "CTVS_ICU",
-    "Kidney_Transplant_ICU",
-    "Liver_Transplant_ICU",
-    "MICU",
-    "NICU",
-    "NSICU",
-    "NSTICU",
-    "PICU",
-    "SICU",
-    "Surgical_Oncology - Oncology_ICU",
-    "CCU",
-    "HDU",
-    "Orthopedic_ICU",
-    "Pulmo_ICU",
-    "Dental",
-    "Plastic_Surgery",
-    "Reconstructive_Surgery",
+  const [department, setDepartment] = useState([
+    "Academic and Research",
+    "Ambulatory Care",
+    "Anaesthesia",
+    "Bio Medical Engineering",
+    "Blood Bank",
+    "BMT",
+    "Cardiology",
+    "Cath lab",
+    "Central Buying Unit",
+    "Clinical Laboratory",
+    "Critical Care",
+    "CRM and Customer Service",
+    "CSSD",
+    "CTVS",
+    "Day care",
     "Dermatology",
-    "Gastroenterology",
-    "Hepatology",
-    "GI_Surgey",
-    "Liver_Transplant",
-    "ER",
-    "Minor_OT",
-    "Medical_Room / Clinics",
+    "Dialysis",
+    "Digital Marketing",
+    "Emergency",
     "Endocrinology",
+    "Endoscopy",
+    "Engineering and Maintenance",
     "ENT",
-    "Bariatric_Surgery",
-    "MAS",
-    "General_Surgery_Core",
-    "Internal_Medicine",
-    "Medical_Surgical_Ward",
-    "Neuro_Surgery_Ward",
-    "Obstetrics_and_Gynaecology",
+    "Finance and Account",
+    "Food and Beverages",
+    "Front Office",
+    "Gastroenterology",
+    "General Administration",
+    "General Surgery",
+    "GI Surgery",
+    "Hospital Operations",
+    "House Keeping",
+    "Human Resources",
+    "Information Technology",
+    "Internal Medicine",
+    "Interventional Radiology",
+    "Labour Room",
+    "MD-Office",
+    "MRD",
+    "Neonatology",
+    "Nephrology",
+    "Neuro Intervention Radiology",
+    "Neuro Lab",
+    "Neuro Surgery",
     "Neurology",
-    "Neurosurgery",
-    "Spine_Surgery",
-    "Neuro_Intervention_Radiology",
-    "Fetal_Medicine",
-    "Gynaecology",
-    "IVF",
-    "LR",
-    "Obstetrics",
-    "Gynae Oncology",
-    "Eye",
-    "Arthroscopy",
-    "Joint_Replacement_Surgery",
-    "Spine_Surgery",
-    "Sports_Injury_Center",
-    "Trauma_and_Complex_Cases",
+    "Non Invasive Cardiac Lab",
+    "Nuclear Medicine",
+    "Nursing",
+    "Nursing Administration",
+    "Nutrition and Dietetics",
+    "Obstetrics and Gynaecology",
+    "Office Administration",
+    "Oncology",
+    "OPD",
+    "Operation Theater",
+    "Ophthalmology",
+    "Ophthalmology Lab",
     "Orthopedics",
-    "Physiotherapy",
+    "Patient  Care  Services",
+    "Patient Care Services",
+    "Pediatrics",
+    "Pharmacy",
+    "Plastic Surgery",
+    "Projects and Engineering",
     "Psychiatry",
     "Psychology",
-    "PET_CT",
-    "Nuclear_Medicine",
-    "CT",
-    "Interventional_Radiology",
-    "Mammography",
-    "MRI",
-    "MRI / CT / X - _Ray",
-    "Ultrasound",
-    "X - Ray",
-    "Radiology_and_Imaging",
-    "Kidney_Transplant",
-    "Urology",
-    "Nephrology",
+    "Pulmonary Lab",
+    "Pulmonology",
+    "Radiology and Imaging",
     "Rheumatology",
-    "Blood_Bank",
+    "Sales and Marketing",
+    "Security and Safety",
+    "Strategy and Business Intelligence",
+    "Supply Chain Management",
+    "Transfusion Medicine",
+    "Uro Lab",
+    "Urology",
+    "Wards"
   ]);
+  const [subDepartment, setSubDepartment] = useState([
+    "IP Admission",
+    "AP",
+    "Emergency",
+    "Bill Processing",
+    "General-OT",
+    "Cath Lab Unit",
+    "OP Nursing Counter",
+    "Histopathology",
+    "Surgical Oncology-Head and Neck",
+    "Medical Oncology",
+    "Surgical Oncology",
+    "Blood Bank",
+    "BME Operations",
+    "Gynaecology",
+    "Talent Acqusition",
+    "Medical Surgical Ward",
+    "MICU",
+    "Cardiac-OT",
+    "Interventional Radiology",
+    "Liver Transplant ICU",
+    "Serology",
+    "Branding",
+    "Coordinator-Ortho",
+    "Hematology",
+    "Clinical Patholgy",
+    "Cashier Billing",
+    "CTVS ICU",
+    "Sample Accessioning",
+    "ECG/ ECHO/TMT Room",
+    "Medical Room/Clinics",
+    "Security",
+    "NSICU",
+    "Maintenance",
+    "Dialysis Unit",
+    "Surgical Oncology OT",
+    "OP Billing",
+    "HR Administration",
+    "Guest Relations",
+    "CCU",
+    "CTVS Core",
+    "PICU",
+    "NICU",
+    "Psychology",
+    "Medical Operations",
+    "Neuro Anaesthesia",
+    "CSSD",
+    "Coordinator-Urology",
+    "NSTICU",
+    "Transport",
+    "Non Clinical Services",
+    "IP Pharmacy",
+    "Pulmo ICU",
+    "OP Pharmacy",
+    "Referral Sales",
+    "Nursing Admin",
+    "Interventional Cardiology",
+    "Coordinator-Cardiology",
+    "Bill Administration",
+    "Coordinator-Neuro Science",
+    "Billing Audit",
+    "Chemo Day Care",
+    "Supply Chain Administration",
+    "Uro Lab",
+    "Applications",
+    "General Anaesthesia",
+    "X-Ray",
+    "Plastic Surgery",
+    "Radiology and Imaging",
+    "Internal Medicine",
+    "EandM Operation",
+    "SICU",
+    "MRD Administration",
+    "Finance Administration",
+    "Coordinator-Hemat-Oncology",
+    "PSU",
+    "Coordinator-CTVS",
+    "MAS",
+    "Neurology",
+    "Urology",
+    "Medical Oncology-Haemato Oncology",
+    "MRI/CT/X- Ray",
+    "HRBP",
+    "Bio Chemistry",
+    "Camp",
+    "Gastroenterology",
+    "Fire and Safety",
+    "HR Operations",
+    "Creative Designer",
+    "Pediatrics",
+    "General Surgery Core",
+    "Business Development-Domestic",
+    "Medical Administration",
+    "Cardiac Anaesthesia",
+    "Coordinator-Oncology DayCare",
+    "Clinical Laboratory Operations",
+    "Doctor's Payout",
+    "Phlebotomy",
+    "Paediatric Cardiology",
+    "Nephrology",
+    "Optometry",
+    "Eye",
+    "Dermatology",
+    "Logistics",
+    "Flow Cytometry",
+    "Endoscopy",
+    "Receiving Store",
+    "Recovery",
+    "Coordinator-Plastic Surgery",
+    "General Store",
+    "Wards",
+    "IT Operations",
+    "Microbiology",
+    "Purchase-Medical",
+    "Infection Control",
+    "Non Invasive Cardiology",
+    "CT",
+    "Cardiac Surgery-Adult",
+    "Learning and Development",
+    "Coordinator-Neuro Surgery",
+    "Coordinator-Medical Oncology",
+    "BMT",
+    "Coordinator-Oncology",
+    "Ambulance",
+    "Neuro-OT",
+    "ENT",
+    "Joint Replacement Surgery",
+    "Credit Billing",
+    "Pharmacy Administration",
+    "Billing Dispatch",
+    "GI Surgey",
+    "Pre and Post Operations",
+    "Coordinator-Obstetrics and Gynaecology",
+    "Labour Room",
+    "Minor OT",
+    "FandB Operations",
+    "Coordinator-Gastroenterology",
+    "Quality",
+    "Dietetics Operations",
+    "Discharge Team",
+    "TPA Billing",
+    "Coordinator-Clinical Laboratory",
+    "Coordinator-Internal Medicine",
+    "Obstetrics and Gynaecology",
+    "Kidney Transplant ICU",
+    "Cardiology",
+    "Strategy and Business Intelligence",
+    "Transformation",
+    "Audit",
+    "Hospital Administration",
+    "Administration",
+    "International SandM-Business Development",
+    "Clinical Research",
+    "Call Centre",
+    "Radiation Oncology",
+    "Coordinator-Radiation Oncology",
+    "Orthopedic ICU",
+    "Endocrinology",
+    "Immigration",
+    "Kidney Transplant",
+    "International SandM-Operation",
+    "Mammography",
+    "MIS",
+    "Nursing Education",
+    "Sports Injury Center",
+    "HDU",
+    "ECHS",
+    "Liver Transplant",
+    "Orthopedics",
+    "OT Pharmacy",
+    "Sales and Marketing Administration",
+    "Neuro Intervention Radiology",
+    "PET CT",
+    "Purchase-General Items",
+    "Psychiatry",
+    "Hepatology",
+    "Legal & Secretarial",
+    "EEG/EMG/NCV",
+    "Performance Marketing",
+    "Content Marketing",
+    "Pulmonology",
+    "Dietetics Administration",
+    "Renal Transplant, Breast & Endocrine Surgery",
+    "Coordinator-Neurology",
+    "Non-Medical Purchase",
+    "Spine Surgery",
+    "AR",
+    "Orthopedics-OT",
+    "Operation Theater",
+    "Coordinator-Radiology",
+    "General Surgery",
+    "Digital Marketing Administration",
+    "Digital Marketing",
+    "Neuro Surgery Ward",
+    "Projects Operations",
+    "IT Support",
+    "Liver Transplant-OT",
+    "SEO",
+    "FandB Services",
+    "Nuclear Medicine",
+    "Coordinator-Emergency",
+    "Coordinator-General Surgery",
+    "Bariatric Surgery",
+    "Critical Care",
+    "Coordinator-Surgical Oncology",
+    "Coordinator-Pulmonology",
+    "Immunoassay",
+    "Non Intervention Pulmo Lab",
+    "Cardiac OPD",
+    "Liver and GI Anaesthesia",
+    "Coordinator-LTP",
+    "Peripheral Interventions",
+    "Coordinator-Neurointerventional Radiology",
+    "General Cashier",
+    "Obstetrics",
+    "Front Office operations",
+    "IVF",
+    "Coordinator-KT",
+    "Coordinator-ICU",
+    "General Day Care",
+    "MRI",
+    "Medical Oncology-BMT",
+    "Neonatology",
+    "Radiotherapy",
+    "HK Operations",
+    "Cardiac Surgery-Adult and Paediatric",
+    "Neurosurgery",
+    "LINAC",
+    "Medical Purchase",
+    "MD Office",
+    "Rheumatology",
+    "Coordinator-Nephrology",
+    "Financial Counselling",
+    "Paras Cancer Centre",
+    "Oncology",
+    "Onco Daycare",
+    "Trauma and Complex Cases",
+    "OT Administration",
+    "Orthopedics Oncology",
+    "Surgical Oncology-GI Oncosurgery",
+    "Civil",
+    "Corporate",
+    "Security & Safety Operations",
+    "Ultrasound",
+    "Molecular Biology",
+    "3rd A",
+    "3rd C&D",
+    "4th C",
+    "Arthroscopy",
+    "CTVS Anaesthesia",
+    "3rd B",
+    "4th A"
+  ]);
+
   const [location, setLocation] = useState([
     "Corporate",
     "Patna",
     "Ranchi",
     "Srinagar",
-    "Gurgaon Hospital",
+    "Gurgaon Hospital"
   ]);
   const [designation, setDesignation] = useState([
     "Manager",
     "Deputy Manager",
     "Executive",
-    "Assistant General Manager",
+    "Assistant General Manager"
   ]);
   const [selectedSuperSpeciality, setSelectedSuperSpecialtiy] = useState(null);
   const [selectedSubDepartment, setSelectedSubDepartment] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [selectedDesignation, setSelectedDesignation] = useState(null);
+  const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [loader, setLoader] = useState(false);
   const [isFilterApply, setIsFilterApply] = useState(false);
 
@@ -203,14 +448,16 @@ const OrgChart = () => {
     setExpandedNodeIds([]);
     const payload = {
       location: selectedLocation,
-      department: selectedSuperSpeciality,
+      superSpeciality: selectedSuperSpeciality,
+      department: selectedDepartment,
       subDepartment: selectedSubDepartment,
-      designation: selectedDesignation,
+      designation: selectedDesignation
     };
     if (
       selectedLocation !== null ||
       selectedSuperSpeciality !== null ||
       selectedSubDepartment !== null ||
+      selectedDepartment !== null ||
       selectedDesignation !== null
     ) {
       setIsFilterApply(true);
@@ -231,6 +478,7 @@ const OrgChart = () => {
   const clearFilter = () => {
     setSelectedSuperSpecialtiy(null);
     setSelectedSubDepartment(null);
+    setSelectedDepartment(null);
     setSelectedLocation(null);
     setSelectedDesignation(null);
     setTotalOrganoData([]);
@@ -249,10 +497,16 @@ const OrgChart = () => {
   const handleChangeSuperSpeciality = (event, newValue) => {
     setSelectedSuperSpecialtiy(newValue);
   };
+
+  const handleChangeDepartment = (event, newValue) => {
+    setSelectedDepartment(newValue);
+  };
+
   const handleChangeLocation = (event, newValue) => {
     console.log(newValue);
     setSelectedLocation(newValue);
   };
+
   // Handle zooming based on mouse wheel
   const handleWheel = useCallback(
     (event) => {
@@ -286,7 +540,7 @@ const OrgChart = () => {
       setPosition({ x: e.clientX, y: e.clientY });
       setDraggedPosition({
         x: draggedPosition.x + deltaX,
-        y: draggedPosition.y + deltaY,
+        y: draggedPosition.y + deltaY
       });
     }
   };
@@ -316,7 +570,7 @@ const OrgChart = () => {
       (acc, subordinate) => [
         ...acc,
         subordinate._id,
-        ...getAllDescendantIds(subordinate),
+        ...getAllDescendantIds(subordinate)
       ],
       []
     );
@@ -384,12 +638,12 @@ const OrgChart = () => {
                 treeDiv.scrollTo({
                   left: "50%",
                   top: "20%",
-                  behavior: "smooth", // Smooth scrolling effect
+                  behavior: "smooth" // Smooth scrolling effect
                 });
               }
             }}
             tabIndex={0} // Make element focusable
-            // onFocus={() => handleScroll()} // Scroll on focus
+          // onFocus={() => handleScroll()} // Scroll on focus
           >
             <div className={styles.headerBox}>
               <div className={styles.imgDiv}>
@@ -501,7 +755,7 @@ const OrgChart = () => {
               height: "10vh",
               position: "fixed",
               zIndex: "100",
-              backgroundColor: "white",
+              backgroundColor: "white"
             }}
           >
             <Autocomplete
@@ -518,28 +772,28 @@ const OrgChart = () => {
                 "& .MuiInputBase-root": {
                   // height: "5vh", // Set a fixed height
                   fontSize: "14px", // Adjust font size
-                  fontFamily: "Outfit, sans-serif",
+                  fontFamily: "Outfit, sans-serif"
                 },
                 "& .MuiAutocomplete-input": {
-                  textTransform: "capitalize",
+                  textTransform: "capitalize"
                 },
                 "& .MuiInputLabel-root": {
                   fontSize: "16px", // Adjust label size
 
-                  fontFamily: "Outfit, sans-serif",
-                },
+                  fontFamily: "Outfit, sans-serif"
+                }
               }}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Facility"
                   InputLabelProps={{
-                    style: { fontFamily: "Outfit, sans-serif" },
+                    style: { fontFamily: "Outfit, sans-serif" }
                   }}
                 />
               )}
             />
-            <Autocomplete
+            {selectedLocation !== "Corporate" && <Autocomplete
               disablePortal
               options={superSpeciality}
               value={selectedSuperSpeciality}
@@ -552,93 +806,61 @@ const OrgChart = () => {
                 },
                 "& .MuiInputBase-root": {
                   fontSize: "14px", // Adjust font size
-                  fontFamily: "Outfit, sans-serif",
+                  fontFamily: "Outfit, sans-serif"
                 },
                 "& .MuiAutocomplete-input": {
-                  textTransform: "capitalize",
+                  textTransform: "capitalize"
                 },
                 "& .MuiInputLabel-root": {
                   fontSize: "16px", // Adjust label size
-                  fontFamily: "Outfit, sans-serif",
-                },
+                  fontFamily: "Outfit, sans-serif"
+                }
               }}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Super Speciality"
                   InputLabelProps={{
-                    style: { fontFamily: "Outfit, sans-serif" },
+                    style: { fontFamily: "Outfit, sans-serif" }
                   }}
                 />
               )}
-            />
-            {/* <Autocomplete
-              disablePortal
-              options={department}
-              value={selectedSuperSpeciality}
-              onChange={handleChangeSuperSpeciality}
-              sx={{
-                width: 250,
-                marginLeft: 2,
-                "& .MuiOutlinedInput-root": {
-                  padding: "2px 8px", // Reduce padding inside the input
-                },
-                "& .MuiInputBase-root": {
-                  height: "5vh", // Set a fixed height
-                  fontSize: "14px", // Adjust font size
-                  fontFamily: "Outfit, sans-serif",
-                },
-                "& .MuiAutocomplete-input": {
-                  padding: "0 4px", // Reduce input padding
-                  textTransform: "capitalize",
-                },
-                "& .MuiInputLabel-root": {
-                  fontSize: "16px", // Adjust label size
-                  fontFamily: "Outfit, sans-serif",
-                },
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Super Speciality"
-                  InputLabelProps={{ style: { fontFamily: "Outfit, sans-serif" } }}
-                />
-              )}
-            />
-            <Autocomplete
-              disablePortal
-              options={department}
-              value={selectedSuperSpeciality}
-              onChange={handleChangeSuperSpeciality}
-              sx={{
-                width: 250,
-                marginLeft: 2,
-                "& .MuiOutlinedInput-root": {
-                  padding: "2px 8px", // Reduce padding inside the input
-                },
-                "& .MuiInputBase-root": {
-                  height: "5vh", // Set a fixed height
-                  fontSize: "14px", // Adjust font size
-                  fontFamily: "Outfit, sans-serif",
-                },
-                "& .MuiAutocomplete-input": {
-                  padding: "0 4px", // Reduce input padding
-                  textTransform: "capitalize",
-                },
-                "& .MuiInputLabel-root": {
-                  fontSize: "16px", // Adjust label size
-                  fontFamily: "Outfit, sans-serif",
-                },
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Super Speciality"
-                  InputLabelProps={{ style: { fontFamily: "Outfit, sans-serif" } }}
-                />
-              )}
-            /> */}
-
+            />}
+            {selectedSuperSpeciality !== null && selectedLocation !== null && (
+              <Autocomplete
+                disablePortal
+                options={department}
+                value={selectedDepartment}
+                onChange={handleChangeDepartment}
+                sx={{
+                  width: 200,
+                  marginLeft: 2,
+                  "& .MuiOutlinedInput-root": {
+                    // padding: "2px 8px", // Reduce padding inside the input
+                  },
+                  "& .MuiInputBase-root": {
+                    fontSize: "14px", // Adjust font size
+                    fontFamily: "Outfit, sans-serif"
+                  },
+                  "& .MuiAutocomplete-input": {
+                    textTransform: "capitalize"
+                  },
+                  "& .MuiInputLabel-root": {
+                    fontSize: "16px", // Adjust label size
+                    fontFamily: "Outfit, sans-serif"
+                  }
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Department"
+                    InputLabelProps={{
+                      style: { fontFamily: "Outfit, sans-serif" }
+                    }}
+                  />
+                )}
+              />
+            )}
             <Stack className={styles.applyButtonStack}>
               <button className={styles.applyButton} onClick={apply}>
                 Apply
@@ -697,7 +919,7 @@ const OrgChart = () => {
                   thickness={100}
                   speed={50}
                   color="#007BFF"
-                  // secondaryColor="#D9EBFF"
+                // secondaryColor="#D9EBFF"
                 />
                 <Box mt={2} fontSize="16px" fontWeight="bold">
                   {" "}
@@ -718,9 +940,9 @@ const OrgChart = () => {
                     width: open ? "75%" : "100%",
                     maxWidth: "2400px",
                     overflowX: "scroll", // Always show scrollbar
-                    height: open ? "45vh" : "80vh",
+                    height: open ? "45vh" : "80vh"
                   }}
-                  // onWheel={handleWheel}
+                // onWheel={handleWheel}
                 >
                   <div
                     style={{
@@ -732,7 +954,7 @@ const OrgChart = () => {
                       width: "100%",
                       height: "100%",
                       cursor: dragging ? "grabbing" : "grab",
-                      position: "relative",
+                      position: "relative"
                     }}
                     onMouseDown={handleMouseDown}
                     onMouseMove={handleMouseMove}
@@ -749,7 +971,7 @@ const OrgChart = () => {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    gap: "10px",
+                    gap: "10px"
                   }}
                 >
                   <button
