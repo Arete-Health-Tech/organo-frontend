@@ -424,10 +424,16 @@ const OrgChart = () => {
 
   const [location, setLocation] = useState([
     "Corporate",
+    "Customer Care - Globiva Service DLF Phase IV",
+    "Darbhanga",
+    "Gurgaon",
+    "Kanpur",
+    "Panchkula",
+    "Paras Labs PTC Gurgaon",
     "Patna",
     "Ranchi",
     "Srinagar",
-    "Gurgaon Hospital"
+    "Udaipur",
   ]);
   const [designation, setDesignation] = useState([
     "Manager",
