@@ -28,27 +28,50 @@ const OrgChart = () => {
   const [totalOrganoData, setTotalOrganoData] = useState([]); // To track the dragged offset
 
   const [facilityData, setFacilityData] = useState({
-    "Corporate": {
+    Corporate: {
       "Supply Chain Management": {
-        "Supply Chain Management": ["Supply Chain Administration", "Purchase-Medical", "Purchase-General Items"],
+        "Supply Chain Management": [
+          "Supply Chain Administration",
+          "Purchase-Medical",
+          "Purchase-General Items",
+        ],
       },
       "Information Technology": {
-        "Information Technology": ["Applications", "IT Operations", "IT Support"],
+        "Information Technology": [
+          "Applications",
+          "IT Operations",
+          "IT Support",
+        ],
       },
       "Engineering and Maintenance": {
         "Engineering and Maintenance": ["Maintenance", "EandM Operation"],
       },
       "Human Resources": {
-        "Human Resources": ["Talent Acqusition", "HR Administration", "HR Operations"],
+        "Human Resources": [
+          "Talent Acqusition",
+          "HR Administration",
+          "HR Operations",
+        ],
       },
       "Digital Marketing": {
-        "Digital Marketing": ["Creative Designer", "Performance Marketing", "Content Marketing", "Digital Marketing Administration", "SEO"],
+        "Digital Marketing": [
+          "Creative Designer",
+          "Performance Marketing",
+          "Content Marketing",
+          "Digital Marketing Administration",
+          "SEO",
+        ],
       },
       "Sales and Marketing": {
-        "Sales and Marketing": ["Branding", "Sales and Marketing Administration"],
+        "Sales and Marketing": [
+          "Branding",
+          "Sales and Marketing Administration",
+        ],
       },
       "Strategy and Business Intelligence": {
-        "Strategy and Business Intelligence": ["Strategy and Business Intelligence"],
+        "Strategy and Business Intelligence": [
+          "Strategy and Business Intelligence",
+        ],
       },
       "General Administration": {
         "General Administration": ["Hospital Administration"],
@@ -59,7 +82,7 @@ const OrgChart = () => {
       "CRM and Customer Service": {
         "CRM and Customer Service": ["Call Centre"],
       },
-      "Legal": {
+      Legal: {
         "Finance and Account": ["Legal & Secretarial"],
       },
       "Central Buying Unit": {
@@ -78,7 +101,13 @@ const OrgChart = () => {
         "Bio Medical Engineering": ["BME Operations"],
       },
       "Finance and Account": {
-        "Finance and Account": ["Transformation", "Audit", "Finance Administration", "AP", "MIS"],
+        "Finance and Account": [
+          "Transformation",
+          "Audit",
+          "Finance Administration",
+          "AP",
+          "MIS",
+        ],
       },
     },
     "Customer Care - Globiva Service DLF Phase IV": {
@@ -86,23 +115,23 @@ const OrgChart = () => {
         "CRM and Customer Service": ["Call Centre"],
       },
     },
-    "Darbhanga": {
-      "Anaesthesia": {
-        "Anaesthesia": ["General Anaesthesia"],
+    Darbhanga: {
+      Anaesthesia: {
+        Anaesthesia: ["General Anaesthesia"],
       },
       "Bio Medical Engineering": {
         "Bio Medical Engineering": ["BME Operations"],
       },
       "Cancer Centre": {
-        "Oncology": ["Medical Oncology"],
+        Oncology: ["Medical Oncology"],
       },
       "Cardiac Science": {
         "Critical Care": ["CCU"],
-        "Cardiology": ["Interventional Cardiology", "Paediatric Cardiology"],
+        Cardiology: ["Interventional Cardiology", "Paediatric Cardiology"],
         "Cath lab": ["Cath Lab Unit"],
       },
       "Child Health": {
-        "Pediatrics": ["Pediatrics"],
+        Pediatrics: ["Pediatrics"],
       },
       "Clinical Laboratory": {
         "Clinical Laboratory": ["Bio Chemistry", "Microbiology", "Phlebotomy"],
@@ -110,15 +139,15 @@ const OrgChart = () => {
       "Critical Care": {
         "Hospital Operations": ["Coordinator-ICU"],
       },
-      "CSSD": {
-        "CSSDs": ["CSSD"],
+      CSSD: {
+        CSSDs: ["CSSD"],
       },
       "Digestive and Liver Diesease": {
-        "Gastroenterology": ["Gastroenterology"],
-        "Endoscopy": ["Endoscopy"],
+        Gastroenterology: ["Gastroenterology"],
+        Endoscopy: ["Endoscopy"],
       },
       "Emergency Medicine": {
-        "Emergency": ["Emergency"],
+        Emergency: ["Emergency"],
         "Nursing Administration": ["Emergency"],
       },
       "Engineering and Maintenance": {
@@ -153,12 +182,12 @@ const OrgChart = () => {
         "Finance and Account": ["Bill Processing"],
       },
       "Medical Surgical Ward": {
-        "Wards": ["Medical Surgical Ward"],
+        Wards: ["Medical Surgical Ward"],
       },
-      "MRD": {
-        "MRD": ["MRD Administration"],
+      MRD: {
+        MRD: ["MRD Administration"],
       },
-      "Neuroscience": {
+      Neuroscience: {
         "Operation Theater": ["Neuro-OT"],
         "Neuro Lab": ["EEG/EMG/NCV"],
       },
@@ -168,27 +197,27 @@ const OrgChart = () => {
       "Obstetrics and Gynaecology": {
         "Obstetrics and Gynaecology": ["Gynaecology"],
       },
-      "OPD": {
-        "OPD": ["OP Nursing Counter"],
+      OPD: {
+        OPD: ["OP Nursing Counter"],
       },
-      "Ophthalmology": {
-        "Ophthalmology": ["Eye"],
+      Ophthalmology: {
+        Ophthalmology: ["Eye"],
       },
       "Patient Care Services": {
         "Patient Care Services": ["Guest Relations"],
       },
-      "Pharmacy": {
-        "Pharmacy": ["OP Pharmacy", "IP Pharmacy"],
+      Pharmacy: {
+        Pharmacy: ["OP Pharmacy", "IP Pharmacy"],
       },
-      "Quality": {
+      Quality: {
         "Hospital Operations": ["Quality"],
       },
-      "Radiology": {
-        "Pharmacy": ["Radiology and Imaging", "MRI/CT/X- Ray"],
+      Radiology: {
+        Pharmacy: ["Radiology and Imaging", "MRI/CT/X- Ray"],
       },
       "Renal Science": {
-        "Urology": ["Urology"],
-        "Nephrology": ["Nephrology"],
+        Urology: ["Urology"],
+        Nephrology: ["Nephrology"],
       },
       "Sales and Marketing": {
         "Sales and Marketing": ["Business Development-Domestic"],
@@ -197,19 +226,31 @@ const OrgChart = () => {
         "Security and Safety": ["Security", "Fire and Safety"],
       },
     },
-    "Gurgaon": {
+    Gurgaon: {
       "Academic and Research": {
         "Academic and Research": ["Clinical Research"],
       },
-      "Anaesthesia": {
-        "Anaesthesia": ["General Anaesthesia"],
+      Anaesthesia: {
+        Anaesthesia: ["General Anaesthesia"],
       },
       "Cancer Centre": {
         "Operation Theater": ["Surgical Oncology OT"],
-        "Oncology": ["Surgical Oncology", "Medical Oncology-Haemato Oncology", "Radiation Oncology", "Medical Oncology", "Chemo Day Care", "Paras Cancer Centre"],
-        "Hospital Operations": ["Coordinator-Oncology", "Coordinator-Medical Oncology", "Coordinator-Radiation Oncology", "Coordinator-Surgical Oncology",],
+        Oncology: [
+          "Surgical Oncology",
+          "Medical Oncology-Haemato Oncology",
+          "Radiation Oncology",
+          "Medical Oncology",
+          "Chemo Day Care",
+          "Paras Cancer Centre",
+        ],
+        "Hospital Operations": [
+          "Coordinator-Oncology",
+          "Coordinator-Medical Oncology",
+          "Coordinator-Radiation Oncology",
+          "Coordinator-Surgical Oncology",
+        ],
         "Nursing Administration": ["Oncology"],
-        "BMT": ["BMT"],
+        BMT: ["BMT"],
       },
       "Bio Medical Engineering": {
         "Bio Medical Engineering": ["BME Operations"],
@@ -217,55 +258,65 @@ const OrgChart = () => {
       "Cardiac Science": {
         "Critical Care": ["CTVS ICU", "CCU"],
         "Cath lab": ["Cath Lab Unit"],
-        "Cardiology": ["Non Invasive Cardiology", "Interventional Cardiology"],
-        "Anaesthesia": ["Cardiac Anaesthesia"],
-        "OPD": ["Cardiac OPD"],
+        Cardiology: ["Non Invasive Cardiology", "Interventional Cardiology"],
+        Anaesthesia: ["Cardiac Anaesthesia"],
+        OPD: ["Cardiac OPD"],
         "Non Invasive Cardiac Lab": ["ECG/ ECHO/TMT Room"],
         "Nursing Administration": ["CCU"],
         "Operation Theater": ["Cardiac-OT"],
       },
       "Chest and Respiratory": {
-        "Pulmonology": ["Pulmonology"],
+        Pulmonology: ["Pulmonology"],
         "Hospital Operations": ["Coordinator-Pulmonology"],
         "Pulmonary Lab": ["Non Intervention Pulmo Lab"],
       },
       "Child Health": {
         "Critical Care": ["PICU", "NICU"],
         "Nursing Administration": ["NICU", "PICU"],
-        "Pediatrics": ["Pediatrics"],
-        "Neonatology": ["Neonatology"],
+        Pediatrics: ["Pediatrics"],
+        Neonatology: ["Neonatology"],
       },
       "Clinical Laboratory": {
-        "Clinical Laboratory": ["Hematology", "Phlebotomy", "Microbiology", "Bio Chemistry", "Clinical Patholgy", "Clinical Laboratory Operations"],
+        "Clinical Laboratory": [
+          "Hematology",
+          "Phlebotomy",
+          "Microbiology",
+          "Bio Chemistry",
+          "Clinical Patholgy",
+          "Clinical Laboratory Operations",
+        ],
       },
       "Critical Care": {
         "Critical Care": ["MICU"],
         "Nursing Administration": ["MICU", "Critical Care"],
       },
-      "CCSSD": {
-        "CSSD": ["CSSD"],
+      CCSSD: {
+        CSSD: ["CSSD"],
       },
       "Digestive and Liver Diesease": {
         "Critical Care": ["Liver Transplant ICU"],
-        "Gastroenterology": ["Gastroenterology"],
-        "Hospital Operations": ["Coordinator-Gastroenterology", "Coordinator-LTP"],
+        Gastroenterology: ["Gastroenterology"],
+        "Hospital Operations": [
+          "Coordinator-Gastroenterology",
+          "Coordinator-LTP",
+        ],
         "GI Surgery": ["Liver Transplant"],
         "Operation Theatery": ["Liver Transplant-OT"],
-        "Endoscopy": ["Endoscopy"],
-        "Anaesthesia": ["Liver and GI Anaesthesia"],
+        Endoscopy: ["Endoscopy"],
+        Anaesthesia: ["Liver and GI Anaesthesia"],
       },
       "Emergency Medicine": {
-        "Emergency": ["Emergency"],
+        Emergency: ["Emergency"],
         "Ambulatory Care": ["Medical Room/Clinics"],
       },
-      "Endocrinology": {
-        "Endocrinology": ["Endocrinology"],
+      Endocrinology: {
+        Endocrinology: ["Endocrinology"],
       },
       "Engineering and Maintenance": {
         "Engineering and Maintenance": ["Maintenance", "EandM Operation"],
       },
-      "ENT": {
-        "ENT": ["ENT"],
+      ENT: {
+        ENT: ["ENT"],
       },
       "Front Office": {
         "Front Office": ["OP Billing", "IP Admission"],
@@ -274,21 +325,36 @@ const OrgChart = () => {
         "Food and Beverages": ["FandB Operations"],
       },
       "Finance and Account": {
-        "Finance and Account": ["Recovery", "Finance Administration", "Doctor's Payout", "AP", "AR"],
+        "Finance and Account": [
+          "Recovery",
+          "Finance Administration",
+          "Doctor's Payout",
+          "AP",
+          "AR",
+        ],
       },
       "General Administration": {
         "General Administration": ["Hospital Administration"],
       },
       "General and Minimal Access Surgey": {
         "Operation Theater": ["General-OT"],
-        "General Surgery": ["Renal Transplant", "Breast & Endocrine Surgery", "MAS"],
-        "OPD": ["General Surgery"],
+        "General Surgery": [
+          "Renal Transplant",
+          "Breast & Endocrine Surgery",
+          "MAS",
+        ],
+        OPD: ["General Surgery"],
       },
       "Hospital Infection Control": {
         "Nursing Administration": ["Infection Control"],
       },
       "Human Resources": {
-        "Human Resources": ["Talent Acqusition", "HR Administration", "Learning and Development", "HR Operations"],
+        "Human Resources": [
+          "Talent Acqusition",
+          "HR Administration",
+          "Learning and Development",
+          "HR Operations",
+        ],
       },
       "Information Technology": {
         "Information Technology": ["IT Operations", "IT Support"],
@@ -298,9 +364,16 @@ const OrgChart = () => {
         "Hospital Operations": ["Coordinator-Internal Medicine"],
       },
       "IP Billing": {
-        "Finance and Account": ["Bill Processing", "Cashier Billing", "Billing Dispatch", "TPA Billing", "Bill Administration", "Financial Counselling"],
+        "Finance and Account": [
+          "Bill Processing",
+          "Cashier Billing",
+          "Billing Dispatch",
+          "TPA Billing",
+          "Bill Administration",
+          "Financial Counselling",
+        ],
       },
-      "Legal": {
+      Legal: {
         "Finance and Account": ["Legal & Secretarial"],
       },
       "Medical Administration": {
@@ -310,21 +383,24 @@ const OrgChart = () => {
         "Hospital Operations": ["Medical Operations"],
       },
       "Medical Surgical Ward": {
-        "Wards": ["Medical Surgical Ward"],
+        Wards: ["Medical Surgical Ward"],
         "Nursing Administration": ["Wards"],
       },
-      "MRD": {
-        "MRD": ["MRD Administration"],
+      MRD: {
+        MRD: ["MRD Administration"],
       },
-      "Neuroscience": {
+      Neuroscience: {
         "Critical Care": ["NSICU", "NSTICU"],
-        "Anaesthesia": ["Neuro Anaesthesia"],
-        "Neurology": ["Neurology"],
+        Anaesthesia: ["Neuro Anaesthesia"],
+        Neurology: ["Neurology"],
         "Operation Theater": ["Neuro-OT"],
         "Neuro Intervention Radiology": ["Neuro Intervention Radiology"],
         "Neuro Lab": ["EEG/EMG/NCV"],
-        "Hospital Operations": ["Coordinator-Neuro Surgery", "Coordinator-Neurointerventional Radiology"],
-        "Wards": ["Neuro Surgery Ward"],
+        "Hospital Operations": [
+          "Coordinator-Neuro Surgery",
+          "Coordinator-Neurointerventional Radiology",
+        ],
+        Wards: ["Neuro Surgery Ward"],
       },
       "Non Clinical Services": {
         "Hospital Operations": ["Non Clinical Services"],
@@ -336,10 +412,13 @@ const OrgChart = () => {
         "Nursing Administration": ["Nursing Education"],
       },
       "Nutrition and Dietetics": {
-        "Nutrition and Dietetics": ["Dietetics Operations", "Dietetics Administration"],
+        "Nutrition and Dietetics": [
+          "Dietetics Operations",
+          "Dietetics Administration",
+        ],
       },
-      "OPD": {
-        "OPD": ["OP Nursing Counter"],
+      OPD: {
+        OPD: ["OP Nursing Counter"],
       },
       "Operation Theater": {
         "Operation Theater": ["Pre and Post Operations"],
@@ -349,108 +428,145 @@ const OrgChart = () => {
         "Obstetrics and Gynaecology": ["Gynaecology", "IVF", "Obstetrics"],
         "Hospital Operations": ["Coordinator-Obstetrics and Gynaecology"],
         "Labour Room": ["Labour Room"],
-        "Wards": ["Obstetrics and Gynaecology"],
+        Wards: ["Obstetrics and Gynaecology"],
         "Nursing Administration": ["Labour Room"],
       },
-      "Orthopedics": {
-        "Orthopedics": ["Sports Injury Center", "Joint Replacement Surgery"],
+      Orthopedics: {
+        Orthopedics: ["Sports Injury Center", "Joint Replacement Surgery"],
         "Operation Theater": ["Orthopedics-OT"],
-        "OPD": ["Orthopedics"],
+        OPD: ["Orthopedics"],
         "Hospital Operations": ["Coordinator-Ortho"],
         "Critical Care": ["Orthopedic ICU"],
       },
       "Patient Care Services": {
         "Patient Care Services": ["Guest Relations", "Discharge Team"],
       },
-      "Pharmacy": {
-        "Pharmacy": ["OP Pharmacy", "IP Pharmacy", "OT Pharmacy", "Pharmacy Administration"],
+      Pharmacy: {
+        Pharmacy: [
+          "OP Pharmacy",
+          "IP Pharmacy",
+          "OT Pharmacy",
+          "Pharmacy Administration",
+        ],
       },
-      "Psychology": {
-        "Psychology": ["Psychology"],
+      Psychology: {
+        Psychology: ["Psychology"],
       },
-      "Quality": {
+      Quality: {
         "Hospital Operations": ["Quality"],
       },
-      "Radiology": {
+      Radiology: {
         "Interventional Radiology": ["Interventional Radiology"],
-        "Radiology and Imaging": ["Radiology and Imaging", "MRI/CT/X- Ray", "X-Ray", "MRI"],
+        "Radiology and Imaging": [
+          "Radiology and Imaging",
+          "MRI/CT/X- Ray",
+          "X-Ray",
+          "MRI",
+        ],
         "Nuclear Medicine": ["PET CT", "Nuclear Medicine"],
       },
       "Renal Science": {
-        "Dialysis": ["Dialysis Unit"],
-        "Urology": ["Kidney Transplant", "Urology"],
-        "Nephrology": ["Nephrology"],
-        "OPD": ["Uro Lab"],
+        Dialysis: ["Dialysis Unit"],
+        Urology: ["Kidney Transplant", "Urology"],
+        Nephrology: ["Nephrology"],
+        OPD: ["Uro Lab"],
         "Nursing Administration": ["Dialysis Unit"],
       },
-      "Rheumatology": {
-        "Rheumatology": ["Rheumatology"],
+      Rheumatology: {
+        Rheumatology: ["Rheumatology"],
       },
       "Sales and Marketing": {
-        "Sales and Marketing": ["PSU", "Referral Sales", "International SandM-Business Development", "Business Development-Domestic", "International SandM-Operation", "Sales and Marketing Administration", "Branding", "MIS"],
+        "Sales and Marketing": [
+          "PSU",
+          "Referral Sales",
+          "International SandM-Business Development",
+          "Business Development-Domestic",
+          "International SandM-Operation",
+          "Sales and Marketing Administration",
+          "Branding",
+          "MIS",
+        ],
       },
       "Security and Safety": {
         "Security and Safety": ["Transport", "Security", "Fire and Safety"],
       },
       "Supply Chain Management": {
-        "Supply Chain Management": ["Purchase-Medical", "Purchase-General Items", "General Store", "Supply Chain Administration"],
+        "Supply Chain Management": [
+          "Purchase-Medical",
+          "Purchase-General Items",
+          "General Store",
+          "Supply Chain Administration",
+        ],
       },
       "Transfusion Medicine": {
         "Blood Bank": ["Blood Bank"],
         "Transfusion Medicine": ["Blood Bank"],
       },
     },
-    "Kanpur": {
-      "Anaesthesia": {
-        "Anaesthesia": ["General Anaesthesia"],
+    Kanpur: {
+      Anaesthesia: {
+        Anaesthesia: ["General Anaesthesia"],
         "Cancer Centre": ["Oncology"],
       },
       "Bio Medical Engineering": {
         "Bio Medical Engineering": ["BME Operations"],
       },
       "Cancer Centre": {
-        "Oncology": ["Medical Oncology-Haemato Oncology", "Surgical Oncology", "Medical Oncology", "Radiation Oncology", "Radiotherapy", "LINAC"],
+        Oncology: [
+          "Medical Oncology-Haemato Oncology",
+          "Surgical Oncology",
+          "Medical Oncology",
+          "Radiation Oncology",
+          "Radiotherapy",
+          "LINAC",
+        ],
       },
       "Cardiac Science": {
-        "CTVS": ["CTVS Core"],
-        "Anaesthesia": ["Cardiac Anaesthesia"],
-        "Cardiology": ["Interventional Cardiology"],
+        CTVS: ["CTVS Core"],
+        Anaesthesia: ["Cardiac Anaesthesia"],
+        Cardiology: ["Interventional Cardiology"],
         "Cath lab": ["Cath Lab Unit"],
         "Non Invasive Cardiac Lab": ["ECG/ ECHO/TMT Room"],
         "Critical Care": ["CTVS ICU", "CCU"],
         "Operation Theater": ["Cardiac-OT"],
       },
       "Chest and Respiratory": {
-        "Pulmonology": ["Pulmonology"],
+        Pulmonology: ["Pulmonology"],
       },
       "Child Health": {
         "Critical Care": ["NICU", "PICU"],
-        "Pediatrics": ["Pediatrics"],
+        Pediatrics: ["Pediatrics"],
       },
       "Clinical Laboratory": {
-        "Clinical Laboratory": ["Bio Chemistry", "Microbiology", "Clinical Laboratory Operations", "Phlebotomy", "Clinical Patholgy"],
+        "Clinical Laboratory": [
+          "Bio Chemistry",
+          "Microbiology",
+          "Clinical Laboratory Operations",
+          "Phlebotomy",
+          "Clinical Patholgy",
+        ],
       },
       "Critical Care": {
         "Critical Care": ["MICU"],
       },
-      "CSSD": {
-        "CSSD": ["CSSD"],
+      CSSD: {
+        CSSD: ["CSSD"],
       },
       "Digestive and Liver Diesease": {
-        "Gastroenterology": ["Hepatology"],
-        "Endoscopy": ["Endoscopy"],
+        Gastroenterology: ["Hepatology"],
+        Endoscopy: ["Endoscopy"],
       },
       "Emergency Medicine": {
-        "Emergency": ["Emergency"],
+        Emergency: ["Emergency"],
       },
-      "Endocrinology": {
-        "Endocrinology": ["Endocrinology"],
+      Endocrinology: {
+        Endocrinology: ["Endocrinology"],
       },
       "Engineering and Maintenance": {
         "Engineering and Maintenance": ["Maintenance", "EandM Operation"],
       },
-      "ENT": {
-        "ENT": ["ENT"],
+      ENT: {
+        ENT: ["ENT"],
       },
       "Finance and Account": {
         "Finance and Account": ["AP", "Finance Administration"],
@@ -467,10 +583,14 @@ const OrgChart = () => {
       "General and Minimal Access Surgey": {
         "Operation Theater": ["General-OT"],
         "General Surgery": ["General Surgery Core"],
-        "OPD": ["General Surgery"],
+        OPD: ["General Surgery"],
       },
       "Human Resources": {
-        "Human Resources": ["HR Operations", "Learning and Development", "Talent Acqusition"],
+        "Human Resources": [
+          "HR Operations",
+          "Learning and Development",
+          "Talent Acqusition",
+        ],
       },
       "Information Technology": {
         "Information Technology": ["IT Operations", "IT Support"],
@@ -479,23 +599,27 @@ const OrgChart = () => {
         "Internal Medicine": ["Internal Medicine"],
       },
       "IP Billing": {
-        "Finance and Account": ["TPA Billing", "Bill Administration", "Cashier Billing"],
+        "Finance and Account": [
+          "TPA Billing",
+          "Bill Administration",
+          "Cashier Billing",
+        ],
       },
       "Medical Administration": {
         "Hospital Operations": ["Medical Administration"],
       },
       "Medical Surgical Ward": {
-        "Wards": ["Medical Surgical Ward"],
+        Wards: ["Medical Surgical Ward"],
         "Nursing Administration": ["Wards"],
       },
-      "MRD": {
-        "MRD": ["MRD Administration"],
+      MRD: {
+        MRD: ["MRD Administration"],
       },
-      "Neuroscience": {
-        "Anaesthesia": ["Neuro Anaesthesia"],
+      Neuroscience: {
+        Anaesthesia: ["Neuro Anaesthesia"],
         "Neuro Lab": ["EEG/EMG/NCV"],
         "Neuro Surgery": ["Spine Surgery"],
-        "Neurology": ["Neurology"],
+        Neurology: ["Neurology"],
       },
       "Non Clinical Services": {
         "Hospital Operations": ["Non Clinical Services"],
@@ -512,109 +636,151 @@ const OrgChart = () => {
       "Obstetrics and Gynaecology": {
         "Obstetrics and Gynaecology": ["Gynaecology"],
       },
-      "OPD": {
-        "OPD": ["OP Nursing Counter"],
+      OPD: {
+        OPD: ["OP Nursing Counter"],
       },
       "Operation Theater": {
         "Nursing Administration": ["Operation Theater"],
         "Operation Theater": ["Pre and Post Operations"],
       },
-      "Ophthalmology": {
-        "Ophthalmology": ["Eye"],
+      Ophthalmology: {
+        Ophthalmology: ["Eye"],
       },
-      "Orthopedics": {
-        "Orthopedics": ["Joint Replacement Surgery", "Orthopedics", "Spine Surgery"],
+      Orthopedics: {
+        Orthopedics: [
+          "Joint Replacement Surgery",
+          "Orthopedics",
+          "Spine Surgery",
+        ],
       },
       "Patient Care Services": {
         "Patient Care Services": ["Guest Relations"],
       },
-      "Pharmacy": {
-        "Pharmacy": ["OP Pharmacy", "IP Pharmacy"],
+      Pharmacy: {
+        Pharmacy: ["OP Pharmacy", "IP Pharmacy"],
       },
-      "Quality": {
+      Quality: {
         "Hospital Operations": ["Quality"],
       },
-      "Radiology": {
+      Radiology: {
         "Radiology and Imaging": ["MRI/CT/X-Ray", "X-Ray"],
         "Interventional Radiology": ["Interventional Radiology"],
       },
       "Renal Science": {
-        "Dialysis": ["Dialysis Unit"],
-        "Urology": ["Urology"],
+        Dialysis: ["Dialysis Unit"],
+        Urology: ["Urology"],
       },
       "Sales and Marketing": {
-        "Sales and Marketing": ["Business Development-Domestic", "Referral Sales", "Sales and Marketing Administration", "Digital Marketing", "Camp"],
+        "Sales and Marketing": [
+          "Business Development-Domestic",
+          "Referral Sales",
+          "Sales and Marketing Administration",
+          "Digital Marketing",
+          "Camp",
+        ],
       },
       "Security and Safety": {
         "Security and Safety": ["Fire and Safety", "Security"],
       },
       "Supply Chain Management": {
-        "Supply Chain Management": ["Receiving Store", "Supply Chain Administration", "Purchase-Medical", "General Store"],
+        "Supply Chain Management": [
+          "Receiving Store",
+          "Supply Chain Administration",
+          "Purchase-Medical",
+          "General Store",
+        ],
       },
       "Transfusion Medicine": {
         "Transfusion Medicine": ["Blood Bank"],
         "Blood Bank": ["Blood Bank"],
       },
     },
-    "Panchkula": {
-      "Anaesthesia": {
-        "Anaesthesia": ["General Anaesthesia"],
+    Panchkula: {
+      Anaesthesia: {
+        Anaesthesia: ["General Anaesthesia"],
       },
       "Cancer Centre": {
-        "Oncology": ["Surgical Oncology", "Medical Oncology", "Chemo Day Care", "Medical Oncology-Haemato Oncology", "Orthopedics Oncology"],
-        "Hospital Operations": ["Coordinator-Hemat-Oncology", "Coordinator-Medical Oncology"],
-        "BMT": ["BMT"]
+        Oncology: [
+          "Surgical Oncology",
+          "Medical Oncology",
+          "Chemo Day Care",
+          "Medical Oncology-Haemato Oncology",
+          "Orthopedics Oncology",
+        ],
+        "Hospital Operations": [
+          "Coordinator-Hemat-Oncology",
+          "Coordinator-Medical Oncology",
+        ],
+        BMT: ["BMT"],
       },
       "Cardiac Science": {
         "Operation Theater": ["Cardiac-OT"],
         "Non Invasive Cardiac Lab": ["ECG/ ECHO/TMT Room"],
         "Critical Care": ["CCU", "CTVS ICU"],
         "Cath lab": ["Cath Lab Unit"],
-        "Cardiology": ["Interventional Cardiology", "Non Invasive Cardiology "],
-        "CTVS": ["Cardiac Surgery-Adult"],
-        "Hospital Operations": ["Coordinator-Cardiology", "Coordinator-CTVS", "Cardiology"],
-        "Anaesthesia": ["Cardiac Anaesthesia"],
+        Cardiology: ["Interventional Cardiology", "Non Invasive Cardiology "],
+        CTVS: ["Cardiac Surgery-Adult"],
+        "Hospital Operations": [
+          "Coordinator-Cardiology",
+          "Coordinator-CTVS",
+          "Cardiology",
+        ],
+        Anaesthesia: ["Cardiac Anaesthesia"],
       },
       "Chest and Respiratory": {
-        "Pulmonology": ["Pulmonology"],
+        Pulmonology: ["Pulmonology"],
       },
       "Child Health": {
-        "Pediatrics": ["Pediatrics"],
+        Pediatrics: ["Pediatrics"],
       },
       "Clinical Laboratory": {
-        "Clinical Laboratory": ["Bio Chemistry", "Microbiology", "Immigration", "Hematology", "Clinical Patholgy", "Phlebotomy", "Histopathology"],
+        "Clinical Laboratory": [
+          "Bio Chemistry",
+          "Microbiology",
+          "Immigration",
+          "Hematology",
+          "Clinical Patholgy",
+          "Phlebotomy",
+          "Histopathology",
+        ],
       },
       "Critical Care": {
         "Critical Care": ["MICU", "SICU"],
       },
-      "CSSD": {
-        "CSSD": ["CSSD"],
+      CSSD: {
+        CSSD: ["CSSD"],
       },
-      "Dermatology": {
+      Dermatology: {
         "Plastic Surgery": ["Plastic Surgery"],
-        "Dermatology": ["Dermatology"],
+        Dermatology: ["Dermatology"],
         "Hospital Operations": ["Coordinator-Plastic Surgery"],
       },
       "Digestive and Liver Diesease": {
         "GI Surgery": ["GI Surgey"],
-        "Endoscopy": ["Endoscopy"],
-        "Gastroenterology": ["Hepatology", "Gastroenterology"],
+        Endoscopy: ["Endoscopy"],
+        Gastroenterology: ["Hepatology", "Gastroenterology"],
         "Hospital Operations": ["Coordinator-Gastroenterology"],
       },
       "Emergency Medicine": {
-        "Emergency": ["Emergency"],
+        Emergency: ["Emergency"],
       },
-      "Endocrinology": {
-        "Endocrinology": ["Endocrinology"],
+      Endocrinology: {
+        Endocrinology: ["Endocrinology"],
       },
       "Engineering and Maintenance": {
         "Engineering and Maintenance": ["Maintenance", "EandM Operation"],
       },
-      "ENT": {
-        "ENT": ["ENT"],
+      ENT: {
+        ENT: ["ENT"],
       },
       "Finance and Account": {
-        "Finance and Account": ["AP", "Finance Administration", "Doctor's Payout", "Recovery", "AR"],
+        "Finance and Account": [
+          "AP",
+          "Finance Administration",
+          "Doctor's Payout",
+          "Recovery",
+          "AR",
+        ],
       },
       "Food and Beverages": {
         "Food and Beverages": ["FandB Operations"],
@@ -631,7 +797,13 @@ const OrgChart = () => {
         "Hospital Operations": ["Coordinator-General Surgery"],
       },
       "Human Resources": {
-        "Human Resources": ["Learning and Development", "HRBP", "HR Administration", "HR Operations", "Talent Acqusition"],
+        "Human Resources": [
+          "Learning and Development",
+          "HRBP",
+          "HR Administration",
+          "HR Operations",
+          "Talent Acqusition",
+        ],
       },
       "Information Technology": {
         "Information Technology": ["IT Operations"],
@@ -641,7 +813,14 @@ const OrgChart = () => {
         "Hospital Operations": ["Coordinator-Internal Medicine"],
       },
       "IP Billing": {
-        "Finance and Account": ["Bill Administration", "Billing Audit", "Billing Dispatch", "Bill Processing", "Credit Billing", "TPA Billing"],
+        "Finance and Account": [
+          "Bill Administration",
+          "Billing Audit",
+          "Billing Dispatch",
+          "Bill Processing",
+          "Credit Billing",
+          "TPA Billing",
+        ],
       },
       "Medical Administration": {
         "Hospital Operations": ["Medical Administration"],
@@ -650,14 +829,14 @@ const OrgChart = () => {
         "Hospital Operations": ["Medical Operations"],
       },
       "Medical Surgical Ward": {
-        "Wards": ["Medical Surgical Ward"],
+        Wards: ["Medical Surgical Ward"],
       },
-      "MRD": {
-        "MRD": ["MRD Administration"],
+      MRD: {
+        MRD: ["MRD Administration"],
       },
-      "Neuroscience": {
+      Neuroscience: {
         "Hospital Operations": ["Coordinator-Neuro Science"],
-        "Neurology": ["Neurology"],
+        Neurology: ["Neurology"],
         "Operation Theater": ["Neuro-OT"],
         "Neuro Lab": ["EEG/EMG/NCV"],
       },
@@ -676,41 +855,59 @@ const OrgChart = () => {
       "Obstetrics and Gynaecology": {
         "Obstetrics and Gynaecology": ["Gynaecology"],
       },
-      "OPD": {
-        "OPD": ["OP Nursing Counter", "Immigration"],
+      OPD: {
+        OPD: ["OP Nursing Counter", "Immigration"],
       },
-      "Orthopedics": {
+      Orthopedics: {
         "Hospital Operations": ["Coordinator-Ortho"],
         "Critical Care": ["Orthopedic ICU"],
-        "Orthopedics": ["Sports Injury Center", "Joint Replacement Surgery"],
+        Orthopedics: ["Sports Injury Center", "Joint Replacement Surgery"],
       },
       "Patient Care Services": {
         "Patient Care Services": ["Discharge Team", "Guest Relations"],
       },
-      "Pharmacy": {
-        "Pharmacy": ["IP Pharmacy", "Pharmacy Administration", "OP Pharmacy", "OT Pharmacy"],
+      Pharmacy: {
+        Pharmacy: [
+          "IP Pharmacy",
+          "Pharmacy Administration",
+          "OP Pharmacy",
+          "OT Pharmacy",
+        ],
       },
-      "Psychiatry": {
-        "Psychiatry": ["Psychiatry"],
+      Psychiatry: {
+        Psychiatry: ["Psychiatry"],
       },
-      "Quality": {
+      Quality: {
         "Hospital Operations": ["Quality"],
       },
       "Renal Science": {
         "Hospital Operations": ["Coordinator-Urology", "Coordinator-KT"],
         "Uro Lab": ["Uro Lab"],
         "Critical Care": ["Kidney Transplant ICU"],
-        "Urology": ["Kidney Transplant", "Urology"],
-        "Nephrology": ["Nephrology"],
+        Urology: ["Kidney Transplant", "Urology"],
+        Nephrology: ["Nephrology"],
       },
       "Sales and Marketing": {
-        "Sales and Marketing": ["PSU", "Camp", "Business Development-Domestic", "ECHS", "Sales and Marketing Administration", "Branding"],
+        "Sales and Marketing": [
+          "PSU",
+          "Camp",
+          "Business Development-Domestic",
+          "ECHS",
+          "Sales and Marketing Administration",
+          "Branding",
+        ],
       },
       "Security and Safety": {
         "Security and Safety": ["Security", "Fire and Safety"],
       },
       "Supply Chain Management": {
-        "Supply Chain Management": ["General Store", "Purchase-Medical", "Receiving Store", "Purchase-General Items", "Supply Chain Administration"],
+        "Supply Chain Management": [
+          "General Store",
+          "Purchase-Medical",
+          "Receiving Store",
+          "Purchase-General Items",
+          "Supply Chain Administration",
+        ],
       },
       "Transfusion Medicine": {
         "Blood Bank": ["Blood Bank"],
@@ -719,7 +916,17 @@ const OrgChart = () => {
     },
     "Paras Labs PTC Gurgaon": {
       "Clinical Laboratory": {
-        "Clinical Laboratory": ["Serology", "Hematology", "Microbiology", "Histopathology", "Phlebotomy", "Clinical Patholgy", "Bio Chemistry", "Clinical Laboratory Operations", "Molecular Biology"],
+        "Clinical Laboratory": [
+          "Serology",
+          "Hematology",
+          "Microbiology",
+          "Histopathology",
+          "Phlebotomy",
+          "Clinical Patholgy",
+          "Bio Chemistry",
+          "Clinical Laboratory Operations",
+          "Molecular Biology",
+        ],
       },
       "Human Resources": {
         "Human Resources": ["HR Administration"],
@@ -727,78 +934,107 @@ const OrgChart = () => {
       "Information Technology": {
         "Information Technology": ["IT Operations", "IT Support"],
       },
-      "Quality": {
+      Quality: {
         "Clinical Laboratory": ["Quality"],
       },
       "Sales and Marketing": {
         "Sales and Marketing": ["Branding", "Business Development-Domestic"],
       },
       "Supply Chain Management": {
-        "Supply Chain Management": ["Sample Accessioning", "Logistics", "Purchase-Medical", "Receiving Store"],
+        "Supply Chain Management": [
+          "Sample Accessioning",
+          "Logistics",
+          "Purchase-Medical",
+          "Receiving Store",
+        ],
       },
     },
-    "Patna": {
+    Patna: {
       "Ambulatory Care": {
         "Ambulatory Care": ["Medical Room/Clinics"],
       },
-      "Anaesthesia": {
-        "Anaesthesia": ["General Anaesthesia"],
+      Anaesthesia: {
+        Anaesthesia: ["General Anaesthesia"],
       },
       "Cancer Centre": {
-        "Oncology": ["Medical Oncology", "Radiation Oncology", "Medical Oncology-Haemato Oncology", "Surgical Oncology", "Medical Oncology-BMT", "Surgical Oncology-Head and Neck"],
-        "Hospital Operations": ["Coordinator-Hemat-Oncology", "Coordinator-Oncology", "Coordinator-Oncology DayCare"],
-        "BMT": ["BMT"],
+        Oncology: [
+          "Medical Oncology",
+          "Radiation Oncology",
+          "Medical Oncology-Haemato Oncology",
+          "Surgical Oncology",
+          "Medical Oncology-BMT",
+          "Surgical Oncology-Head and Neck",
+        ],
+        "Hospital Operations": [
+          "Coordinator-Hemat-Oncology",
+          "Coordinator-Oncology",
+          "Coordinator-Oncology DayCare",
+        ],
+        BMT: ["BMT"],
       },
       "Cardiac Science": {
         "Critical Care": ["CCU", "CTVS ICU"],
         "Hospital Operations": ["Coordinator-Cardiology"],
         "Operation Theater": ["Cardiac-OT"],
-        "Cardiology": ["Interventional Cardiology", "Non Invasive Cardiology "],
+        Cardiology: ["Interventional Cardiology", "Non Invasive Cardiology "],
         "Non Invasive Cardiac Lab": ["ECG/ ECHO/TMT Room"],
-        "CTVS": ["CTVS Core"],
+        CTVS: ["CTVS Core"],
         "Cath lab": ["Cath Lab Unit"],
-        "Anaesthesia": ["CTVS Anaesthesia"],
+        Anaesthesia: ["CTVS Anaesthesia"],
       },
       "Chest and Respiratory": {
         "Critical Care": ["Pulmo ICU"],
-        "Pulmonology": ["Pulmonology"],
+        Pulmonology: ["Pulmonology"],
         "Hospital Operations": ["Coordinator-Pulmonology"],
       },
       "Child Health": {
         "Critical Care": ["NICU", "PICU"],
-        "Pediatrics": ["Pediatrics"],
+        Pediatrics: ["Pediatrics"],
       },
       "Clinical Laboratory": {
-        "Clinical Laboratory": ["Histopathology", "Phlebotomy", "Microbiology", "Clinical Patholgy", "Bio Chemistry", "Hematology", "Clinical Laboratory Operations"],
+        "Clinical Laboratory": [
+          "Histopathology",
+          "Phlebotomy",
+          "Microbiology",
+          "Clinical Patholgy",
+          "Bio Chemistry",
+          "Hematology",
+          "Clinical Laboratory Operations",
+        ],
         "Hospital Operations": ["Coordinator-Clinical Laboratory"],
       },
       "Critical Care": {
         "Critical Care": ["SICU", "MICU", "HDU"],
       },
-      "CSSD": {
-        "CSSD": ["CSSD",],
+      CSSD: {
+        CSSD: ["CSSD"],
       },
-      "Dermatology": {
-        "Plastic Surgery": ["Plastic Surgery",],
+      Dermatology: {
+        "Plastic Surgery": ["Plastic Surgery"],
       },
       "Digestive and Liver Diesease": {
-        "Gastroenterology": ["Gastroenterology", "Hepatology",],
-        "Endoscopy": ["Endoscopy",],
+        Gastroenterology: ["Gastroenterology", "Hepatology"],
+        Endoscopy: ["Endoscopy"],
       },
       "Emergency Medicine": {
-        "Emergency": ["Emergency", "Ambulance", "Minor OT"],
+        Emergency: ["Emergency", "Ambulance", "Minor OT"],
       },
-      "Endocrinology": {
-        "Endocrinology": ["Endocrinology"],
+      Endocrinology: {
+        Endocrinology: ["Endocrinology"],
       },
       "Engineering and Maintenance": {
         "Engineering and Maintenance": ["EandM Operation", "Maintenance"],
       },
-      "ENT": {
-        "ENT": ["ENT"],
+      ENT: {
+        ENT: ["ENT"],
       },
       "Finance and Account": {
-        "Finance and Account": ["Finance Administration", "AP", "Recovery", "Doctor's Payout"],
+        "Finance and Account": [
+          "Finance Administration",
+          "AP",
+          "Recovery",
+          "Doctor's Payout",
+        ],
       },
       "Food and Beverages": {
         "Food and Beverages": ["FandB Operations"],
@@ -812,7 +1048,7 @@ const OrgChart = () => {
       "General and Minimal Access Surgey": {
         "Operation Theater": ["General-OT"],
         "General Surgery": ["General Surgery Core", "MAS"],
-        "OPD": ["General Surgery"],
+        OPD: ["General Surgery"],
       },
       "Hospital Infection Control": {
         "Nursing Administration": ["Infection Control"],
@@ -827,7 +1063,13 @@ const OrgChart = () => {
         "Internal Medicine": ["Internal Medicine"],
       },
       "IP Billing": {
-        "Finance and Account": ["Cashier Billing", "Bill Processing", "Bill Processing", "Billing Dispatch", "TPA Billing"],
+        "Finance and Account": [
+          "Cashier Billing",
+          "Bill Processing",
+          "Bill Processing",
+          "Billing Dispatch",
+          "TPA Billing",
+        ],
       },
       "Medical Administration": {
         "Hospital Operations": ["Medical Administration"],
@@ -836,14 +1078,14 @@ const OrgChart = () => {
         "Hospital Operations": ["Hospital Operations"],
       },
       "Medical Surgical Ward": {
-        "Wards": ["Medical Surgical Ward"],
+        Wards: ["Medical Surgical Ward"],
       },
-      "MRD": {
-        "MRD": ["MRD Administration"],
+      MRD: {
+        MRD: ["MRD Administration"],
       },
-      "Neuroscience": {
+      Neuroscience: {
         "Critical Care": ["NSICU"],
-        "Neurology": ["Neurology"],
+        Neurology: ["Neurology"],
         "Hospital Operations": ["Coordinator-Neuro Science"],
         "Operation Theater": ["Neuro-OT"],
         "Neuro Lab": ["EEG/EMG/NCV"],
@@ -855,79 +1097,117 @@ const OrgChart = () => {
         "Nursing Administration": ["Nursing Admin"],
       },
       "Nutrition and Dietetics": {
-        "Nutrition and Dietetics": ["Dietetics Operations", "Dietetics Administration"],
+        "Nutrition and Dietetics": [
+          "Dietetics Operations",
+          "Dietetics Administration",
+        ],
       },
       "Obstetrics and Gynaecology": {
         "Obstetrics and Gynaecology": ["Gynaecology", "Obstetrics"],
-        "OPD": ["Obstetrics and Gynaecology"],
+        OPD: ["Obstetrics and Gynaecology"],
       },
-      "OPD": {
-        "OPD": ["OP Nursing Counter"],
+      OPD: {
+        OPD: ["OP Nursing Counter"],
       },
       "Operation Theater": {
         "Operation Theater": ["Pre and Post Operations", "OT Administration"],
       },
-      "Ophthalmology": {
-        "Ophthalmology": ["Eye"],
+      Ophthalmology: {
+        Ophthalmology: ["Eye"],
         "Ophthalmology Lab": ["Optometry"],
       },
-      "Orthopedics": {
-        "Orthopedics": ["Joint Replacement Surgery", "Orthopedics", "Spine Surgery", "Sports Injury Center", "Arthroscopy"],
-        "OPD": ["Orthopedics"],
+      Orthopedics: {
+        Orthopedics: [
+          "Joint Replacement Surgery",
+          "Orthopedics",
+          "Spine Surgery",
+          "Sports Injury Center",
+          "Arthroscopy",
+        ],
+        OPD: ["Orthopedics"],
         "Operation Theater": ["Orthopedics-OT"],
         "Hospital Operations": ["Coordinator-Ortho"],
       },
       "Patient Care Services": {
         "Patient Care Services": ["Guest Relations", "Discharge Team"],
       },
-      "Pharmacy": {
-        "Pharmacy": ["OP Pharmacy", "IP Pharmacy", "OT Pharmacy", "Pharmacy Administration"],
+      Pharmacy: {
+        Pharmacy: [
+          "OP Pharmacy",
+          "IP Pharmacy",
+          "OT Pharmacy",
+          "Pharmacy Administration",
+        ],
       },
-      "Psychiatry": {
-        "Psychiatry": ["Psychiatry"],
+      Psychiatry: {
+        Psychiatry: ["Psychiatry"],
       },
-      "Quality": {
+      Quality: {
         "Hospital Operations": ["Quality"],
       },
-      "Radiology": {
-        "Radiology and Imaging": ["X-Ray", "Radiology and Imaging", "Mammography", "MRI/CT/X- Ray", "Ultrasound"],
+      Radiology: {
+        "Radiology and Imaging": [
+          "X-Ray",
+          "Radiology and Imaging",
+          "Mammography",
+          "MRI/CT/X- Ray",
+          "Ultrasound",
+        ],
         "Nuclear Medicine": ["Nuclear Medicine"],
         "Interventional Radiology": ["Interventional Radiology"],
       },
       "Renal Science": {
-        "Nephrology": ["Nephrology"],
-        "OPD": ["Uro Lab"],
-        "Urology": ["Urology"],
+        Nephrology: ["Nephrology"],
+        OPD: ["Uro Lab"],
+        Urology: ["Urology"],
         "Hospital Operations": ["Coordinator-KT", "Coordinator-Nephrology"],
       },
       "Sales and Marketing": {
-        "Sales and Marketing": ["Branding", "MIS", "Business Development-Domestic", "Referral Sales", "Camp"],
+        "Sales and Marketing": [
+          "Branding",
+          "MIS",
+          "Business Development-Domestic",
+          "Referral Sales",
+          "Camp",
+        ],
       },
       "Security and Safety": {
         "Security and Safety": ["Security", "Fire and Safety"],
       },
       "Supply Chain Management": {
-        "Supply Chain Management": ["General Store", "Receiving Store", "Purchase-General Items", "Supply Chain Administration", "Logistics"],
+        "Supply Chain Management": [
+          "General Store",
+          "Receiving Store",
+          "Purchase-General Items",
+          "Supply Chain Administration",
+          "Logistics",
+        ],
       },
       "Transfusion Medicine": {
         "Blood Bank": ["Blood Bank"],
         "Transfusion Medicine": ["Blood Bank"],
       },
-
     },
-    "Ranchi": {
+    Ranchi: {
       "Ambulatory Care": {
         "Ambulatory Care": ["Medical Room/Clinics"],
       },
-      "Anaesthesia": {
-        "Anaesthesia": ["General Anaesthesia"],
+      Anaesthesia: {
+        Anaesthesia: ["General Anaesthesia"],
       },
       "Bio Medical Engineering": {
         "Bio Medical Engineering": ["BME Operations"],
       },
       "Cancer Centre": {
-        "Oncology": ["Surgical Oncology-Head and Neck", "Medical Oncology", "Surgical Oncology"],
-        "Hospital Operations": ["Coordinator-Medical Oncology", "Coordinator-Surgical Oncology"],
+        Oncology: [
+          "Surgical Oncology-Head and Neck",
+          "Medical Oncology",
+          "Surgical Oncology",
+        ],
+        "Hospital Operations": [
+          "Coordinator-Medical Oncology",
+          "Coordinator-Surgical Oncology",
+        ],
         "Operation Theater": ["Surgical Oncology OT"],
       },
       "Cardiac Science": {
@@ -935,52 +1215,60 @@ const OrgChart = () => {
         "Critical Care": ["CTVS ICU", "CCU"],
         "Hospital Operations": ["Coordinator-Cardiology", "Coordinator-CTVS"],
         "Non Invasive Cardiac Lab": ["ECG/ ECHO/TMT Room"],
-        "CTVS": ["Cardiac Surgery-Adult"],
+        CTVS: ["Cardiac Surgery-Adult"],
         "Operation Theater": ["Cardiac-OT"],
-        "Cardiology": ["Interventional Cardiology"],
-        "Anaesthesia": ["Cardiac Anaesthesia"],
+        Cardiology: ["Interventional Cardiology"],
+        Anaesthesia: ["Cardiac Anaesthesia"],
       },
       "Chest and Respiratory": {
-        "Pulmonology": ["Pulmonology"],
+        Pulmonology: ["Pulmonology"],
       },
       "Child Health": {
         "Critical Care": ["NICU"],
-        "Pediatrics": ["Pediatrics"],
+        Pediatrics: ["Pediatrics"],
       },
       "Clinical Laboratory": {
-        "Clinical Laboratory": ["Clinical Laboratory Operations", "Microbiology", "Histopathology", "Phlebotomy", "Immunoassay", "Bio Chemistry", "Clinical Patholgy"],
+        "Clinical Laboratory": [
+          "Clinical Laboratory Operations",
+          "Microbiology",
+          "Histopathology",
+          "Phlebotomy",
+          "Immunoassay",
+          "Bio Chemistry",
+          "Clinical Patholgy",
+        ],
       },
       "Critical Care": {
         "Critical Care": ["MICU", "HDU"],
         "Hospital Operations": ["Coordinator-ICU"],
       },
-      "CSSD": {
-        "CSSD": ["CSSD"],
+      CSSD: {
+        CSSD: ["CSSD"],
       },
-      "Dermatology": {
+      Dermatology: {
         "Plastic Surgery": ["Plastic Surgery"],
-        "Dermatology": ["Dermatology"],
+        Dermatology: ["Dermatology"],
       },
       "Digestive and Liver Diesease": {
-        "Endoscopy": ["Endoscopy"],
-        "Gastroenterology": ["Gastroenterology"],
+        Endoscopy: ["Endoscopy"],
+        Gastroenterology: ["Gastroenterology"],
       },
       "Emergency Medicine": {
-        "Emergency": ["Minor OT", "Emergency"],
+        Emergency: ["Minor OT", "Emergency"],
         "Ambulatory Care": ["Medical Room/Clinics"],
         "Hospital Operations": ["Coordinator-Emergency"],
       },
       "Engineering and Maintenance": {
         "Engineering and Maintenance": ["EandM Operation"],
       },
-      "ENT": {
-        "ENT": ["ENT"],
+      ENT: {
+        ENT: ["ENT"],
       },
       "Finance and Account": {
         "Finance and Account": ["AP", "Finance Administration", "AR"],
       },
       "Food and Beverages": {
-        "Food and Beverages": ["FandB Operations"]
+        "Food and Beverages": ["FandB Operations"],
       },
       "Front Office": {
         "Front Office": ["IP Admission", "OP Billing"],
@@ -989,13 +1277,18 @@ const OrgChart = () => {
         "Operation Theater": ["General-OT"],
         "Hospital Operations": ["Coordinator-General Surgery"],
         "General Surgery": ["Bariatric Surgery", "MAS"],
-        "OPD": ["General Surgery"],
+        OPD: ["General Surgery"],
       },
       "Hospital Infection Control": {
         "Nursing Administration": ["Infection Control"],
       },
       "Human Resources": {
-        "Human Resources": ["Talent Acqusition", "HR Operations", "Learning and Development", "HR Administration"],
+        "Human Resources": [
+          "Talent Acqusition",
+          "HR Operations",
+          "Learning and Development",
+          "HR Administration",
+        ],
       },
       "Information Technology": {
         "Information Technology": ["IT Operations", "IT Support"],
@@ -1004,7 +1297,15 @@ const OrgChart = () => {
         "Internaal Medicine": ["Internaal Medicine"],
       },
       "IP Billing": {
-        "Finance and Account": ["Billing Audit", "Cashier Billing", "Credit Billing", "Credit Billing", "TPA Billing", "Billing Dispatch", "Bill Administration"],
+        "Finance and Account": [
+          "Billing Audit",
+          "Cashier Billing",
+          "Credit Billing",
+          "Credit Billing",
+          "TPA Billing",
+          "Billing Dispatch",
+          "Bill Administration",
+        ],
       },
       "Medical Administration": {
         "Hospital Operations": ["Medical Administration"],
@@ -1013,17 +1314,21 @@ const OrgChart = () => {
         "Medical Operations": ["Medical Operations"],
       },
       "Medical Surgical Ward": {
-        "Wards": ["Medical Surgical Ward"],
+        Wards: ["Medical Surgical Ward"],
       },
-      "MRD": {
-        "MRD": ["MRD Administration"],
+      MRD: {
+        MRD: ["MRD Administration"],
       },
-      "Neuroscience": {
-        "Hospital Operations": ["Coordinator-Neuro Surgery", "Coordinator-Neurology", "Coordinator-Neuro Science"],
-        "Wards": ["Neuro Surgery Ward"],
-        "Anaesthesia": ["Neuro Anaesthesia"],
+      Neuroscience: {
+        "Hospital Operations": [
+          "Coordinator-Neuro Surgery",
+          "Coordinator-Neurology",
+          "Coordinator-Neuro Science",
+        ],
+        Wards: ["Neuro Surgery Ward"],
+        Anaesthesia: ["Neuro Anaesthesia"],
         "Operation Theater": ["Neuro-OT"],
-        "Neurology": ["Neurology"],
+        Neurology: ["Neurology"],
         "Neuro Lab": ["EEG/EMG/NCV"],
       },
       "Non Clinical Services": {
@@ -1036,61 +1341,81 @@ const OrgChart = () => {
         "Nutrition and Dietetics": ["Dietetics Operations"],
       },
       "Obstetrics and Gynaecology": {
-        "Wards": ["Obstetrics and Gynaecology"],
+        Wards: ["Obstetrics and Gynaecology"],
         "Obstetrics and Gynaecology": ["Gynaecology"],
-        "OPD": ["Obstetrics and Gynaecology"],
+        OPD: ["Obstetrics and Gynaecology"],
       },
-      "OPD": {
-        "OPD": ["OP Nursing Counter"],
+      OPD: {
+        OPD: ["OP Nursing Counter"],
       },
       "Operation Theater": {
         "Operation Theater": ["Pre and Post Operations"],
       },
-      "Ophthalmology": {
-        "Ophthalmology": ["Eye"],
+      Ophthalmology: {
+        Ophthalmology: ["Eye"],
       },
-      "Orthopedics": {
+      Orthopedics: {
         "Hospital Operations": ["Coordinator-Ortho"],
         "Operation Theater": ["Orthopedics-OT"],
-        "Orthopedics": ["Joint Replacement Surgery"],
+        Orthopedics: ["Joint Replacement Surgery"],
       },
       "Patient Care Services": {
         "Patient Care Services": ["Guest Relations"],
       },
-      "Pharmacy": {
-        "Pharmacy": ["IP Pharmacy", "OP Pharmacy", "OT Pharmacy", "Pharmacy Administration"],
+      Pharmacy: {
+        Pharmacy: [
+          "IP Pharmacy",
+          "OP Pharmacy",
+          "OT Pharmacy",
+          "Pharmacy Administration",
+        ],
       },
-      "Psychiatry": {
-        "Psychiatry": ["Psychiatry"],
+      Psychiatry: {
+        Psychiatry: ["Psychiatry"],
       },
-      "Quality": {
+      Quality: {
         "Hospital Operations": ["Quality"],
       },
-      "Radiology": {
+      Radiology: {
         "Radiology and Imaging": ["MRI/CT/X- Ray"],
       },
       "Renal Science": {
-        "Dialysis": ["Dialysis Unit"],
-        "Urology": ["Urology"],
-        "Nephrology": ["Nephrology"],
+        Dialysis: ["Dialysis Unit"],
+        Urology: ["Urology"],
+        Nephrology: ["Nephrology"],
         "Uro Lab": ["Uro Lab"],
       },
       "Sales and Marketing": {
-        "Sales and Marketing": ["Branding", "Business Development-Domestic", "Digital Marketing", "Referral Sales", "PSU", "Sales and Marketing Administration"],
+        "Sales and Marketing": [
+          "Branding",
+          "Business Development-Domestic",
+          "Digital Marketing",
+          "Referral Sales",
+          "PSU",
+          "Sales and Marketing Administration",
+        ],
       },
       "Security and Safety": {
         "Security and Safety": ["Security", "Fire and Safety"],
       },
       "Supply Chain Management": {
-        "Supply Chain Management": ["Supply Chain Administration", "General Store", "Receiving Store"],
+        "Supply Chain Management": [
+          "Supply Chain Administration",
+          "General Store",
+          "Receiving Store",
+        ],
       },
     },
-    "Srinagar": {
-      "Anaesthesia": {
-        "Anaesthesia": ["General Anaesthesia"],
+    Srinagar: {
+      Anaesthesia: {
+        Anaesthesia: ["General Anaesthesia"],
       },
       "Cancer Centre": {
-        "Oncology": ["Surgical Oncology-GI Oncosurgery", "Medical Oncology", "Surgical Oncology"],
+        Oncology: [
+          "Surgical Oncology-GI Oncosurgery",
+          "Medical Oncology",
+          "Surgical Oncology",
+        ],
         "Hospital Operations": ["Coordinator-Oncology"],
         "Operation Theater": ["Surgical Oncology OT"],
       },
@@ -1099,40 +1424,57 @@ const OrgChart = () => {
         "Critical Care": ["CTVS ICU", "CCU"],
         "Hospital Operations": ["Coordinator-CTVS"],
         "Non Invasive Cardiac Lab": ["ECG/ ECHO/TMT Room"],
-        "CTVS": ["Peripheral Interventions", "Cardiac Surgery-Adult and Paediatric", "CTVS Core", "Cardiac Surgery-Adult"],
+        CTVS: [
+          "Peripheral Interventions",
+          "Cardiac Surgery-Adult and Paediatric",
+          "CTVS Core",
+          "Cardiac Surgery-Adult",
+        ],
         "Operation Theater": ["Cardiac-OT"],
-        "Cardiology": ["Interventional Cardiology", "Non Invasive Cardiology "],
+        Cardiology: ["Interventional Cardiology", "Non Invasive Cardiology "],
       },
       "Chest and Respiratory": {
-        "Pulmonology": ["Pulmonology"],
+        Pulmonology: ["Pulmonology"],
         "Pulmonary Lab": ["Non Intervention Pulmo Lab"],
       },
       "Child Health": {
         "Critical Care": ["NICU"],
-        "Pediatrics": ["Pediatrics"],
+        Pediatrics: ["Pediatrics"],
       },
       "Clinical Laboratory": {
-        "Clinical Laboratory": ["Clinical Patholgy", "Histopathology", "Microbiology", "Hematology", "Bio Chemistry", "Clinical Laboratory Operations"],
+        "Clinical Laboratory": [
+          "Clinical Patholgy",
+          "Histopathology",
+          "Microbiology",
+          "Hematology",
+          "Bio Chemistry",
+          "Clinical Laboratory Operations",
+        ],
       },
       "Critical Care": {
         "Critical Care": ["SICU", "MICU"],
       },
-      "CSSD": {
-        "CSSD": ["CSSD"],
+      CSSD: {
+        CSSD: ["CSSD"],
       },
       "Digestive and Liver Diesease": {
-        "Gastroenterology": ["Gastroenterology"],
-        "Endoscopy": ["Endoscopy"],
+        Gastroenterology: ["Gastroenterology"],
+        Endoscopy: ["Endoscopy"],
       },
       "Emergency Medicine": {
-        "Emergency": ["Emergency"],
+        Emergency: ["Emergency"],
         "Nursing Administration": ["Emergency"],
       },
       "Engineering and Maintenance": {
         "Engineering and Maintenance": ["Maintenance"],
       },
       "Finance and Account": {
-        "Finance and Account": ["Finance Administration", "AR", "Doctor's Payout", "AP"],
+        "Finance and Account": [
+          "Finance Administration",
+          "AR",
+          "Doctor's Payout",
+          "AP",
+        ],
       },
       "Front Office": {
         "Front Office": ["OP Billing"],
@@ -1145,7 +1487,12 @@ const OrgChart = () => {
         "General Surgery": ["General Surgery Core"],
       },
       "Human Resources": {
-        "Human Resources": ["HRBP", "Talent Acqusition", "HR Operations", "Learning and Development"],
+        "Human Resources": [
+          "HRBP",
+          "Talent Acqusition",
+          "HR Operations",
+          "Learning and Development",
+        ],
       },
       "Information Technology": {
         "Information Technology": ["IT Operations", "IT Support"],
@@ -1163,16 +1510,19 @@ const OrgChart = () => {
         "Medical Operations": ["Medical Operations"],
       },
       "Medical Surgical Ward": {
-        "Wards": ["Medical Surgical Ward"],
+        Wards: ["Medical Surgical Ward"],
       },
-      "MRD": {
-        "MRD": ["MRD Administration"],
+      MRD: {
+        MRD: ["MRD Administration"],
       },
-      "Neuroscience": {
+      Neuroscience: {
         "Operation Theater": ["Neuro-OT"],
-        "Anaesthesia": ["Neuro Anaesthesia"],
-        "Hospital Operations": ["Coordinator-Neurology", "Coordinator-Neuro Surgery"],
-        "Neurology": ["Neurology"],
+        Anaesthesia: ["Neuro Anaesthesia"],
+        "Hospital Operations": [
+          "Coordinator-Neurology",
+          "Coordinator-Neuro Surgery",
+        ],
+        Neurology: ["Neurology"],
         "Neuro Lab": ["EEG/EMG/NCV"],
       },
       "Non Clinical Services": {
@@ -1187,43 +1537,58 @@ const OrgChart = () => {
       "Obstetrics and Gynaecology": {
         "Obstetrics and Gynaecology": ["Gynaecology"],
       },
-      "OPD": {
-        "OPD": ["OP Nursing Counter"],
+      OPD: {
+        OPD: ["OP Nursing Counter"],
       },
       "Operation Theater": {
         "Operation Theater": ["Pre and Post Operations"],
       },
-      "Orthopedics": {
-        "Orthopedics": ["Joint Replacement Surgery"],
+      Orthopedics: {
+        Orthopedics: ["Joint Replacement Surgery"],
       },
       "Patient Care Services": {
         "Patient Care Services": ["Guest Relations", "Discharge Team"],
       },
-      "Pharmacy": {
-        "Pharmacy": ["IP Pharmacy", "OP Pharmacy", "OT Pharmacy", "Pharmacy Administration"],
+      Pharmacy: {
+        Pharmacy: [
+          "IP Pharmacy",
+          "OP Pharmacy",
+          "OT Pharmacy",
+          "Pharmacy Administration",
+        ],
       },
-      "Psychiatry": {
-        "Psychiatry": ["Psychiatry"],
+      Psychiatry: {
+        Psychiatry: ["Psychiatry"],
       },
-      "Quality": {
+      Quality: {
         "Hospital Operations": ["Quality"],
       },
-      "Radiology": {
-        "Radiology and Imaging": ["CT", "Radiology and Imaging", "MRI", "X-Ray", "MRI/CT/X- Ray"],
+      Radiology: {
+        "Radiology and Imaging": [
+          "CT",
+          "Radiology and Imaging",
+          "MRI",
+          "X-Ray",
+          "MRI/CT/X- Ray",
+        ],
         "Hospital Operations": ["Coordinator-Radiology"],
         "Interventional Radiology": ["Interventional Radiology"],
       },
       "Renal Science": {
-        "OPD": ["Uro Lab"],
-        "Urology": ["Urology"],
-        "Nephrology": ["Nephrology"],
-        "Dialysis": ["Dialysis Unit"],
+        OPD: ["Uro Lab"],
+        Urology: ["Urology"],
+        Nephrology: ["Nephrology"],
+        Dialysis: ["Dialysis Unit"],
       },
-      "Rheumatology": {
-        "Rheumatology": ["Rheumatology"],
+      Rheumatology: {
+        Rheumatology: ["Rheumatology"],
       },
       "Sales and Marketing": {
-        "Sales and Marketing": ["Referral Sales", "Business Development-Domestic", "Branding"],
+        "Sales and Marketing": [
+          "Referral Sales",
+          "Business Development-Domestic",
+          "Branding",
+        ],
       },
       "Security and Safety": {
         "Security and Safety": ["Fire and Safety", "Fire and Safety"],
@@ -1235,59 +1600,73 @@ const OrgChart = () => {
         "Blood Bank": ["Blood Bank"],
       },
     },
-    "Udaipur": {
+    Udaipur: {
       "Ambulatory Care": {
         "Ambulatory Care": ["Medical Room/Clinics"],
       },
-      "Anaesthesia": {
-        "Anaesthesia": ["General Anaesthesia"],
+      Anaesthesia: {
+        Anaesthesia: ["General Anaesthesia"],
       },
       "Bio Medical Engineering": {
         "Bio Medical Engineering": ["BME Operations"],
       },
       "Cancer Centre": {
         "Hospital Operations": ["Coordinator-Oncology DayCare"],
-        "Oncology": ["Surgical Oncology", "Chemo Day Care", "Medical Oncology", "Medical Oncology-Haemato Oncology"],
+        Oncology: [
+          "Surgical Oncology",
+          "Chemo Day Care",
+          "Medical Oncology",
+          "Medical Oncology-Haemato Oncology",
+        ],
         "Operation Theater": ["Surgical Oncology OT"],
       },
       "Cardiac Science": {
-        "Anaesthesia": ["Cardiac Anaesthesia"],
+        Anaesthesia: ["Cardiac Anaesthesia"],
         "Operation Theater": ["Cardiac-OT"],
-        "Cardiology": ["Interventional Cardiology", 'Non Invasive Cardiology'],
+        Cardiology: ["Interventional Cardiology", "Non Invasive Cardiology"],
         "Critical Care": ["CCU"],
         "Cath lab": ["Cath Lab Unit"],
         "Non Invasive Cardiac Lab": ["ECG/ ECHO/TMT Room"],
       },
       "Chest and Respiratory": {
         "Pulmonary Lab": ["Non Intervention Pulmo Lab"],
-        "Pulmonology": ["Pulmonology"],
+        Pulmonology: ["Pulmonology"],
       },
       "Child Health": {
         "Critical Care": ["NICU"],
-        "Pediatrics": ["Pediatrics"],
+        Pediatrics: ["Pediatrics"],
       },
       "Clinical Laboratory": {
-        "Clinical Laboratory": ["Phlebotomy", "Microbiology", "Bio Chemistry", "Clinical Patholgy", "Hematology"],
+        "Clinical Laboratory": [
+          "Phlebotomy",
+          "Microbiology",
+          "Bio Chemistry",
+          "Clinical Patholgy",
+          "Hematology",
+        ],
       },
       "Critical Care": {
         "Critical Care": ["MICU", "HDU"],
       },
-      "CSSD": {
-        "CSSD": ["CSSD"],
+      CSSD: {
+        CSSD: ["CSSD"],
       },
       "Digestive and Liver Diesease": {
-        "Endoscopy": ["Endoscopy"],
-        "Gastroenterology": ["Gastroenterology"],
+        Endoscopy: ["Endoscopy"],
+        Gastroenterology: ["Gastroenterology"],
       },
       "Emergency Medicine": {
-        "Emergency": ["Emergency"],
+        Emergency: ["Emergency"],
         "Ambulatory Care": ["Medical Room/Clinics", "General Day Care"],
       },
-      "Endocrinology": {
-        "Endocrinology": ["Endocrinology"],
+      Endocrinology: {
+        Endocrinology: ["Endocrinology"],
       },
       "Engineering and Maintenance": {
-        "Engineering and Maintenance": ["Engineering and Maintenance", "Maintenance"],
+        "Engineering and Maintenance": [
+          "Engineering and Maintenance",
+          "Maintenance",
+        ],
       },
       "Finance and Account": {
         "Finance and Account": ["Finance Administration", "Recovery", "AP"],
@@ -1306,7 +1685,12 @@ const OrgChart = () => {
         "General Surgery": ["General Surgery Core"],
       },
       "Human Resources": {
-        "Human Resources": ["Talent Acqusition", "HR Operations", "HR Administration", "HRBP"],
+        "Human Resources": [
+          "Talent Acqusition",
+          "HR Operations",
+          "HR Administration",
+          "HRBP",
+        ],
       },
       "Information Technology": {
         "Information Technology": ["IT Support"],
@@ -1316,7 +1700,12 @@ const OrgChart = () => {
         "Hospital Operations": ["Coordinator-Internal Medicine"],
       },
       "IP Billing": {
-        "Finance and Account": ["TPA Billing", "Bill Administration", "Credit Billing", "Bill Processing"],
+        "Finance and Account": [
+          "TPA Billing",
+          "Bill Administration",
+          "Credit Billing",
+          "Bill Processing",
+        ],
       },
       "Medical Administration": {
         "Hospital Operations": ["Medical Administration"],
@@ -1325,13 +1714,13 @@ const OrgChart = () => {
         "Medical Operations": ["Medical Operations"],
       },
       "Medical Surgical Ward": {
-        "Wards": ["Medical Surgical Ward"],
+        Wards: ["Medical Surgical Ward"],
       },
-      "MRD": {
-        "MRD": ["MRD Administration"],
+      MRD: {
+        MRD: ["MRD Administration"],
       },
-      "Neuroscience": {
-        "Neurology": ["Neurology"],
+      Neuroscience: {
+        Neurology: ["Neurology"],
         "Operation Theater": ["Neuro-OT"],
       },
       "Non Clinical Services": {
@@ -1350,55 +1739,74 @@ const OrgChart = () => {
         "Labour Room": ["Labour Room"],
         "Obstetrics and Gynaecology": ["Gynaecology"],
         "Hospital Operations": ["Coordinator-Obstetrics and Gynaecology"],
-        "OPD": ["Obstetrics and Gynaecology"],
+        OPD: ["Obstetrics and Gynaecology"],
       },
-      "OPD": {
-        "OPD": ["OP Nursing Counter"],
+      OPD: {
+        OPD: ["OP Nursing Counter"],
       },
       "Operation Theater": {
         "Operation Theater": ["Pre and Post Operations"],
       },
-      "Ophthalmology": {
+      Ophthalmology: {
         "Ophthalmology Lab": ["Optometry"],
-        "Ophthalmology": ["Eye"],
+        Ophthalmology: ["Eye"],
       },
-      "Orthopedics": {
-        "Orthopedics": ["Orthopedics"],
+      Orthopedics: {
+        Orthopedics: ["Orthopedics"],
         "Operation Theater": ["Orthopedics-OT"],
       },
       "Patient Care Services": {
         "Patient Care Services": ["Guest Relations"],
       },
-      "Pharmacy": {
-        "Pharmacy": ["IP Pharmacy", "Pharmacy Administration", "OP Pharmacy", "OT Pharmacy"],
+      Pharmacy: {
+        Pharmacy: [
+          "IP Pharmacy",
+          "Pharmacy Administration",
+          "OP Pharmacy",
+          "OT Pharmacy",
+        ],
       },
-      "Quality": {
+      Quality: {
         "Hospital Operations": ["Quality"],
       },
-      "Radiology": {
-        "Radiology and Imaging": ["X-Ray", "CT", "Radiology and Imaging", "MRI"],
+      Radiology: {
+        "Radiology and Imaging": [
+          "X-Ray",
+          "CT",
+          "Radiology and Imaging",
+          "MRI",
+        ],
         "Hospital Operations": ["Coordinator-Radiology"],
       },
       "Renal Science": {
-        "Urology": ["Urology"],
-        "OPD": ["Nephrology"],
-        "Nephrology": ["Nephrology"],
+        Urology: ["Urology"],
+        OPD: ["Nephrology"],
+        Nephrology: ["Nephrology"],
       },
-      "Rheumatology": {
-        "Rheumatology": ["Rheumatology"],
+      Rheumatology: {
+        Rheumatology: ["Rheumatology"],
       },
       "Sales and Marketing": {
-        "Sales and Marketing": ["Business Development-Domestic", "Branding", "Sales and Marketing Administration", "Digital Marketing", "Referral Sales"],
+        "Sales and Marketing": [
+          "Business Development-Domestic",
+          "Branding",
+          "Sales and Marketing Administration",
+          "Digital Marketing",
+          "Referral Sales",
+        ],
       },
       "Security and Safety": {
         "Security and Safety": ["Security"],
       },
       "Supply Chain Management": {
-        "Supply Chain Management": ["General Store", "Purchase-General Items", "Supply Chain Administration"],
+        "Supply Chain Management": [
+          "General Store",
+          "Purchase-General Items",
+          "Supply Chain Administration",
+        ],
       },
     },
   });
-
 
   const [location, setLocation] = useState([
     "Corporate",
@@ -1417,7 +1825,7 @@ const OrgChart = () => {
     "Manager",
     "Deputy Manager",
     "Executive",
-    "Assistant General Manager"
+    "Assistant General Manager",
   ]);
   const [selectedSuperSpeciality, setSelectedSuperSpecialtiy] = useState(null);
   const [selectedSubDepartment, setSelectedSubDepartment] = useState(null);
@@ -1432,10 +1840,10 @@ const OrgChart = () => {
     setExpandedNodeIds([]);
     const payload = {
       location: selectedLocation,
-      superSpeciality: selectedSuperSpeciality,
+      SuperSpeciality: selectedSuperSpeciality,
       department: selectedDepartment,
       subDepartment: selectedSubDepartment,
-      designation: selectedDesignation
+      designation: selectedDesignation,
     };
     if (
       selectedLocation !== null ||
@@ -1524,7 +1932,7 @@ const OrgChart = () => {
       setPosition({ x: e.clientX, y: e.clientY });
       setDraggedPosition({
         x: draggedPosition.x + deltaX,
-        y: draggedPosition.y + deltaY
+        y: draggedPosition.y + deltaY,
       });
     }
   };
@@ -1554,7 +1962,7 @@ const OrgChart = () => {
       (acc, subordinate) => [
         ...acc,
         subordinate._id,
-        ...getAllDescendantIds(subordinate)
+        ...getAllDescendantIds(subordinate),
       ],
       []
     );
@@ -1622,12 +2030,12 @@ const OrgChart = () => {
                 treeDiv.scrollTo({
                   left: "50%",
                   top: "20%",
-                  behavior: "smooth" // Smooth scrolling effect
+                  behavior: "smooth", // Smooth scrolling effect
                 });
               }
             }}
             tabIndex={0} // Make element focusable
-          // onFocus={() => handleScroll()} // Scroll on focus
+            // onFocus={() => handleScroll()} // Scroll on focus
           >
             <div className={styles.headerBox}>
               <div className={styles.imgDiv}>
@@ -1735,7 +2143,11 @@ const OrgChart = () => {
       return [];
     }
   };
-  const getKeysForSuperSpeciality = (data, superSpeciality, selectedLocation) => {
+  const getKeysForSuperSpeciality = (
+    data,
+    superSpeciality,
+    selectedLocation
+  ) => {
     if (data[selectedLocation][superSpeciality]) {
       // Return the keys (department) for the specified location
       return Object.keys(data[selectedLocation][superSpeciality]);
@@ -1744,8 +2156,6 @@ const OrgChart = () => {
       return [];
     }
   };
-
-
 
   return (
     <>
@@ -1761,7 +2171,7 @@ const OrgChart = () => {
               height: "10vh",
               position: "fixed",
               zIndex: "100",
-              backgroundColor: "white"
+              backgroundColor: "white",
             }}
           >
             <Autocomplete
@@ -1778,30 +2188,33 @@ const OrgChart = () => {
                 "& .MuiInputBase-root": {
                   // height: "5vh", // Set a fixed height
                   fontSize: "14px", // Adjust font size
-                  fontFamily: "Outfit, sans-serif"
+                  fontFamily: "Outfit, sans-serif",
                 },
                 "& .MuiAutocomplete-input": {
-                  textTransform: "capitalize"
+                  textTransform: "capitalize",
                 },
                 "& .MuiInputLabel-root": {
                   fontSize: "16px", // Adjust label size
 
-                  fontFamily: "Outfit, sans-serif"
-                }
+                  fontFamily: "Outfit, sans-serif",
+                },
               }}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Facility"
                   InputLabelProps={{
-                    style: { fontFamily: "Outfit, sans-serif" }
+                    style: { fontFamily: "Outfit, sans-serif" },
                   }}
                 />
               )}
             />
             <Autocomplete
               disablePortal
-              options={getSuperSpecialitiesForLocation(facilityData, selectedLocation)}
+              options={getSuperSpecialitiesForLocation(
+                facilityData,
+                selectedLocation
+              )}
               value={selectedSuperSpeciality}
               onChange={handleChangeSuperSpeciality}
               sx={{
@@ -1812,22 +2225,22 @@ const OrgChart = () => {
                 },
                 "& .MuiInputBase-root": {
                   fontSize: "14px", // Adjust font size
-                  fontFamily: "Outfit, sans-serif"
+                  fontFamily: "Outfit, sans-serif",
                 },
                 "& .MuiAutocomplete-input": {
-                  textTransform: "capitalize"
+                  textTransform: "capitalize",
                 },
                 "& .MuiInputLabel-root": {
                   fontSize: "16px", // Adjust label size
-                  fontFamily: "Outfit, sans-serif"
-                }
+                  fontFamily: "Outfit, sans-serif",
+                },
               }}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Super Speciality"
                   InputLabelProps={{
-                    style: { fontFamily: "Outfit, sans-serif" }
+                    style: { fontFamily: "Outfit, sans-serif" },
                   }}
                 />
               )}
@@ -1835,7 +2248,11 @@ const OrgChart = () => {
             {selectedSuperSpeciality !== null && selectedLocation !== null && (
               <Autocomplete
                 disablePortal
-                options={getKeysForSuperSpeciality(facilityData, selectedSuperSpeciality, selectedLocation)}
+                options={getKeysForSuperSpeciality(
+                  facilityData,
+                  selectedSuperSpeciality,
+                  selectedLocation
+                )}
                 value={selectedDepartment}
                 onChange={handleChangeDepartment}
                 sx={{
@@ -1846,22 +2263,22 @@ const OrgChart = () => {
                   },
                   "& .MuiInputBase-root": {
                     fontSize: "14px", // Adjust font size
-                    fontFamily: "Outfit, sans-serif"
+                    fontFamily: "Outfit, sans-serif",
                   },
                   "& .MuiAutocomplete-input": {
-                    textTransform: "capitalize"
+                    textTransform: "capitalize",
                   },
                   "& .MuiInputLabel-root": {
                     fontSize: "16px", // Adjust label size
-                    fontFamily: "Outfit, sans-serif"
-                  }
+                    fontFamily: "Outfit, sans-serif",
+                  },
                 }}
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     label="Department"
                     InputLabelProps={{
-                      style: { fontFamily: "Outfit, sans-serif" }
+                      style: { fontFamily: "Outfit, sans-serif" },
                     }}
                   />
                 )}
@@ -1925,7 +2342,7 @@ const OrgChart = () => {
                   thickness={100}
                   speed={50}
                   color="#007BFF"
-                // secondaryColor="#D9EBFF"
+                  // secondaryColor="#D9EBFF"
                 />
                 <Box mt={2} fontSize="16px" fontWeight="bold">
                   {" "}
@@ -1946,9 +2363,9 @@ const OrgChart = () => {
                     width: open ? "75%" : "100%",
                     maxWidth: "2400px",
                     overflowX: "scroll", // Always show scrollbar
-                    height: open ? "45vh" : "80vh"
+                    height: open ? "45vh" : "80vh",
                   }}
-                // onWheel={handleWheel}
+                  // onWheel={handleWheel}
                 >
                   <div
                     style={{
@@ -1960,7 +2377,7 @@ const OrgChart = () => {
                       width: "100%",
                       height: "100%",
                       cursor: dragging ? "grabbing" : "grab",
-                      position: "relative"
+                      position: "relative",
                     }}
                     onMouseDown={handleMouseDown}
                     onMouseMove={handleMouseMove}
@@ -1977,7 +2394,7 @@ const OrgChart = () => {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    gap: "10px"
+                    gap: "10px",
                   }}
                 >
                   <button
