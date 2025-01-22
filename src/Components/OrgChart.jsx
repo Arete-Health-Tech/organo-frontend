@@ -2168,95 +2168,59 @@ const OrgChart = () => {
           <div
             className={styles.filterDiv}
             style={{
-              height: "10vh",
+              width: open ? "65%" : "95%",
+              height: "5vh",
               position: "fixed",
               zIndex: "100",
               backgroundColor: "white",
             }}
           >
-            <Autocomplete
-              disablePortal
-              options={location}
-              value={selectedLocation}
-              onChange={handleChangeLocation}
-              sx={{
-                width: 200,
-                marginLeft: 2,
-                "& .MuiOutlinedInput-root": {
-                  // padding: "2px 8px", //
-                },
-                "& .MuiInputBase-root": {
-                  // height: "5vh", // Set a fixed height
-                  fontSize: "14px", // Adjust font size
-                  fontFamily: "Outfit, sans-serif",
-                },
-                "& .MuiAutocomplete-input": {
-                  textTransform: "capitalize",
-                },
-                "& .MuiInputLabel-root": {
-                  fontSize: "16px", // Adjust label size
-
-                  fontFamily: "Outfit, sans-serif",
-                },
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Facility"
-                  InputLabelProps={{
-                    style: { fontFamily: "Outfit, sans-serif" },
-                  }}
-                />
-              )}
-            />
-            <Autocomplete
-              disablePortal
-              options={getSuperSpecialitiesForLocation(
-                facilityData,
-                selectedLocation
-              )}
-              value={selectedSuperSpeciality}
-              onChange={handleChangeSuperSpeciality}
-              sx={{
-                width: 200,
-                marginLeft: 2,
-                "& .MuiOutlinedInput-root": {
-                  // padding: "2px 8px", // Reduce padding inside the input
-                },
-                "& .MuiInputBase-root": {
-                  fontSize: "14px", // Adjust font size
-                  fontFamily: "Outfit, sans-serif",
-                },
-                "& .MuiAutocomplete-input": {
-                  textTransform: "capitalize",
-                },
-                "& .MuiInputLabel-root": {
-                  fontSize: "16px", // Adjust label size
-                  fontFamily: "Outfit, sans-serif",
-                },
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Super Speciality"
-                  InputLabelProps={{
-                    style: { fontFamily: "Outfit, sans-serif" },
-                  }}
-                />
-              )}
-            />
-            {selectedSuperSpeciality !== null && selectedLocation !== null && (
+            <div className={styles.filterDivlay}>
               <Autocomplete
                 disablePortal
-                options={getKeysForSuperSpeciality(
+                options={location}
+                value={selectedLocation}
+                onChange={handleChangeLocation}
+                sx={{
+                  width: open ? 150 : 200,
+                  marginLeft: 2,
+                  "& .MuiOutlinedInput-root": {
+                    // padding: "2px 8px", //
+                  },
+                  "& .MuiInputBase-root": {
+                    // height: "5vh", // Set a fixed height
+                    fontSize: "14px", // Adjust font size
+                    fontFamily: "Outfit, sans-serif",
+                  },
+                  "& .MuiAutocomplete-input": {
+                    textTransform: "capitalize",
+                  },
+                  "& .MuiInputLabel-root": {
+                    fontSize: "16px", // Adjust label size
+
+                    fontFamily: "Outfit, sans-serif",
+                  },
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Facility"
+                    InputLabelProps={{
+                      style: { fontFamily: "Outfit, sans-serif" },
+                    }}
+                  />
+                )}
+              />
+              <Autocomplete
+                disablePortal
+                options={getSuperSpecialitiesForLocation(
                   facilityData,
-                  selectedSuperSpeciality,
                   selectedLocation
                 )}
-                value={selectedDepartment}
-                onChange={handleChangeDepartment}
+                value={selectedSuperSpeciality}
+                onChange={handleChangeSuperSpeciality}
                 sx={{
-                  width: 200,
+                  width: open ? 150 : 200,
                   marginLeft: 2,
                   "& .MuiOutlinedInput-root": {
                     // padding: "2px 8px", // Reduce padding inside the input
@@ -2276,44 +2240,93 @@ const OrgChart = () => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="Department"
+                    label="Super Speciality"
                     InputLabelProps={{
                       style: { fontFamily: "Outfit, sans-serif" },
                     }}
                   />
                 )}
               />
-            )}
-            <Stack className={styles.applyButtonStack}>
-              <button className={styles.applyButton} onClick={apply}>
-                Apply
-              </button>
-              <button
-                style={{ display: isFilterApply ? "block" : "none" }}
-                className={styles.clearButton}
-                onClick={clearFilter}
-              >
-                Clear
-              </button>
-            </Stack>
-          </div>
-          <div
-            className={styles.filterlayout_search}
-            style={{ width: open ? "70%" : "100%" }}
-          >
-            <div width={"95%"} position={"relative"}>
-              <span className={styles.search_icon}>
-                {" "}
-                <SearchIcon />
-              </span>
-              <input
-                type="text"
-                value={searchEmployeeId !== "undefined" ? searchEmployeeId : ""}
-                className={styles.search_input}
-                placeholder=" Search By Employee ID"
-                onChange={(e) => setSearchEmployeeId(e.target.value)}
-                onKeyDown={handleSearchKeyPress}
-              />
+              {selectedSuperSpeciality !== null &&
+                selectedLocation !== null && (
+                  <Autocomplete
+                    disablePortal
+                    options={getKeysForSuperSpeciality(
+                      facilityData,
+                      selectedSuperSpeciality,
+                      selectedLocation
+                    )}
+                    value={selectedDepartment}
+                    onChange={handleChangeDepartment}
+                    sx={{
+                      width: open ? 150 : 200,
+                      marginLeft: 2,
+                      "& .MuiOutlinedInput-root": {
+                        // padding: "2px 8px", // Reduce padding inside the input
+                      },
+                      "& .MuiInputBase-root": {
+                        fontSize: "14px", // Adjust font size
+                        fontFamily: "Outfit, sans-serif",
+                      },
+                      "& .MuiAutocomplete-input": {
+                        textTransform: "capitalize",
+                      },
+                      "& .MuiInputLabel-root": {
+                        fontSize: "16px", // Adjust label size
+                        fontFamily: "Outfit, sans-serif",
+                      },
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Department"
+                        InputLabelProps={{
+                          style: { fontFamily: "Outfit, sans-serif" },
+                        }}
+                      />
+                    )}
+                  />
+                )}
+              <Stack className={styles.applyButtonStack}>
+                <button className={styles.applyButton} onClick={apply}>
+                  Apply
+                </button>
+                <button
+                  style={{ display: isFilterApply ? "block" : "none" }}
+                  className={styles.clearButton}
+                  onClick={clearFilter}
+                >
+                  Clear
+                </button>
+              </Stack>
+            </div>
+
+            <div
+            // className={styles.filterlayout_search}
+            // style={{ width: open ? "70%" : "100%" }}
+            >
+              <div width={open ? "70%" : "95%"} position={"relative"}>
+                <span
+                  className={
+                    open ? styles.search_icon_open : styles.search_icon
+                  }
+                >
+                  {" "}
+                  <SearchIcon />
+                </span>
+                <input
+                  type="text"
+                  value={
+                    searchEmployeeId !== "undefined" ? searchEmployeeId : ""
+                  }
+                  className={
+                    open ? styles.search_input_open : styles.search_input
+                  }
+                  placeholder=" Search By Employee ID"
+                  onChange={(e) => setSearchEmployeeId(e.target.value)}
+                  onKeyDown={handleSearchKeyPress}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -2359,11 +2372,11 @@ const OrgChart = () => {
                 <div
                   className={styles.scrollable_container}
                   style={{
-                    marginTop: "6vh",
+                    marginTop: "11vh",
                     width: open ? "75%" : "100%",
                     maxWidth: "2400px",
                     overflowX: "scroll", // Always show scrollbar
-                    height: open ? "45vh" : "80vh",
+                    height: open ? "44vh" : "80vh",
                   }}
                   // onWheel={handleWheel}
                 >

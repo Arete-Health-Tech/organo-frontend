@@ -164,7 +164,7 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
           index={0}
           style={{
             backgroundColor: "#f8f9fa",
-            height: "95%",
+            height: "93%",
           }}
         >
           <Box className={styles.employee_container}>
@@ -401,7 +401,7 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
               justifyContent={"space-between"}
             >
               <Stack className={styles.employee_heading}>
-                Area Of Expertise
+                Procedure Performed
               </Stack>
             </Stack>
             <Stack className={styles.employee_content}>
@@ -516,7 +516,12 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                     {timelineData.every(
                       (item) =>
                         item.title === "null, null" ||
-                        item.title === "undefined, undefined"
+                        item.title === "undefined, undefined" ||
+                        item.title === "null, NA" ||
+                        item.title === "NA, null" ||
+                        item.title === "NA, NA" ||
+                        item.title === "NA , NA" ||
+                        item.title === "NA , null"
                     ) ? (
                       <></>
                     ) : (
@@ -525,7 +530,12 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                     {timelineData.every(
                       (item) =>
                         item.title === "null, null" ||
-                        item.title === "undefined, undefined"
+                        item.title === "undefined, undefined" ||
+                        item.title === "null, NA" ||
+                        item.title === "NA, null" ||
+                        item.title === "NA, NA" ||
+                        item.title === "NA , NA" ||
+                        item.title === "NA , null"
                     ) ? (
                       <>
                         <Stack className={styles.noDataFound}>
@@ -547,7 +557,12 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                           style={{ marginTop: index === 0 ? "0" : "40px" }}
                         >
                           {item.title === "null, null" ||
-                          item.title === "undefined, undefined" ? (
+                          item.title === "undefined, undefined" ||
+                          item.title === "null, NA" ||
+                          item.title === "NA, null" ||
+                          item.title === "NA, NA" ||
+                          item.title === "NA , NA" ||
+                          item.title === "NA , null" ? (
                             <></>
                           ) : (
                             <div className="flex items-center w-full group">
@@ -588,7 +603,12 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                     {careerHistory.every(
                       (item) =>
                         item.title === "null, null" ||
-                        item.title === "undefined, undefined"
+                        item.title === "undefined, undefined" ||
+                        item.title === "null, NA" ||
+                        item.title === "NA, null" ||
+                        item.title === "NA, NA" ||
+                        item.title === "NA , NA" ||
+                        item.title === "NA , null"
                     ) ? (
                       <></>
                     ) : (
@@ -598,7 +618,12 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                     {careerHistory.every(
                       (item) =>
                         item.title === "null, null" ||
-                        item.title === "undefined, undefined"
+                        item.title === "undefined, undefined" ||
+                        item.title === "null, NA" ||
+                        item.title === "NA, null" ||
+                        item.title === "NA, NA" ||
+                        item.title === "NA , NA" ||
+                        item.title === "NA , null"
                     ) ? (
                       <>
                         <Stack className={styles.noDataFound}>
@@ -618,7 +643,12 @@ const DetailView = ({ setDetails, details, setOpen, open, setScale }) => {
                           style={{ marginTop: index === 0 ? "0" : "40px" }}
                         >
                           {item.title === "null, null" ||
-                          item.title === "undefined, undefined" ? (
+                          (item.title === "undefined, undefined") |
+                            (item.title === "null, NA") ||
+                          item.title === "NA, null" ||
+                          item.title === "NA, NA" ||
+                          item.title === "NA , NA" ||
+                          item.title === "NA , null" ? (
                             <></>
                           ) : (
                             <div className="flex items-center w-full group">
