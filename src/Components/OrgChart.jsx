@@ -2211,43 +2211,46 @@ const OrgChart = () => {
                   />
                 )}
               />
-              <Autocomplete
-                disablePortal
-                options={getSuperSpecialitiesForLocation(
-                  facilityData,
-                  selectedLocation
-                )}
-                value={selectedSuperSpeciality}
-                onChange={handleChangeSuperSpeciality}
-                sx={{
-                  width: open ? 150 : 200,
-                  marginLeft: 2,
-                  "& .MuiOutlinedInput-root": {
-                    // padding: "2px 8px", // Reduce padding inside the input
-                  },
-                  "& .MuiInputBase-root": {
-                    fontSize: "14px", // Adjust font size
-                    fontFamily: "Outfit, sans-serif",
-                  },
-                  "& .MuiAutocomplete-input": {
-                    textTransform: "capitalize",
-                  },
-                  "& .MuiInputLabel-root": {
-                    fontSize: "16px", // Adjust label size
-                    fontFamily: "Outfit, sans-serif",
-                  },
-                }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Super Speciality"
-                    InputLabelProps={{
-                      style: { fontFamily: "Outfit, sans-serif" },
-                    }}
-                  />
-                )}
-              />
-              {selectedSuperSpeciality !== null &&
+              {
+                <Autocomplete
+                  disablePortal
+                  options={getSuperSpecialitiesForLocation(
+                    facilityData,
+                    selectedLocation
+                  )}
+                  value={selectedSuperSpeciality}
+                  onChange={handleChangeSuperSpeciality}
+                  sx={{
+                    width: open ? 150 : 200,
+                    marginLeft: 2,
+                    "& .MuiOutlinedInput-root": {
+                      // padding: "2px 8px", // Reduce padding inside the input
+                    },
+                    "& .MuiInputBase-root": {
+                      fontSize: "14px", // Adjust font size
+                      fontFamily: "Outfit, sans-serif",
+                    },
+                    "& .MuiAutocomplete-input": {
+                      textTransform: "capitalize",
+                    },
+                    "& .MuiInputLabel-root": {
+                      fontSize: "16px", // Adjust label size
+                      fontFamily: "Outfit, sans-serif",
+                    },
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Super Speciality"
+                      InputLabelProps={{
+                        style: { fontFamily: "Outfit, sans-serif" },
+                      }}
+                    />
+                  )}
+                />
+              }
+              {sselectedLocation !== "Corporate" &&
+                electedSuperSpeciality !== null &&
                 selectedLocation !== null && (
                   <Autocomplete
                     disablePortal
