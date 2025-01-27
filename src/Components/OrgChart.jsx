@@ -2249,8 +2249,8 @@ const OrgChart = () => {
                   )}
                 />
               }
-              {sselectedLocation !== "Corporate" &&
-                electedSuperSpeciality !== null &&
+              {selectedLocation !== "Corporate" &&
+                selectedSuperSpeciality !== null &&
                 selectedLocation !== null && (
                   <Autocomplete
                     disablePortal
