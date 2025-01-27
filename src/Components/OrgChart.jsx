@@ -2211,7 +2211,7 @@ const OrgChart = () => {
                   />
                 )}
               />
-              {
+              { selectedLocation !== "Corporate" && (
                 <Autocomplete
                   disablePortal
                   options={getSuperSpecialitiesForLocation(
@@ -2248,6 +2248,7 @@ const OrgChart = () => {
                     />
                   )}
                 />
+            )
               }
               {selectedLocation !== "Corporate" &&
                 selectedSuperSpeciality !== null &&
