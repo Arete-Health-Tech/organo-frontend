@@ -2292,9 +2292,15 @@ const OrgChart = () => {
                   />
                 )}
               <Stack className={styles.applyButtonStack}>
-                <button className={styles.applyButton} onClick={apply}>
-                  Apply
-                </button>
+                 {selectedLocation === "Corporate" ||
+                (selectedSuperSpeciality !== null &&
+                  selectedDepartment !== null) ? (
+                  <button className={styles.applyButton} onClick={apply}>
+                    Apply
+                  </button>
+                ) : (
+                  <></>
+                )}
                 <button
                   style={{ display: isFilterApply ? "block" : "none" }}
                   className={styles.clearButton}
