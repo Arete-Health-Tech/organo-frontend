@@ -2293,8 +2293,7 @@ const OrgChart = () => {
                 )}
               <Stack className={styles.applyButtonStack}>
                  {selectedLocation === "Corporate" ||
-                (selectedSuperSpeciality !== null &&
-                  selectedDepartment !== null) ? (
+                (selectedSuperSpeciality !== null) ? (
                   <button className={styles.applyButton} onClick={apply}>
                     Apply
                   </button>
